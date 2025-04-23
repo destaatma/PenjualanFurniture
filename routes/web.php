@@ -28,6 +28,21 @@ Route::get('/login', function () {
 Route::get('/kategori', function () {
     return view('admin.kategori.kategori');
 });
+
 Route::get('/produk', function () {
     return view('admin.produk.produk');
 });
+
+Route::get('/pemesanan', function () {
+    return view('admin.transaksi.pemesanan');
+});
+
+Route::get('/pembayaran', function () {
+    return view('admin.transaksi.pembayaran');
+});
+
+Route::get('/pengiriman', function () {
+    return view('admin.transaksi.pengiriman');
+});
+
+

@@ -3,63 +3,69 @@
 @section('content')
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Data Kategori</h1>
+        <h1 class="mt-4">Pemesanan Produk</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-            <li class="breadcrumb-item active">Kategori</li>
+            <li class="breadcrumb-item active">Pemesanan Produk</li>
         </ol>
 
-        <!-- Form Tambah Kategori -->
+        <!-- Form Pemesanan -->
         <div class="card mb-4">
             <div class="card-header">
-                <i class="fas fa-folder-plus"></i> Tambah Kategori Baru
+                <i class="fas fa-shopping-cart"></i> Tambah Pemesanan Baru
             </div>
             <div class="card-body">
-                <form>
                     <div class="mb-3">
-                        <label for="kategoriNama" class="form-label">Nama Kategori</label>
-                        <input type="text" class="form-control" id="kategoriNama" name="kategoriNama" required>
+                        <label for="product_id" class="form-label">Produk</label>
+                        <select class="form-select" id="product_id" name="product_id">
+                            <option value="1">Produk A</option>
+                            <option value="2">Produk B</option>
+                            <option value="3">Produk C</option>
+                        </select>
                     </div>
 
                     <div class="mb-3">
-                        <label for="kategoriDeskripsi" class="form-label">Deskripsi Kategori</label>
-                        <textarea class="form-control" id="kategoriDeskripsi" name="kategoriDeskripsi" rows="3" required></textarea>
+                        <label for="quantity" class="form-label">Jumlah</label>
+                        <input type="number" class="form-control" id="quantity" name="quantity" required min="1">
                     </div>
 
-                    <button type="submit" class="btn btn-success">Simpan Kategori</button>
+                    <button type="submit" class="btn btn-success">Pesan Sekarang</button>
                 </form>
             </div>
         </div>
 
-        <!-- Daftar Kategori -->
+        <!-- Daftar Pemesanan -->
         <div class="card mb-4">
             <div class="card-header">
-                <i class="fas fa-list-alt"></i> Daftar Kategori
+                <i class="fas fa-list-alt"></i> Daftar Pemesanan
             </div>
             <div class="card-body">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Nama Kategori</th>
-                            <th>Deskripsi</th>
+                            <th>ID Pemesanan</th>
+                            <th>Produk</th>
+                            <th>Jumlah</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td>
-                            <td>Furniture Kayu</td>
-                            <td>Produk berbahan dasar kayu dengan desain klasik.</td>
+                            <td>1001</td>
+                            <td>Produk A</td>
+                            <td>3</td>
+                            <td><span class="badge bg-success">Diproses</span></td>
                             <td>
                                 <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</button>
                                 <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</button>
                             </td>
                         </tr>
                         <tr>
-                            <td>2</td>
-                            <td>Meja & Kursi</td>
-                            <td>Berbagai model meja dan kursi untuk berbagai keperluan.</td>
+                            <td>1002</td>
+                            <td>Produk B</td>
+                            <td>1</td>
+                            <td><span class="badge bg-danger">Dibatalkan</span></td>
                             <td>
                                 <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</button>
                                 <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</button>
