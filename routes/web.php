@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,24 +26,44 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
-Route::get('/kategori', function () {
+Route::get('/admin/kategori', function () {
     return view('admin.kategori.kategori');
 });
 
-Route::get('/produk', function () {
+Route::get('/admin/produk', function () {
     return view('admin.produk.produk');
 });
 
-Route::get('/pemesanan', function () {
+Route::get('/admin/pemesanan', function () {
     return view('admin.transaksi.pemesanan');
 });
 
-Route::get('/pembayaran', function () {
+Route::get('/admin/pembayaran', function () {
     return view('admin.transaksi.pembayaran');
 });
 
-Route::get('/pengiriman', function () {
+Route::get('/admin/pengiriman', function () {
     return view('admin.transaksi.pengiriman');
 });
 
+//route untuk user tentang kami
+Route::get('/tentangKami', function () {
+    return view('tentangKami');
+});
+//route untuk user produk
+Route::get('/produk', function () {
+    return view('produk');
+});
+//route untuk user kategori
+Route::get('/kategori', function () {
+    return view('kategori');
+});
+//route untuk user pemesanan
+Route::get('/pemesanan', function () {
+    return view('pemesanan');
+});
 
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();

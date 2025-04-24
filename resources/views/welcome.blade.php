@@ -34,7 +34,7 @@
                     <h2 class="mb-4 section-title">Dibuat dengan bahan berkualitas tinggi</h2>
                     <p class="mb-4">Kami bukan sekadar penyedia furnitur, tetapi mitra dalam menciptakan ruang impian Anda.
                         Temukan inspirasi dan jadikan rumah atau bisnis Anda lebih istimewa dengan ESTA Mebel!. </p>
-                    <p><a href="shop.html" class="btn">Jelajahi</a></p>
+                    <p><a href="pemesanan.html" class="btn">Beli Sekarang</a></p>
                 </div>
                 <!-- End Column 1 -->
 
@@ -102,8 +102,10 @@
                                     <img src="{{ url('/beranda/assets/images/truck.svg') }}" alt="Image" class="imf-fluid">
                                 </div>
                                 <h3>Cepat &amp; Aman</h3>
-                                <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
-                                    vulputate.</p>
+                                <p>Kami memahami bahwa setiap pelanggan ingin menerima pesanan mereka dengan cepat dan tanpa
+                                    khawatir. Oleh karena itu, Desta Mebel berkomitmen untuk menyediakan layanan pengiriman
+                                    yang efisien, aman, dan terpercaya
+                                </p>
                             </div>
                         </div>
 
@@ -113,8 +115,9 @@
                                     <img src="{{ url('/beranda/assets/images/bag.svg') }}" alt="Image" class="imf-fluid">
                                 </div>
                                 <h3>Mudah dalam Pemesanan</h3>
-                                <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
-                                    vulputate.</p>
+                                <p>Belanja mudah, pengiriman aman, kepuasan terjamin! Mulai belanja sekarang dan jadikan
+                                    rumah Anda lebih nyaman dengan Desta Mebel
+                                </p>
                             </div>
                         </div>
 
@@ -125,8 +128,8 @@
                                         class="imf-fluid">
                                 </div>
                                 <h3>24/7 Melayani</h3>
-                                <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
-                                    vulputate.</p>
+                                <p>Kapan pun Anda membutuhkan kami, tim Desta Mebel selalu siap memberikan layanan terbaik..
+                                </p>
                             </div>
                         </div>
 
@@ -136,8 +139,9 @@
                                     <img src="{{ url('/beranda/assets/images/return.svg') }}" alt="Image" class="imf-fluid">
                                 </div>
                                 <h3>Mudah Dalam Pengembalian</h3>
-                                <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
-                                    vulputate.</p>
+                                <p>Kami memahami bahwa terkadang produk yang diterima tidak sesuai dengan harapan. Jangan
+                                    khawatir! Kami menyediakan proses pengembalian barang yang cepat dan mudah.
+                                    .</p>
                             </div>
                         </div>
 
@@ -155,37 +159,6 @@
     </div>
     <!-- End Why Choose Us Section -->
 
-    <!-- Start We Help Section -->
-    <div class="we-help-section">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-lg-7 mb-5 mb-lg-0">
-                    <div class="imgs-grid">
-                        <div class="grid grid-1"><img src="{{ url('/beranda/assets/images/img-grid-1.jpg') }}"
-                                alt="Untree.co"></div>
-                        <div class="grid grid-2"><img src="{{ url('/beranda/assets/images/img-grid-2.jpg') }}"
-                                alt="Untree.co"></div>
-                        <div class="grid grid-3"><img src="{{ url('/beranda/assets/images/img-grid-3.jpg') }}"
-                                alt="Untree.co"></div>
-                    </div>
-                </div>
-                <div class="col-lg-5 ps-lg-5">
-                    <h2 class="section-title mb-4">We Help You Make Modern Interior Design</h2>
-                    <p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada.
-                        Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque
-                        habitant morbi tristique senectus et netus et malesuada</p>
-
-                    <ul class="list-unstyled custom-list my-4">
-                        <li>Donec vitae odio quis nisl dapibus malesuada</li>
-                        <li>Donec vitae odio quis nisl dapibus malesuada</li>
-                        <li>Donec vitae odio quis nisl dapibus malesuada</li>
-                        <li>Donec vitae odio quis nisl dapibus malesuada</li>
-                    </ul>
-                    <p><a herf="#" class="btn">Explore</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- End We Help Section -->
 
     <!-- Start Popular Product -->
@@ -242,7 +215,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 mx-auto text-center">
-                    <h2 class="section-title">Testimonials</h2>
+                    <h2 class="section-title">Ulasan</h2>
                 </div>
             </div>
 
@@ -330,7 +303,8 @@
 
                                             <div class="author-info">
                                                 <div class="author-pic">
-                                                    <img src="images/person-1.png" alt="Maria Jones" class="img-fluid">
+                                                    <img src="{{ url('/beranda/assets/images/person-1.png') }}"
+                                                        alt="Maria Jones" class="img-fluid">
                                                 </div>
                                                 <h3 class="font-weight-bold">Maria Jones</h3>
                                                 <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
@@ -350,62 +324,4 @@
         </div>
     </div>
     <!-- End Testimonial Slider -->
-
-    <!-- Start Blog Section -->
-    <div class="blog-section">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-md-6">
-                    <h2 class="section-title">Recent Blog</h2>
-                </div>
-                <div class="col-md-6 text-start text-md-end">
-                    <a href="#" class="more">View All Posts</a>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
-                    <div class="post-entry">
-                        <a href="#" class="post-thumbnail"><img src="images/post-1.jpg" alt="Image" class="img-fluid"></a>
-                        <div class="post-content-entry">
-                            <h3><a href="#">First Time Home Owner Ideas</a></h3>
-                            <div class="meta">
-                                <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 19,
-                                        2021</a></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
-                    <div class="post-entry">
-                        <a href="#" class="post-thumbnail"><img src="images/post-2.jpg" alt="Image" class="img-fluid"></a>
-                        <div class="post-content-entry">
-                            <h3><a href="#">How To Keep Your Furniture Clean</a></h3>
-                            <div class="meta">
-                                <span>by <a href="#">Robert Fox</a></span> <span>on <a href="#">Dec 15, 2021</a></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
-                    <div class="post-entry">
-                        <a href="#" class="post-thumbnail"><img src="images/post-3.jpg" alt="Image" class="img-fluid"></a>
-                        <div class="post-content-entry">
-                            <h3><a href="#">Small Space Furniture Apartment Ideas</a></h3>
-                            <div class="meta">
-                                <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 12,
-                                        2021</a></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- End Blog Section -->
-
 @endsection
