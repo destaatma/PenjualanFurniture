@@ -14,6 +14,9 @@
 .card-header i {
     margin-right: 8px; /* Agar ikon lebih dekat dengan teks */
 }
+html {
+            scroll-behavior: smooth;
+        }
 </style>
 <main>
     <div class="container-fluid px-4">
@@ -30,15 +33,16 @@
             </div>
             <div class="card-body">
                 <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-12"> <!-- Membuat form lebih kecil -->
                             <form>
-                                <div class="mb-2">
+
+                                <div class="row justify-content-center">
+
+                                <div class="mb-2 col-6">
                                     <label for="customer_name" class="form-label">Nama Pelanggan</label>
                                     <input type="text" class="form-control form-control-sm" id="customer_name" name="customer_name" required>
                                 </div>
 
-                                <div class="mb-2">
+                                <div class="mb-2 col-6">
                                     <label for="product_id" class="form-label">Pilih Produk</label>
                                     <select class="form-select form-select-sm" id="product_id" name="product_id" required>
                                         <option value="1">Produk A</option>
@@ -47,7 +51,7 @@
                                     </select>
                                 </div>
 
-                                <div class="mb-2">
+                                <div class="mb-2 col-12">
                                     <label for="rating" class="form-label">Rating</label>
                                     <select class="form-select form-select-sm" id="rating" name="rating" required>
                                         <option value="1">⭐</option>
@@ -58,9 +62,10 @@
                                     </select>
                                 </div>
 
-                                <div class="mb-2">
+                                <div class="mb-2 col-12">
                                     <label for="review" class="form-label">Ulasan</label>
                                     <textarea class="form-control form-control-sm" id="review" name="review" rows="2" required></textarea>
+                                </div>
                                 </div>
 
                                 <button type="submit" class="btn btn-success btn-sm">Kirim Ulasan</button>
@@ -68,42 +73,40 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
         <!-- Daftar Ulasan -->
         <div class="card mb-4">
             <div class="card-header bg-success text-white">
-                <i class="fas fa-comments"></i> Daftar Ulasan Produk
+                <i class="fas fa-table me-1"></i> Daftar Ulasan Produk
             </div>
             <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover table-bordered">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Pelanggan</th>
-                                <th>Produk</th>
-                                <th>Rating</th>
-                                <th>Ulasan</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Desta</td>
-                                <td>Produk A</td>
-                                <td>⭐⭐⭐⭐⭐</td>
-                                <td>Sangat puas dengan kualitasnya!</td>
-                                <td>
-                                    <button class="btn btn-sm btn-warning"><i class="fas fa-trash"></i> edit</button>
-                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <table id="datatablesSimple" class="table table-striped table-hover table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Pelanggan</th>
+                            <th>Produk</th>
+                            <th>Rating</th>
+                            <th>Ulasan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Desta</td>
+                            <td>Produk A</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td>Sangat puas dengan kualitasnya!</td>
+                            <td>
+                                <div class="d-flex justify-content-center gap-2">
+                                    <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</button>
+                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

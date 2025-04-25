@@ -75,7 +75,7 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            <span>DESTA Furniture</span>
+            <span>Rumah Mebel</span>
         </div>
     </nav>
 </div>

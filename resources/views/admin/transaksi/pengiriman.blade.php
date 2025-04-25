@@ -14,6 +14,9 @@
     .card-header i {
         margin-right: 8px; /* Agar ikon lebih dekat dengan teks */
     }
+    html {
+            scroll-behavior: smooth;
+        }
 </style>
 
 <main>
@@ -31,25 +34,26 @@
             </div>
             <div class="card-body">
                 <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-12"> <!-- Membuat form lebih kecil -->
                             <form>
-                                <div class="mb-2">
+
+                                <div class="row justify-content-center">
+
+                                <div class="mb-2 col-6">
                                     <label for="shipment_id" class="form-label">ID Pengiriman</label>
                                     <input type="text" class="form-control form-control-sm" id="shipment_id" name="shipment_id" required>
                                 </div>
 
-                                <div class="mb-2">
+                                <div class="mb-2 col-6">
                                     <label for="order_id" class="form-label">ID Pemesanan</label>
                                     <input type="text" class="form-control form-control-sm" id="order_id" name="order_id" required>
                                 </div>
 
-                                <div class="mb-2">
+                                <div class="mb-2 col-6">
                                     <label for="shipment_date" class="form-label">Tanggal Pengiriman</label>
                                     <input type="date" class="form-control form-control-sm" id="shipment_date" name="shipment_date" required>
                                 </div>
 
-                                <div class="mb-2">
+                                <div class="mb-2 col-6">
                                     <label for="status" class="form-label">Status Pengiriman</label>
                                     <select class="form-select form-select-sm" id="status" name="status">
                                         <option value="pending">Dalam Proses</option>
@@ -58,47 +62,57 @@
                                         <option value="failed">Gagal</option>
                                     </select>
                                 </div>
+                                </div>
 
                                 <button type="submit" class="btn btn-success btn-sm">Simpan Pengiriman</button>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
         <!-- Daftar Pengiriman -->
         <div class="card mb-4">
-            <div class="card-header bg-primary text-white">
-                <i class="fas fa-list-alt"></i> Daftar Pengiriman
+            <div class="card-header bg-success text-white">
+                <i class="fas fa-table me-1"></i> Daftar Pengiriman
             </div>
             <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover table-bordered">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>ID Pengiriman</th>
-                                <th>ID Pemesanan</th>
-                                <th>Tanggal Pengiriman</th>
-                                <th>Status Pengiriman</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>3001</td>
-                                <td>1001</td>
-                                <td>2025-04-22</td>
-                                <td><span class="badge bg-success">Tiba di Tujuan</span></td>
-                            </tr>
-                            <tr>
-                                <td>3002</td>
-                                <td>1002</td>
-                                <td>2025-04-21</td>
-                                <td><span class="badge bg-warning">Dalam Proses</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <table id="datatablesSimple" class="table table-striped table-hover table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID Pengiriman</th>
+                            <th>ID Pemesanan</th>
+                            <th>Tanggal Pengiriman</th>
+                            <th>Status Pengiriman</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3001</td>
+                            <td>1001</td>
+                            <td>2025-04-22</td>
+                            <td><span class="badge bg-success">Tiba di Tujuan</span></td>
+                            <td>
+                                <div class="d-flex justify-content-center gap-2">
+                                    <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</button>
+                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3002</td>
+                            <td>1002</td>
+                            <td>2025-04-21</td>
+                            <td><span class="badge bg-warning">Dalam Proses</span></td>
+                            <td>
+                                <div class="d-flex justify-content-center gap-2">
+                                    <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</button>
+                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
