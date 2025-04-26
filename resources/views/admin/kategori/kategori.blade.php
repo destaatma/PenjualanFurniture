@@ -30,7 +30,7 @@
 
             <!-- Form Tambah Kategori -->
             <div class="card mb-4">
-                <div class="card-header bg-primary text-white">
+                <div class="card-header bg-success text-white">
                     <i class="fas fa-folder-plus"></i> Tambah Kategori Baru
                 </div>
                 <div class="card-body">

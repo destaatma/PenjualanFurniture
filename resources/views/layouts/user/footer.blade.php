@@ -4,14 +4,14 @@
         <div class="row g-4">
             <div class="col-lg-4">
                 <div class="footer-logo-wrap mb-4">
-                    <a href="#" class="footer-logo text-white fw-bold">ESTA Mebel<span>.</span></a>
+                    <a href="#" class="footer-logo text-white fw-bold">Rumah Mebel<span>.</span></a>
                 </div>
                 <p class="small">
                     📍 Jln. Jajarindah Donorojo RT.0 / RW.0 Kepek Donorojo Kab. Pacitan – Jawa Timur 63554<br>
                     ☎️ Office: [0000] 111000111<br>
-                    📞 081 081 081 081<br>
-                    ✉️ estamebel@gmail.com<br>
-                    🌐 DESTA Furniture.com<br>
+                    📞 081 081 081 081 / 000 000 000 000<br>
+                    ✉️ rumahmebel@gmail.com<br>
+                    🌐 Rumah Mebel.com<br>
                 </p>
                 <ul class="list-unstyled custom-social d-flex gap-3">
                     <li><a href="#" class="text-white"><span class="fa fa-brands fa-facebook-f"></span></a></li>
@@ -29,28 +29,6 @@
                             <li><a href="#" class="text-white">Services</a></li>
                             <li><a href="#" class="text-white">Blog</a></li>
                             <li><a href="#" class="text-white">Contact us</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3">
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="text-white">Support</a></li>
-                            <li><a href="#" class="text-white">Knowledge base</a></li>
-                            <li><a href="#" class="text-white">Live chat</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3">
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="text-white">Jobs</a></li>
-                            <li><a href="#" class="text-white">Our team</a></li>
-                            <li><a href="#" class="text-white">Leadership</a></li>
-                            <li><a href="#" class="text-white">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3">
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="text-white">Nordic Chair</a></li>
-                            <li><a href="#" class="text-white">Kruzo Aero</a></li>
-                            <li><a href="#" class="text-white">Ergonomic Chair</a></li>
                         </ul>
                     </div>
                 </div>
