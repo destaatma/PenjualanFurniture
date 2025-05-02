@@ -1,25 +1,7 @@
 @extends('layouts.admin.app')
-
 @section('content')
-
-<style>
-    .container .col-md-6 {
-    max-width: 500px; /* Membatasi ukuran form */
-}
-
-.form-control-sm {
-    padding: 6px;
-}
-
-.card-header i {
-    margin-right: 8px; /* Agar ikon lebih dekat dengan teks */
-}
-html {
-            scroll-behavior: smooth;
-        }
-</style>
 <main>
-    <div class="container-fluid px-4">
+<div class="container-fluid px-4">
         <h1 class="mt-4">Pemesanan Produk</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
@@ -76,55 +58,5 @@ html {
                         </div>
                     </div>
                 </div>
-
-        <!-- Daftar Pemesanan -->
-        <div class="card mb-4">
-            <div class="card-header bg-success text-white">
-                <i class="fas fa-table me-1"></i> Daftar Pemesanan
-            </div>
-            <div class="card-body">
-                <table id="datatablesSimple" class="table table-striped table-hover table-bordered">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>ID Pemesanan</th>
-                            <th>Produk</th>
-                            <th>Total Harga</th>
-                            <th>Tanggal Pemesanan</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1001</td>
-                            <td>Produk A</td>
-                            <td>Rp 750.000</td>
-                            <td>2025-04-20</td>
-                            <td><span class="badge bg-success">Diproses</span></td>
-                            <td>
-                                <div class="d-flex justify-content-center gap-2">
-                                    <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</button>
-                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1002</td>
-                            <td>Produk B</td>
-                            <td>Rp 500.000</td>
-                            <td>2025-04-22</td>
-                            <td><span class="badge bg-danger">Dibatalkan</span></td>
-                            <td>
-                                <div class="d-flex justify-content-center gap-2">
-                                    <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</button>
-                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</main>
+            </main>
 @endsection

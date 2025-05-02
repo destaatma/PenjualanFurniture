@@ -66,7 +66,7 @@
                     <h3 class="fw-bold">Nordic Chair</h3>
                     <p class="text-muted">Desain minimalis dengan bahan berkualitas, cocok untuk ruangan modern.</p>
                     <p class="fw-bold text-primary">Rp 1.500.000</p>
-                    <a href="#" class="btn btn-secondary">Lihat Detail</a>
+                    <a href="" class="btn btn-secondary">Lihat Detail</a>
                 </div>
             </div>
 

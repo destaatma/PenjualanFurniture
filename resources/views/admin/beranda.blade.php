@@ -51,7 +51,7 @@
                             <span>Pengguna</span>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="/admin/pengguna" aria-current=""
+                            <a class="small text-white stretched-link" href="/admin/pengguna"
                                 style="text-decoration: none;">View Details</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
@@ -75,25 +75,26 @@
                     Data Penjualan
                 </div><div class="card mb-4">
                     <div class="card-body">
+                        <div class="table-responsive">
                         <table id="datatablesSimple">
                             <thead>
                                 <tr>
                                     <th>Name </th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
+                                    <th>Produk</th>
+                                    <th>Alamat</th>
+                                    <th>Jumlah</th>
+                                    <th>Tanggal</th>
+                                    <th>Total Harga</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
+                                    <th>Name </th>
+                                    <th>Produk</th>
+                                    <th>Alamat</th>
+                                    <th>Jumlah</th>
+                                    <th>Tanggal</th>
+                                    <th>Total Harga</th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -555,6 +556,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
             </div>

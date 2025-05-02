@@ -1,21 +1,35 @@
 @extends('layouts.user.main')
 @section('content')
+    <style>
+        .hero-img-wrap {
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+            /* Sesuaikan ukuran maksimal jika diperlukan */
+        }
+    </style>
     <!-- Start Hero Section -->
     <div class="hero">
         <div class="container">
-            <div class="row justify-content-between">
+            <div class="row justify-content-between align-items-center">
                 <div class="col-lg-5">
                     <div class="intro-excerpt">
-                        <h1>Produk Terbaik & <span clsas="d-block">Bahan Berkualitas</span></h1>
+                        <h1>Produk Terbaik & <span class="d-block">Bahan Berkualitas</span></h1>
                         <p class="mb-4">Rumah Mebel hadir untuk menghadirkan furnitur berkualitas tinggi dengan desain yang
                             elegan dan fungsional. Kami percaya bahwa setiap ruangan memiliki karakter, dan furnitur yang
                             tepat dapat memberikan sentuhan estetika serta kenyamanan maksimal.</p>
-                        <a href="/produk" class="btn btn-secondary me-2">Jelajahi Produk</a></p>
+                        <a href="/produk" class="btn btn-secondary me-2">Jelajahi Produk</a>
                     </div>
                 </div>
                 <div class="col-lg-7">
-                    <div class="hero-img-wrap">
-                        <img src="{{ url('/beranda/assets/images/couch.png') }}" class="img-fluid">
+                    <div class="hero-img-wrap text-center">
+                        <img src="{{ url('/beranda/assets/images/couch.png') }}" class="img-fluid hero-img">
                     </div>
                 </div>
             </div>
@@ -158,78 +172,78 @@
     </div>
     <!-- End Why Choose Us Section -->
 
-   <!-- Start Popular Product -->
-<div class="container mt-5 border-bottom pb-4 mb-5" style="max-width: 1100px;">
-    <h2 class="text-center fw-bold mb-4">Produk Terlaris di Rumah Mebel</h2>
+    <!-- Start Popular Product -->
+    <div class="container mt-5 border-bottom pb-4 mb-5" style="max-width: 1100px;">
+        <h2 class="text-center fw-bold mb-4">Produk Terlaris di Rumah Mebel</h2>
 
-    <div class="row g-3 justify-content-center"> <!-- g-3 tetap memberikan jarak antar gambar -->
+        <div class="row g-3 justify-content-center"> <!-- g-3 tetap memberikan jarak antar gambar -->
 
-        <!-- Produk 1 -->
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="text-center p-2">
-                <img src="{{ url('/beranda/assets/images/product-1.png') }}" alt="Almari Penyekat Ruangan"
-                    class="img-fluid rounded shadow-sm">
+            <!-- Produk 1 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="text-center p-2">
+                    <img src="{{ url('/beranda/assets/images/product-1.png') }}" alt="Almari Penyekat Ruangan"
+                        class="img-fluid rounded shadow-sm">
+                </div>
             </div>
-        </div>
 
-        <!-- Produk 2 -->
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="text-center p-2">
-                <img src="{{ url('/beranda/assets/images/product-2.png') }}" alt="Bale-Bale"
-                    class="img-fluid rounded shadow-sm">
+            <!-- Produk 2 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="text-center p-2">
+                    <img src="{{ url('/beranda/assets/images/product-2.png') }}" alt="Bale-Bale"
+                        class="img-fluid rounded shadow-sm">
+                </div>
             </div>
-        </div>
 
-        <!-- Produk 3 -->
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="text-center p-2">
-                <img src="{{ url('/beranda/assets/images/product-3.png') }}" alt="Bangku Taman"
-                    class="img-fluid rounded shadow-sm">
+            <!-- Produk 3 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="text-center p-2">
+                    <img src="{{ url('/beranda/assets/images/product-3.png') }}" alt="Bangku Taman"
+                        class="img-fluid rounded shadow-sm">
+                </div>
             </div>
-        </div>
 
-        <!-- Produk 4 -->
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="text-center p-2">
-                <img src="{{ url('/beranda/assets/images/product-1.png') }}" alt="Buffet"
-                    class="img-fluid rounded shadow-sm">
+            <!-- Produk 4 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="text-center p-2">
+                    <img src="{{ url('/beranda/assets/images/product-1.png') }}" alt="Buffet"
+                        class="img-fluid rounded shadow-sm">
+                </div>
             </div>
-        </div>
 
-        <!-- Produk 5 -->
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="text-center p-2">
-                <img src="{{ url('/beranda/assets/images/product-2.png') }}" alt="Buffet TV"
-                    class="img-fluid rounded shadow-sm">
+            <!-- Produk 5 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="text-center p-2">
+                    <img src="{{ url('/beranda/assets/images/product-2.png') }}" alt="Buffet TV"
+                        class="img-fluid rounded shadow-sm">
+                </div>
             </div>
-        </div>
 
-        <!-- Produk 6 -->
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="text-center p-2">
-                <img src="{{ url('/beranda/assets/images/product-3.png') }}" alt="Custom Design Furniture"
-                    class="img-fluid rounded shadow-sm">
+            <!-- Produk 6 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="text-center p-2">
+                    <img src="{{ url('/beranda/assets/images/product-3.png') }}" alt="Custom Design Furniture"
+                        class="img-fluid rounded shadow-sm">
+                </div>
             </div>
-        </div>
 
-        <!-- Produk 7 -->
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="text-center p-2">
-                <img src="{{ url('/beranda/assets/images/product-1.png') }}" alt="Display Cabinet"
-                    class="img-fluid rounded shadow-sm">
+            <!-- Produk 7 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="text-center p-2">
+                    <img src="{{ url('/beranda/assets/images/product-1.png') }}" alt="Display Cabinet"
+                        class="img-fluid rounded shadow-sm">
+                </div>
             </div>
-        </div>
 
-        <!-- Produk 8 -->
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="text-center p-2">
-                <img src="{{ url('/beranda/assets/images/product-2.png') }}" alt="Furniture Dapur"
-                    class="img-fluid rounded shadow-sm">
+            <!-- Produk 8 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="text-center p-2">
+                    <img src="{{ url('/beranda/assets/images/product-2.png') }}" alt="Furniture Dapur"
+                        class="img-fluid rounded shadow-sm">
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End Popular Product -->
+    <!-- End Popular Product -->
 
     <!-- Start Testimonial Slider -->
     <div class="testimonial-section border-bottom pb-4 mb-5">
@@ -296,7 +310,8 @@
 
                                             <div class="author-info">
                                                 <div class="author-pic">
-                                                    <img src="{{ url('/beranda/assets/images/person-1.png') }}" alt="Maria Jones" class="img-fluid">
+                                                    <img src="{{ url('/beranda/assets/images/person-1.png') }}"
+                                                        alt="Maria Jones" class="img-fluid">
                                                 </div>
                                                 <h3 class="font-weight-bold">Maria Jones</h3>
                                                 <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
