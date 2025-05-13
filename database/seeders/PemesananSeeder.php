@@ -15,21 +15,21 @@ class PemesananSeeder extends Seeder
     public function run(): void
     {
         Pemesanan::create([
-            'detail_pemesanan_id' => '',
+            'detail_pemesanan_id' => 1,
             'user_id' => 1,
             'total_harga' => '1000000',
             'tanggal_pemesanan' => Carbon::now(),
             'status_pemesanan' => 'sedang diproses',
         ]);
         Pemesanan::create([
-            'detail_pemesanan_id' => '',
+            'detail_pemesanan_id' => 1,
             'user_id' => 2,
             'total_harga' => '1000000',
             'tanggal_pemesanan' => Carbon::now(),
             'status_pemesanan' => 'sedang dikirim',
         ]);
         Pemesanan::create([
-            'detail_pemesanan_id' => '',
+            'detail_pemesanan_id' => 1,
             'user_id' => 3,
             'total_harga' => '1000000',
             'tanggal_pemesanan' => Carbon::now(),

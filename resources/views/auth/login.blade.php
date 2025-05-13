@@ -20,16 +20,18 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-5">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header bg-warning text-white">
-                                    <h3 class="text-center font-weight-light my-4">Login</h3>
+                                <div class="card-header bg-light text-dark">
+                                    <h3 class="text-center font-weight-light my-4">Masuk</h3>
+                                    <p class="mb-4 text-center text-dark fs-5">Silahkan masukkan informasi login anda</p>
                                 </div>
                                 <div class="card-body">
                                     <form action="{{ route('login') }}" method="POST">
                                         @csrf
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputEmail" name="email" type="email"
-                                                placeholder="name@example.com" />
-                                            <label for="inputEmail">Email </label>
+                                       <div class="form-floating mb-3">
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                                <input class="form-control" name="email" type="email" placeholder="name@example.com" required />
+                                            </div>
                                         </div>
                                         @error('email')
                                             <div class="text-danger">
@@ -37,9 +39,10 @@
                                             </div>
                                         @enderror
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputPassword" name="password" type="password"
-                                                placeholder="Password" />
-                                            <label for="inputPassword">Password</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                                <input class="form-control" name="password" type="password" placeholder="Password" required />
+                                            </div>
                                         </div>
                                         <div class="form-check mb-3">
                                             <input class="form-check-input" id="inputRememberPassword" type="checkbox"
@@ -52,14 +55,13 @@
                                                 {{ $message}}
                                             </div>
                                         @enderror
-                                        <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <button class="btn btn-warning px-4">Login</button>
+                                        <div class="d-flex align-items-center justify-content-center mt-4 mb-3">
+                                            <button class="btn btn-dark col-4">Login</button>
+                                        </div>
+                                        <div class="card-footer text-center py-3">
+                                            <div class="small"><a href="/register" class="text-dark">Belum Punya Akun? Buat Akun !</a></div>
                                         </div>
                                     </form>
-                                </div>
-                                <div class="card-footer text-center py-3">
-                                    <div class="small"><a href="/register" class="text-warning">Belum Punya Akun?
-                                            Buat Akun !</a></div>
                                 </div>
                             </div>
                         </div>

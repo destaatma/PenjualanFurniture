@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pemesanan;
 use App\Models\Pengiriman;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class PengirimanController extends Controller
      */
     public function index()
     {
-        //
+        $pengirimans = Pengiriman::with('pemesanan')->get();
+        return view('admin.transaksi.pengiriman.index', compact('pengirimans'));
     }
 
     /**
@@ -20,7 +22,8 @@ class PengirimanController extends Controller
      */
     public function create()
     {
-        //
+        $pemesanans = Pemesanan::all(); // Ambil daftar pemesanan untuk dropdown
+        return view('admin.transaksi.pengiriman.create', compact('pemesanans'));
     }
 
     /**
@@ -28,15 +31,16 @@ class PengirimanController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'pemesanan_id' => 'required|exists:pemesanans,id',
+            'tanggal_pengiriman' => 'required|date_format:Y-m-d\TH:i',
+            'status_pengiriman' => 'required|string',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Pengiriman $pengiriman)
-    {
-        //
+        Pengiriman::create($request->all());
+
+        return redirect()->route('admin.transaksi.pengiriman.index')
+            ->with('success', 'Pengiriman berhasil ditambahkan.');
     }
 
     /**
@@ -44,7 +48,8 @@ class PengirimanController extends Controller
      */
     public function edit(Pengiriman $pengiriman)
     {
-        //
+        $pemesanans = Pemesanan::all();
+        return view('admin.transaksi.pengiriman.edit', compact('pengiriman', 'pemesanans'));
     }
 
     /**
@@ -52,7 +57,16 @@ class PengirimanController extends Controller
      */
     public function update(Request $request, Pengiriman $pengiriman)
     {
-        //
+        $request->validate([
+            'pemesanan_id' => 'required|exists:pemesanans,id',
+            'tanggal_pengiriman' => 'required|date_format:Y-m-d\TH:i',
+            'status_pengiriman' => 'required|string',
+        ]);
+
+        $pengiriman->update($request->all());
+
+        return redirect()->route('admin.transaksi.pengiriman.index')
+            ->with('success', 'Pengiriman berhasil diperbarui.');
     }
 
     /**
@@ -60,6 +74,9 @@ class PengirimanController extends Controller
      */
     public function destroy(Pengiriman $pengiriman)
     {
-        //
+        $pengiriman->delete();
+
+        return redirect()->route('admin.transaksi.pengiriman.index')
+            ->with('success', 'Pengiriman berhasil dihapus.');
     }
 }

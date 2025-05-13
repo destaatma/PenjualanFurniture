@@ -3,64 +3,87 @@
 namespace App\Http\Controllers;
 
 use App\Models\DetailPemesanan;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class DetailPemesananController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan daftar detail pemesanan.
      */
     public function index()
     {
-       //
+        $detail_pemesanans = DetailPemesanan::all();
+        return view('admin.transaksi.detail_pemesanan.index', compact('detail_pemesanans'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan form untuk membuat detail pemesanan baru.
      */
     public function create()
     {
-        //
+        $produks = Produk::all();
+        return view('admin.transaksi.detail_pemesanan.create', compact('produks'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Menyimpan data detail pemesanan baru ke dalam database.
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'produk_id' => 'required|exists:produks,id',
+            'jumlah_produk' => 'required|integer|min:1',
+            'harga' => 'required|integer|min:0',
+            'harga_subtotal' => 'required|integer|min:0',
+        ]);
+
+        DetailPemesanan::create($request->all());
+
+        return redirect()->route('admin.transaksi.detail_pemesanan.index')->with('success', 'Detail pemesanan berhasil ditambahkan.');
     }
 
     /**
-     * Display the specified resource.
+     * Menampilkan detail pemesanan berdasarkan ID.
      */
     public function show(DetailPemesanan $detailPemesanan)
     {
-        $detail_pemesanan = DetailPemesanan::all();
-        return view('admin.transaksi.detail_pemesanan.index', compact('detail_pemesanan'));
+        return view('admin.transaksi.detail_pemesanan.show', compact('detailPemesanan'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Menampilkan form edit detail pemesanan.
      */
     public function edit(DetailPemesanan $detailPemesanan)
     {
-        //
+        $produks = Produk::all();
+        return view('admin.transaksi.detail_pemesanan.edit', compact('detailPemesanan', 'produks'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Memperbarui data detail pemesanan yang sudah ada.
      */
     public function update(Request $request, DetailPemesanan $detailPemesanan)
     {
-        //
+        $request->validate([
+            'produk_id' => 'required|exists:produks,id',
+            'jumlah_produk' => 'required|integer|min:1',
+            'harga' => 'required|integer|min:0',
+            'harga_subtotal' => 'required|integer|min:0',
+        ]);
+
+        $detailPemesanan->update($request->all());
+
+        return redirect()->route('admin.transaksi.detail_pemesanan.index')->with('success', 'Detail pemesanan berhasil diperbarui.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Menghapus data detail pemesanan dari database.
      */
     public function destroy(DetailPemesanan $detailPemesanan)
     {
-        //
+        $detailPemesanan->delete();
+
+        return redirect()->route('admin.transaksi.detail_pemesanan.index')->with('success', 'Detail pemesanan berhasil dihapus.');
     }
 }

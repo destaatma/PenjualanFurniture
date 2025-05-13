@@ -9,11 +9,11 @@ class Pembayaran extends Model
     protected $table = 'pembayarans'; // Gunakan string, bukan array
 
     protected $fillable = [
-        'detail_pemesanan_id',
-        'user_id',
-        'total_harga',
-        'tanggal-pemesanan',
-        'status_pemesanan',
+        'pemesanan_id',
+        'token',
+        'jumlah_bayar',
+        'tanggal_pembayaran',
+        'status_pembayaran',
     ];
 
     public function pemesanan()

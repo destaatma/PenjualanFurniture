@@ -62,7 +62,7 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-4 produk-item kursi">
                 <div class="text-center p-3 shadow-sm rounded bg-light">
-                    <img src="{{ url('/beranda/assets/images/product-1.png') }}" class="img-fluid mb-3 rounded" style="width: 60%; max-width: 200px; height: auto;">
+                    <img src="{{ url('/beranda/assets/images/meja-4.png') }}" class="img-fluid mb-3 rounded" style="width: 60%; max-width: 200px; height: auto;">
                     <h3 class="fw-bold">Nordic Chair</h3>
                     <p class="text-muted">Desain minimalis dengan bahan berkualitas, cocok untuk ruangan modern.</p>
                     <p class="fw-bold text-primary">Rp 1.500.000</p>

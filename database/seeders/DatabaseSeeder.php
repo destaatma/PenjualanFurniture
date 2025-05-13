@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\DetailPemesanan;
 use App\Models\Kategori;
+use App\Models\Pengiriman;
+use App\Models\Ulasan;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -23,6 +25,8 @@ class DatabaseSeeder extends Seeder
             DetailPemesananSeeder::class,
             PemesananSeeder::class,
             PembayaranSeeder::class,
+            PengirimanSeeder::class,
+            UlasanSeeder::class,
         ]);
     }
 }

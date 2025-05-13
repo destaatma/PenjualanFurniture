@@ -25,9 +25,8 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="hero-img-wrap text-center">
-                        <img src="{{ url('/beranda/assets/images/product-1.png') }}" class="img-fluid rounded shadow-lg"
-                            alt="Tentang Kami - Esta Mebel">
-                    </div>
+                       <img src="{{ url('/beranda/assets/images/ruangan-2.jpg') }}" style="width: 370px; height: auto; margin-top: -150px; margin-left: 50px;" class="rounded shadow-lg" alt="Tentang Kami - Esta Mebel">
+                </div>
                 </div>
             </div>
         </div>

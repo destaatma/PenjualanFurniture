@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'role_id' => 2,
             'nama' => 'desta',
             'email' => 'user@gmail.com',
-            'password' => bcrypt('user'),                    
+            'password' => bcrypt('user'),
             'telpon' => '1234566667',
             'alamat' => 'pacitan',
         ]);

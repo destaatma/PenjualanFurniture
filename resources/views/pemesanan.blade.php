@@ -1,94 +1,32 @@
 @extends('layouts.user.main')
 
 @section('content')
-<div class="container mt-5">
-    <h2 class="text-center fw-bold text-primary">Keranjang Belanja Anda</h2>
-    <p class="text-center text-muted fs-5">Tinjau dan konfirmasi pesanan sebelum checkout.</p>
+<div class="container mt-3">
+    <h2 class="text-center fw-bold text-primary">Cara Pemesanan</h2>
+    <p class="text-center text-muted fs-5">Ikuti langkah-langkah berikut untuk melakukan pemesanan.</p>
 
-    <!-- Daftar Produk di Keranjang -->
-    <div class="table-responsive">
-        <table class="table table-striped table-hover align-middle">
-            <thead class="table-dark">
-                <tr>
-                    <th>Produk</th>
-                    <th>Harga</th>
-                    <th>Jumlah</th>
-                    <th>Total</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="cart-list"></tbody>
-        </table>
-    </div>
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <div class="card shadow-sm p-4">
+                <h5 class="text-dark">Pilih Produk</h5>
+                <p>Pilih produk mebel yang sudah kami sediakan pada katalog mebel online RUMAHMebel.com, kami telah menyediakan berbagai jenis produk yg memudahkan anda dalam memilih kebutuhan mebel sesuai keinginan anda, kemudian tentukan Kategori Produk, Kode Produk (SKU) dan Jumlah Barang yang akan dipesan, Informasikan pesanan anda dengan langsung menghubungi kami melalui Email : rumahmebel@gmail.com atau Call & Whatsapp : 08x xxx xxx xxx/08x xxx xxx xx A/N Desta.</p>
 
-    <!-- Ringkasan Pemesanan -->
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <h4>Detail Pembayaran</h4>
-            <p><strong>Total Belanja:</strong> <span id="total-price">Rp0</span></p>
-            <p><strong>Diskon:</strong> <span id="discount">Rp0</span></p>
-            <p><strong>Total Akhir:</strong> <span id="final-price">Rp0</span></p>
-        </div>
-        <div class="col-md-6">
-            <h4>Informasi Pembeli</h4>
-            <form>
-                <div class="mb-3">
-                    <label for="name" class="form-label">Nama Lengkap</label>
-                    <input type="text" class="form-control" id="name" required>
-                </div>
-                <div class="mb-3">
-                    <label for="address" class="form-label">Alamat Pengiriman</label>
-                    <textarea class="form-control" id="address" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="payment-method" class="form-label">Metode Pembayaran</label>
-                    <select class="form-select" id="payment-method">
-                        <option value="Transfer Bank">Transfer Bank</option>
-                        <option value="E-Wallet">E-Wallet</option>
-                        <option value="COD">Bayar di Tempat</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-success w-100">Konfirmasi Pembelian</button>
-            </form>
+                <h5 class="text-dark mt-3">Hubungi Kami</h5>
+                <p>Informasikan pesanan Anda melalui WhatsApp atau email kami untuk mendapatkan detail harga dan biaya pengiriman.</p>
+
+                <h5 class="text-dark mt-3">Pembayaran</h5>
+                <p>Jika produk tersedia, lakukan pembayaran penuh. Jika produk perlu diproduksi, lakukan pembayaran DP 50%.</p>
+
+                <h5 class="text-dark mt-3">Proses Produksi</h5>
+                <p>Produksi akan berlangsung selama 7-15 hari tergantung jenis produk. Kami akan mengirimkan update melalui WhatsApp atau email.</p>
+
+                <h5 class="text-dark mt-3">Pengiriman</h5>
+                <p>Barang dikirim menggunakan jasa ekspedisi lokal. Kami akan memberikan nomor kontak sopir untuk memantau pengiriman.</p>
+
+                <h5 class="text-dark mt-3">Penerimaan Barang</h5>
+                <p>Jika barang mengalami kerusakan saat diterima, segera laporkan sebelum sopir meninggalkan lokasi.</p>
+            </div>
         </div>
     </div>
 </div>
-
-<script>
-    function updateCart() {
-        let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
-        let cartList = document.getElementById('cart-list');
-        let totalPrice = 0;
-        cartList.innerHTML = '';
-
-        cart.forEach(item => {
-            let row = `<tr>
-                <td><img src="${item.image}" class="img-thumbnail" style="width: 60px;"> ${item.name}</td>
-                <td>Rp${item.price}</td>
-                <td><input type="number" value="1" min="1" class="form-control" style="width: 60px;"></td>
-                <td>Rp${item.price}</td>
-                <td><button class="btn btn-danger btn-sm" onclick="removeItem('${item.name}')">Hapus</button></td>
-            </tr>`;
-            cartList.innerHTML += row;
-            totalPrice += item.price;
-        });
-
-        let discount = totalPrice > 1000000 ? totalPrice * 0.1 : 0;
-        let finalPrice = totalPrice - discount;
-
-        document.getElementById('total-price').innerText = `Rp${totalPrice}`;
-        document.getElementById('discount').innerText = `Rp${discount}`;
-        document.getElementById('final-price').innerText = `Rp${finalPrice}`;
-    }
-
-    function removeItem(name) {
-        let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
-        cart = cart.filter(item => item.name !== name);
-        sessionStorage.setItem('cart', JSON.stringify(cart));
-        updateCart();
-    }
-
-    document.addEventListener('DOMContentLoaded', updateCart);
-</script>
-
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pembayaran;
+use App\Models\Pemesanan;
 use Illuminate\Http\Request;
 
 class PembayaranController extends Controller
@@ -13,7 +14,8 @@ class PembayaranController extends Controller
     public function index()
     {
         $pembayarans = Pembayaran::all();
-        return view('admin.transaksi.pembayaran.index', compact('pembayarans'));
+        $pemesanans = Pemesanan::all();
+        return view('admin.transaksi.pembayaran.index', compact('pembayarans', 'pemesanans'));
     }
 
     /**
@@ -21,7 +23,8 @@ class PembayaranController extends Controller
      */
     public function create()
     {
-        //
+        $pemesanans = Pemesanan::all();
+        return view('admin.transaksi.pembayaran.create', compact('pemesanans'));
     }
 
     /**
@@ -29,15 +32,23 @@ class PembayaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'pemesanan_id' => 'required|exists:pemesanans,id',
+            'token' => 'required|string|unique:pembayarans,token',
+            'jumlah_bayar' => 'required|numeric',
+            'tanggal_pembayaran' => 'required|date',
+            'status_pembayaran' => 'required|string|in:Menunggu,Dikonfirmasi,Selesai',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Pembayaran $pembayaran)
-    {
-        //
+        Pembayaran::create([
+            'pemesanan_id' => $request->pemesanan_id,
+            'token' => $request->token,
+            'jumlah_bayar' => $request->jumlah_bayar,
+            'tanggal_pembayaran' => $request->tanggal_pembayaran,
+            'status_pembayaran' => $request->status_pembayaran,
+        ]);
+
+        return redirect()->route('admin.transaksi.pembayaran.index')->with('success', 'Pembayaran berhasil ditambahkan.');
     }
 
     /**
@@ -45,7 +56,8 @@ class PembayaranController extends Controller
      */
     public function edit(Pembayaran $pembayaran)
     {
-        //
+        $pemesanans = Pemesanan::all();
+        return view('admin.transaksi.pembayaran.edit', compact('pembayaran', 'pemesanans'));
     }
 
     /**
@@ -53,7 +65,23 @@ class PembayaranController extends Controller
      */
     public function update(Request $request, Pembayaran $pembayaran)
     {
-        //
+        $request->validate([
+            'pemesanan_id' => 'required|exists:pemesanans,id',
+            'token' => 'required|string|unique:pembayarans,token,' . $pembayaran->id,
+            'jumlah_bayar' => 'required|numeric',
+            'tanggal_pembayaran' => 'required|date_format:Y-m-d H:i:s',
+            'status_pembayaran' => 'required|string|in:Menunggu,Dikonfirmasi,Selesai',
+        ]);
+
+        $pembayaran->update([
+            'pemesanan_id' => $request->pemesanan_id,
+            'token' => $request->token,
+            'jumlah_bayar' => $request->jumlah_bayar,
+            'tanggal_pembayaran' => $request->tanggal_pembayaran,
+            'status_pembayaran' => $request->status_pembayaran,
+        ]);
+
+        return redirect()->route('admin.transaksi.pembayaran.index')->with('success', 'Pembayaran berhasil diperbarui.');
     }
 
     /**
@@ -61,6 +89,7 @@ class PembayaranController extends Controller
      */
     public function destroy(Pembayaran $pembayaran)
     {
-        //
+        $pembayaran->delete();
+        return redirect()->route('admin.transaksi.pembayaran.index')->with('success', 'Pembayaran berhasil dihapus.');
     }
 }

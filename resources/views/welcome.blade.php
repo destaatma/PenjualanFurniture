@@ -1,18 +1,17 @@
 @extends('layouts.user.main')
 @section('content')
     <style>
-        .hero-img-wrap {
-            max-width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .hero-img {
-            width: 100%;
-            height: auto;
-            max-width: 600px;
-            /* Sesuaikan ukuran maksimal jika diperlukan */
-        }
+      .hero-img-wrap img {
+    transform: translateY(-70px); /* Menggeser gambar ke atas */
+}
+.hero-img-wrap img {
+    transform: translateX(100px); /* Geser gambar ke kanan */
+}
+.hero-img {
+    width: 80%; /* Memperbesar gambar */
+    max-width: 100%; /* Memastikan tetap dalam batas */
+    height: auto;
+}
     </style>
     <!-- Start Hero Section -->
     <div class="hero">
@@ -24,15 +23,16 @@
                         <p class="mb-4">Rumah Mebel hadir untuk menghadirkan furnitur berkualitas tinggi dengan desain yang
                             elegan dan fungsional. Kami percaya bahwa setiap ruangan memiliki karakter, dan furnitur yang
                             tepat dapat memberikan sentuhan estetika serta kenyamanan maksimal.</p>
-                        <a href="/produk" class="btn btn-secondary me-2">Jelajahi Produk</a>
+                        <a href="/produk" class="btn btn-dark me-2">Jelajahi Produk</a>
                     </div>
                 </div>
                 <div class="col-lg-7">
                     <div class="hero-img-wrap text-center">
-                        <img src="{{ url('/beranda/assets/images/couch.png') }}" class="img-fluid hero-img">
+                        <img src="{{ url('/beranda/assets/images/couch.png') }}" class="img-fluid w-60 hero-img">
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
     <!-- End Hero Section -->
@@ -54,7 +54,7 @@
                 <!-- Start Column 2 -->
                 <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
                     <a class="product-item" href="cart.html">
-                        <img src="{{ url('/beranda/assets/images/product-1.png') }}" class="img-fluid product-thumbnail">
+                        <img src="{{ url('/beranda/assets/images/meja-7.png') }}" class="img-fluid product-thumbnail" style="width: 250px;">
                         <h3 class="product-title">kursi jati</h3>
                         <strong class="product-price">$50.00</strong>
 
@@ -68,7 +68,7 @@
                 <!-- Start Column 3 -->
                 <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
                     <a class="product-item" href="cart.html">
-                        <img src="{{ url('/beranda/assets/images/product-2.png') }}" class="img-fluid product-thumbnail">
+                        <img src="{{ url('/beranda/assets/images/meja-6.png') }}" class="img-fluid product-thumbnail" style="width: 250px; height: auto;">
                         <h3 class="product-title">Kursi akasia</h3>
                         <strong class="product-price">$78.00</strong>
 
@@ -82,7 +82,7 @@
                 <!-- Start Column 4 -->
                 <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
                     <a class="product-item" href="cart.html">
-                        <img src="{{ url('/beranda/assets/images/product-3.png') }}" class="img-fluid product-thumbnail">
+                        <img src="{{ url('/beranda/assets/images/meja-4.png') }}" class="img-fluid product-thumbnail" style="width: 300px;">
                         <h3 class="product-title">kursi mahoni</h3>
                         <strong class="product-price">$43.00</strong>
 
@@ -92,7 +92,6 @@
                     </a>
                 </div>
                 <!-- End Column 4 -->
-
             </div>
         </div>
     </div>
@@ -163,7 +162,7 @@
 
                 <div class="col-lg-5">
                     <div class="img-wrap">
-                        <img src="{{ url('/beranda/assets/images/why-choose-us-img.jpg') }}" alt="Image" class="img-fluid">
+                        <img src="{{ url('/beranda/assets/images/ruangan-1.jpg') }}" alt="Image" class="img-fluid" style="width: 400px;">
                     </div>
                 </div>
 
@@ -181,7 +180,7 @@
             <!-- Produk 1 -->
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="text-center p-2">
-                    <img src="{{ url('/beranda/assets/images/product-1.png') }}" alt="Almari Penyekat Ruangan"
+                    <img src="{{ url('/beranda/assets/images/meja-4.png') }}" alt="meja tamu"
                         class="img-fluid rounded shadow-sm">
                 </div>
             </div>
@@ -189,7 +188,7 @@
             <!-- Produk 2 -->
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="text-center p-2">
-                    <img src="{{ url('/beranda/assets/images/product-2.png') }}" alt="Bale-Bale"
+                    <img src="{{ url('/beranda/assets/images/meja-2.png') }}" alt="Meja Tamu"
                         class="img-fluid rounded shadow-sm">
                 </div>
             </div>
@@ -197,7 +196,7 @@
             <!-- Produk 3 -->
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="text-center p-2">
-                    <img src="{{ url('/beranda/assets/images/product-3.png') }}" alt="Bangku Taman"
+                    <img src="{{ url('/beranda/assets/images/meja-4.png') }}" alt="Meja Makan"
                         class="img-fluid rounded shadow-sm">
                 </div>
             </div>
@@ -205,7 +204,7 @@
             <!-- Produk 4 -->
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="text-center p-2">
-                    <img src="{{ url('/beranda/assets/images/product-1.png') }}" alt="Buffet"
+                    <img src="{{ url('/beranda/assets/images/meja-6.png') }}" alt="Almari"
                         class="img-fluid rounded shadow-sm">
                 </div>
             </div>
@@ -213,7 +212,7 @@
             <!-- Produk 5 -->
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="text-center p-2">
-                    <img src="{{ url('/beranda/assets/images/product-2.png') }}" alt="Buffet TV"
+                    <img src="{{ url('/beranda/assets/images/meja-7.png') }}" alt="Almari TV"
                         class="img-fluid rounded shadow-sm">
                 </div>
             </div>
@@ -221,7 +220,7 @@
             <!-- Produk 6 -->
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="text-center p-2">
-                    <img src="{{ url('/beranda/assets/images/product-3.png') }}" alt="Custom Design Furniture"
+                    <img src="{{ url('/beranda/assets/images/meja-4.png') }}" alt="Kursi Santai"
                         class="img-fluid rounded shadow-sm">
                 </div>
             </div>
@@ -229,7 +228,7 @@
             <!-- Produk 7 -->
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="text-center p-2">
-                    <img src="{{ url('/beranda/assets/images/product-1.png') }}" alt="Display Cabinet"
+                    <img src="{{ url('/beranda/assets/images/meja-7.png') }}" alt="Meja Makan"
                         class="img-fluid rounded shadow-sm">
                 </div>
             </div>
@@ -237,7 +236,7 @@
             <!-- Produk 8 -->
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="text-center p-2">
-                    <img src="{{ url('/beranda/assets/images/product-2.png') }}" alt="Furniture Dapur"
+                    <img src="{{ url('/beranda/assets/images/meja-7.png') }}" alt="Meja Makan"
                         class="img-fluid rounded shadow-sm">
                 </div>
             </div>

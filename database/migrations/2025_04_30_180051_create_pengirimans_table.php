@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('pengirimans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pemesanan_id')->constrained('pemesanans')->onDelete('cascade');
-            $table->dateTime('tanggal_pemesanan');
-            $table->string('status_pemesanan');
+            $table->dateTime('tanggal_pengiriman');
+            $table->string('status_pengiriman');
             $table->timestamps();
         });
     }

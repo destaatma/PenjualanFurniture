@@ -1,68 +1,58 @@
 @extends('layouts.admin.app')
 
 @section('content')
-<main>
-    <div class="container-fluid px-4">
-        <h1 class="mt-4"> Edit Pengiriman</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="/admin/pengiriman">Pengiriman</a></li>
-            <li class="breadcrumb-item active">Edit Pengiriman</li>
-        </ol>
 
-        <!-- Form Edit Pengiriman -->
-        <div class="card mb-4">
-            <div class="card-header bg-warning text-dark">
-                <i class="fas fa-edit"></i> Edit Pengiriman
-            </div>
-            <div class="card-body">
-                <div class="container">
-                    <form action="/admin/pengiriman/update/{{ request()->get('id') }}" method="POST">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Edit Pengiriman</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="/admin/pengiriman">Pengiriman</a></li>
+                <li class="breadcrumb-item active">Edit</li>
+            </ol>
+
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <i class="fas fa-truck me-1"></i> Form Edit Pengiriman
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('admin.transaksi.pengiriman.update', $pengiriman->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
-                        <div class="row justify-content-center">
-                            <div class="mb-2 col-6">
-                                <label for="shipment_id" class="form-label">ID Pengiriman</label>
-                                <input type="text" class="form-control form-control-sm" id="shipment_id"
-                                    name="shipment_id" value="{{ request()->get('id') }}" readonly>
-                            </div>
-
-                            <div class="mb-2 col-6">
-                                <label for="order_id" class="form-label">ID Pemesanan</label>
-                                <input type="text" class="form-control form-control-sm" id="order_id"
-                                    name="order_id" value="{{ request()->get('order_id') }}" required>
-                            </div>
-
-                            <div class="mb-2 col-6">
-                                <label for="shipment_date" class="form-label">Tanggal Pengiriman</label>
-                                <input type="date" class="form-control form-control-sm" id="shipment_date"
-                                    name="shipment_date" value="{{ request()->get('shipment_date') }}" required>
-                            </div>
-
-                            <div class="mb-2 col-6">
-                                <label for="status" class="form-label">Status Pengiriman</label>
-                                <select class="form-select form-select-sm" id="status" name="status">
-                                    <option value="pending" {{ request()->get('status') == 'pending' ? 'selected' : '' }}>Dalam Proses</option>
-                                    <option value="shipped" {{ request()->get('status') == 'shipped' ? 'selected' : '' }}>Dikirim</option>
-                                    <option value="delivered" {{ request()->get('status') == 'delivered' ? 'selected' : '' }}>Tiba di Tujuan</option>
-                                    <option value="failed" {{ request()->get('status') == 'failed' ? 'selected' : '' }}>Gagal</option>
-                                </select>
-                            </div>
+                        <div class="mb-3">
+                            <label for="pemesanan_id" class="form-label">Pemesanan</label>
+                            <select name="pemesanan_id" class="form-control" required>
+                                <option disabled>Pilih ID Pemesanan</option>
+                                @foreach($pemesanans as $p)
+                                    <option value="{{ $p->id }}" {{ $pengiriman->pemesanan_id == $p->id ? 'selected' : '' }}>
+                                        {{ $p->id }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
-                        <div class="d-flex justify-content-between mt-3">
-                            <button type="submit" class="btn btn-warning btn-sm">
-                                <i class="fas fa-save"></i> Simpan Perubahan
-                            </button>
-                            <a href="/admin/pengiriman" class="btn btn-secondary btn-sm">
-                                <i class="fas fa-arrow-left"></i> Kembali
-                            </a>
+                        <div class="mb-3">
+                            <label for="tanggal_pengiriman" class="form-label">Tanggal Pengiriman</label>
+                            <input type="datetime-local" name="tanggal_pengiriman" id="tanggal_pengiriman" class="form-control"
+                                   value="{{ \Carbon\Carbon::parse($pengiriman->tanggal_pengiriman)->format('Y-m-d\TH:i') }}" required>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="status_pengiriman" class="form-label">Status Pengiriman</label>
+                            <select name="status_pengiriman" id="status_pengiriman" class="form-control" required>
+                                <option value="Diproses" {{ $pengiriman->status_pengiriman == 'Diproses' ? 'selected' : '' }}>Diproses</option>
+                                <option value="Dikirim" {{ $pengiriman->status_pengiriman == 'Dikirim' ? 'selected' : '' }}>Dikirim</option>
+                                <option value="Selesai" {{ $pengiriman->status_pengiriman == 'Selesai' ? 'selected' : '' }}>Selesai</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Update</button>
+                        <a href="/admin/pengiriman" class="btn btn-secondary">Kembali</a>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
+
 @endsection

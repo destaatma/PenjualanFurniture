@@ -15,23 +15,23 @@ class PembayaranSeeder extends Seeder
     public function run(): void
     {
         Pembayaran::create([
-            'pembayaran_id' => 1,
-            'token' => '',
-            'total_harga' => '1000000',
+            'pemesanan_id' => 1,
+            'token' => '12346754334563213',
+            'jumlah_bayar' => '1000000',
             'tanggal_pembayaran' => Carbon::now(),
             'status_pembayaran' => 'gagal',
         ]);
         Pembayaran::create([
-            'pembayaran_id' => 2,
-            'token' => '',
-            'total_harga' => '2000000',
+            'pemesanan_id' => 2,
+            'token' => '12345466432124',
+            'jumlah_bayar' => '2000000',
             'tanggal_pembayaran' => Carbon::now(),
             'status_pembayaran' => 'selesai',
         ]);
         Pembayaran::create([
-            'pembayaran_id' => '',
-            'token' => 3,
-            'total_harga' => '1000000',
+            'pemesanan_id' => 3,
+            'token' => '123423454321234',
+            'jumlah_bayar' => '1000000',
             'tanggal_pembayaran' => Carbon::now(),
             'status_pembayaran' => 'gagal',
         ]);

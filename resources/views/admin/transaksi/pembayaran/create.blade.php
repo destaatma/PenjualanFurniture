@@ -1,63 +1,69 @@
 @extends('layouts.admin.app')
+
 @section('content')
 
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4"> Tambah Pembayaran</h1>
+        <h1 class="mt-4">Tambah Pembayaran</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="/admin/pembayaran">Pembayaran</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.transaksi.pembayaran.index') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Tambah Pembayaran</li>
         </ol>
-     <!-- Form Pembayaran -->
-     <div class="card mb-4">
-        <div class="card-header bg-success text-white">
-            <i class="fas fa-credit-card"></i> Tambah Pembayaran Baru
-        </div>
-        <div class="card-body">
-            <div class="container">
-                <form>
-                    <div class="row justify-content-center">
 
-                        <div class="mb-2 col-6">
-                            <label for="payment_id" class="form-label">ID Pembayaran</label>
-                            <input type="text" class="form-control form-control-sm" id="payment_id" name="payment_id" required>
-                        </div>
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <i class="fas fa-credit-cardme-1"></i> Tambah Pembayaran
+            </div>
+            <div class="card-body">
+                <form action="{{ route('admin.transaksi.pembayaran.store') }}" method="POST">
+                    @csrf
 
-                        <div class="mb-2 col-6">
-                            <label for="order_id" class="form-label">ID Pemesanan</label>
-                            <input type="text" class="form-control form-control-sm" id="order_id" name="order_id" required>
-                        </div>
-
-                        <div class="mb-2 col-6">
-                            <label for="token" class="form-label">Token Pembayaran</label>
-                            <input type="text" class="form-control form-control-sm" id="token" name="token" required>
-                        </div>
-
-                        <div class="mb-2 col-6">
-                            <label for="amount" class="form-label">Jumlah Bayar</label>
-                            <input type="number" class="form-control form-control-sm" id="amount" name="amount" required>
-                        </div>
-
-                        <div class="mb-2 col-6">
-                            <label for="payment_date" class="form-label">Tanggal Pembayaran</label>
-                            <input type="date" class="form-control form-control-sm" id="payment_date" name="payment_date" required>
-                        </div>
-
-                        <div class="mb-2 col-6">
-                            <label for="status" class="form-label">Status Pembayaran</label>
-                            <select class="form-select form-select-sm" id="status" name="status">
-                                <option value="pending">Menunggu Konfirmasi</option>
-                                <option value="paid">Dibayar</option>
-                                <option value="failed">Gagal</option>
-                                <option value="refunded">Dikembalikan</option>
-                            </select>
-                        </div>
+                    <div class="mb-3">
+                        <label for="pemesanan_id" class="form-label">Pemesanan</label>
+                        <select name="pemesanan_id" id="pemesanan_id" class="form-select" required>
+                            <option value="" disabled selected>Pilih Pemesanan</option>
+                            @foreach ($pemesanans as $p)
+                            <option value="{{ $p->id }}">{{ $p->detail_pemesanan->produk->nama }} - Rp {{ number_format($p->total_harga, 0, ',', '.') }}</option>
+                            @endforeach
+                        </select>
                     </div>
-                    <button type="submit" class="btn btn-success btn-sm">Simpan Pembayaran</button>
+
+                    <div class="mb-3">
+                        <label for="token" class="form-label">Token Pembayaran</label>
+                        <input type="number" name="token" class="form-control" id="token" placeholder="Masukkan token pembayaran" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="jumlah_bayar" class="form-label">Jumlah Bayar</label>
+                        <input type="number" name="jumlah_bayar" class="form-control" id="jumlah_bayar" placeholder="Masukkan jumlah pembayaran" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tanggal_pembayaran" class="form-label">Tanggal Pembayaran</label>
+                        <input type="datetime-local" name="tanggal_pembayaran" class="form-control" value="{{ old('tanggal_pembayaran', date('Y-m-d\TH:i', strtotime($pembayaran->tanggal_pembayaran ?? now()))) }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="status_pembayaran" class="form-label">Status Pembayaran</label>
+                        <select name="status_pembayaran" id="status_pembayaran" class="form-select" required>
+                            <option value="" disabled selected>Pilih Status</option>
+                            <option value="Menunggu">Proses</option>
+                            <option value="Menunggu">Berhasil</option>
+                            <option value="Dikonfirmasi">Gagal</option>
+
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> Simpan
+                    </button>
+                    <a href="{{ route('admin.transaksi.pembayaran.index') }}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Kembali
+                    </a>
                 </form>
             </div>
         </div>
     </div>
 </main>
+
 @endsection

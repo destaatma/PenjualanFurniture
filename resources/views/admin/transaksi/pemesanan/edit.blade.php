@@ -2,74 +2,77 @@
 
 @section('content')
 <main>
-    <div class="container-fluid px-4">
-        <h1 class="mt-4">Edit Pemesanan Produk</h1>
+    <div class="container-fluid col-11">
+        <h1 class="mt-4">Edit Pemesanan</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="/admin/pemesanan">Pemesanan</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.transaksi.pemesanan.index') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Edit Pemesanan</li>
         </ol>
 
-        <!-- Form Edit Pemesanan -->
         <div class="card mb-4">
             <div class="card-header bg-success text-dark">
-                <i class="fas fa-edit"></i> Edit Pemesanan
+                <i class="fas fa-edit me-1"></i> Edit Pemesanan
             </div>
             <div class="card-body">
-                <div class="container">
-                    <div class="col-md-12">
-                        <form>
+                <form action="{{ route('admin.transaksi.pemesanan.update', $pemesanan->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
 
-                            <div class="row justify-content-center">
-                                <div class="mb-2 col-6">
-                                    <label for="order_id" class="form-label">ID Pemesanan</label>
-                                    <input type="text" class="form-control form-control-sm" id="order_id"
-                                        name="order_id" value="{{ request()->get('id') }}" readonly>
-                                </div>
+                    <div class="row justify-content-center">
+                        <div class="mb-2 col-mb-6">
+                            <label for="detail_pemesanan_id" class="form-label">Detail Pemesanan</label>
+                            <select name="detail_pemesanan_id" id="detail_pemesanan_id" class="form-select" required>
+                                <option value="" disabled>Pilih Detail Pemesanan</option>
+                                @foreach ($detail_pemesanans as $detail)
+                                    <option value="{{ $detail->id }}" {{ $pemesanan->detail_pemesanan_id == $detail->id ? 'selected' : '' }}>
+                                        {{ $detail->deskripsi }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                                <div class="mb-2 col-6">
-                                    <label for="product_id" class="form-label">Produk</label>
-                                    <select class="form-select form-select-sm" id="product_id" name="product_id">
-                                        <option value="1" {{ request()->get('product_id') == 1 ? 'selected' : '' }}>Produk A</option>
-                                        <option value="2" {{ request()->get('product_id') == 2 ? 'selected' : '' }}>Produk B</option>
-                                        <option value="3" {{ request()->get('product_id') == 3 ? 'selected' : '' }}>Produk C</option>
-                                    </select>
-                                </div>
+                        <div class="mb-2 col-mb-6">
+                            <label for="user_id" class="form-label">Pelanggan</label>
+                            <select name="user_id" id="user_id" class="form-select" required>
+                                <option value="" disabled>Pilih Pelanggan</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}" {{ $pemesanan->user_id == $user->id ? 'selected' : '' }}>
+                                        {{ $user->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                                <div class="mb-2 col-6">
-                                    <label for="total_price" class="form-label">Total Harga</label>
-                                    <input type="number" class="form-control form-control-sm" id="total_price"
-                                        name="total_price" value="{{ request()->get('total_price') }}" required min="1">
-                                </div>
+                        <div class="mb-2 col-mb-6">
+                            <label for="total_harga" class="form-label">Total Harga</label>
+                            <input type="number" name="total_harga" class="form-control form-control-sm" id="total_harga"
+                                value="{{ $pemesanan->total_harga }}" required>
+                        </div>
 
-                                <div class="mb-2 col-6">
-                                    <label for="order_date" class="form-label">Tanggal Pemesanan</label>
-                                    <input type="date" class="form-control form-control-sm" id="order_date"
-                                        name="order_date" value="{{ request()->get('order_date') }}" required>
-                                </div>
+                        <div class="mb-2 col-mb-6">
+                            <label for="tanggal_pemesanan" class="form-label">Tanggal Pemesanan</label>
+                            <input type="datetime-local" name="tanggal_pemesanan" class="form-control form-control-sm" id="tanggal_pemesanan"
+                                value="{{ $pemesanan->tanggal_pemesanan }}" required>
+                        </div>
 
-                                <div class="mb-2 col-mb-6">
-                                    <label for="status" class="form-label">Status Pemesanan</label>
-                                    <select class="form-select form-select-sm" id="status" name="status">
-                                        <option value="Diproses" {{ request()->get('status') == 'Diproses' ? 'selected' : '' }}>Diproses</option>
-                                        <option value="Dikirim" {{ request()->get('status') == 'Dikirim' ? 'selected' : '' }}>Dikirim</option>
-                                        <option value="Selesai" {{ request()->get('status') == 'Selesai' ? 'selected' : '' }}>Selesai</option>
-                                        <option value="Dibatalkan" {{ request()->get('status') == 'Dibatalkan' ? 'selected' : '' }}>Dibatalkan</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-between mt-3">
-                                <button type="submit" class="btn btn-success btn-sm">
-                                    <i class="fas fa-save"></i> Simpan Perubahan
-                                </button>
-                                <a href="/admin/pemesanan" class="btn btn-secondary btn-sm">
-                                    <i class="fas fa-arrow-left"></i> Kembali
-                                </a>
-                            </div>
-                        </form>
+                        <div class="mb-2 col-mb-6">
+                            <label for="status_pemesanan" class="form-label">Status Pemesanan</label>
+                            <select name="status_pemesanan" id="status_pemesanan" class="form-select" required>
+                                <option value="Menunggu" {{ $pemesanan->status_pemesanan == "Menunggu" ? 'selected' : '' }}>Menunggu</option>
+                                <option value="Diproses" {{ $pemesanan->status_pemesanan == "Diproses" ? 'selected' : '' }}>Diproses</option>
+                                <option value="Dikirim" {{ $pemesanan->status_pemesanan == "Dikirim" ? 'selected' : '' }}>Dikirim</option>
+                                <option value="Selesai" {{ $pemesanan->status_pemesanan == "Selesai" ? 'selected' : '' }}>Selesai</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> Update Pemesanan
+                    </button>
+                    <a href="{{ route('admin.transaksi.pemesanan.index') }}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Kembali
+                    </a>
+                </form>
             </div>
         </div>
     </div>

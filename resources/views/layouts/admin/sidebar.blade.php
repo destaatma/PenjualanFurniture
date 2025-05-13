@@ -14,8 +14,8 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt" style="color: #ffc107;"></i></div>
                     Dashboard
                 </a>
-                <a class="nav-link {{ request()->is('manajemen-produk*') ? 'active' : '' }}
-     href=" # data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false"
+                <a class="nav-link {{ request()->is('manajemen-produk*') ? 'active' : '' }} href="
+                     # data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false"
                     aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns" style="color: #007bff;"></i></div>
                     Manajemen Produk
@@ -24,11 +24,11 @@
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link {{ request()->is('/admin/kategori') ? 'active' : '' }}" href="/admin/kategori">
+                        <a class="nav-link {{ request()->is('admin/kategori') ? 'active' : '' }}" href="/admin/kategori">
                             <div class="sb-nav-link-icon"><i class="fas fa-list" style="color: #28a745;"></i></div>
                             Kategori
                         </a>
-                        <a class="nav-link {{ request()->is('/admin/produk') ? 'active' : '' }}" href="/admin/produk">
+                        <a class="nav-link {{ request()->is('admin/produk') ? 'active' : '' }}" href="/admin/produk">
                             <div class="sb-nav-link-icon"><i class="fas fa-box-open" style="color: #dc3545;"></i></div>
                             Produk
                         </a>
@@ -72,6 +72,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area" style="color: #20c997;"></i></div>
                     Ulasan
                 </a>
+
                 <a class="nav-link {{ request()->is('admin/users') ? 'active' : '' }}" href="/admin/users">
                     <div class="sb-nav-link-icon"><i class="fas fa-user" style="color: #e83e8c;"></i></div>
                     Pengguna
@@ -80,7 +81,7 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            <span>Rumah Mebel</span>
+            <span>RUMAH Mebel</span>
         </div>
     </nav>
 </div>

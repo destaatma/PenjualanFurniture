@@ -22,39 +22,52 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-5">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header bg-warning text-white">
-                                    <h3 class="text-center font-weight-light my-4">Registrasi Akun</h3>
+                                <div class="card-header bg-light text-dark">
+                                    <h3 class="text-center font-weight-light my-4">Buat Akun</h3>
+                                    <p class="mb-4 text-center text-dark fs-5">Daftar dan buat akun di toko kami</p>
                                 </div>
                                 <div class="card-body">
-                                    <form>
+                                  <form action="{{ route('register') }}" method="POST">
+                                        @csrf
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputName" type="text"
-                                                placeholder="Nama Lengkap" />
-                                            <label for="inputName">Nama Lengkap</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                                <input class="form-control" name="nama" type="text" placeholder="Nama Lengkap" required />
+                                            </div>
                                         </div>
+
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputEmail" type="email"
-                                                placeholder="name@example.com" />
-                                            <label for="inputEmail">Email</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                                <input class="form-control" name="email" type="email" placeholder="name@example.com" required />
+                                            </div>
                                         </div>
+
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputPassword" type="password"
-                                                placeholder="Password" />
-                                            <label for="inputPassword">Password</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                                <input class="form-control" name="password" type="password" placeholder="Password" required />
+                                            </div>
                                         </div>
+
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputPhone" type="tel"
-                                                placeholder="Nomor Telepon" />
-                                            <label for="inputPhone">Nomor Telepon</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                                <input class="form-control" name="telepon" type="tel" placeholder="Nomor Telepon" required />
+                                            </div>
                                         </div>
+
                                         <div class="form-floating mb-3">
-                                            <textarea class="form-control" id="inputAddress"
-                                                placeholder="Alamat Lengkap"></textarea>
-                                            <label for="inputAddress">Alamat Lengkap</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                                <textarea class="form-control" name="alamat" placeholder="Alamat Lengkap" required></textarea>
+                                            </div>
                                         </div>
-                                        <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="small text-warning" href="/login">Sudah punya akun? Login!</a>
-                                            <button class="btn btn-warning px-4">Register</button>
+                                        <div class="d-flex align-items-center justify-content-center mt-4 mb-3">
+                                            <button type="submit" class="btn btn-dark col-4">Daftar</button>
+                                        </div>
+                                        <div class="card-footer text-center py-3">
+                                            <a class="small text-dark" href="/login">Sudah punya akun? Masuk!</a>
                                         </div>
                                     </form>
                                 </div>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailPemesanan;
 use App\Models\Pemesanan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PemesananController extends Controller
@@ -13,7 +15,9 @@ class PemesananController extends Controller
     public function index()
     {
         $pemesanans = Pemesanan::all();
-        return view('admin.transaksi.pemesanan.index', compact('pemesanans'));
+        $detail_pemesanans = DetailPemesanan::all();
+        $users = User::all();
+        return view('admin.transaksi.pemesanan.index', compact('pemesanans', 'detail_pemesanans', 'users'));
     }
 
     /**
@@ -21,7 +25,9 @@ class PemesananController extends Controller
      */
     public function create()
     {
-        //
+        $detail_pemesanans = DetailPemesanan::all();
+        $users = User::all();
+        return view('admin.transaksi.pemesanan.create', compact('detail_pemesanans', 'users'));
     }
 
     /**
@@ -29,7 +35,17 @@ class PemesananController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'detail_pemesanan_id' => 'required|exists:detail_pemesanans,id',
+            'user_id' => 'required',
+            'total_harga' => 'required|integer',
+            'tanggal_pemesanan' => 'required|date_format:Y-m-d\TH:i',
+            'status_pemesanan' => 'required|string',
+        ]);
+
+        Pemesanan::create($request->all());
+
+        return redirect()->route('admin.transaksi.pemesanan.index')->with('success', 'Pemesanan berhasil ditambahkan.');
     }
 
     /**
@@ -37,7 +53,7 @@ class PemesananController extends Controller
      */
     public function show(Pemesanan $pemesanan)
     {
-        //
+        //return view('admin.transaksi.pemesanan.show', compact('pemesanan'));
     }
 
     /**
@@ -45,7 +61,9 @@ class PemesananController extends Controller
      */
     public function edit(Pemesanan $pemesanan)
     {
-        //
+        $detail_pemesanans = DetailPemesanan::all();
+        $users = User::all();
+        return view('admin.transaksi.pemesanan.edit', compact('pemesanan', 'detail_pemesanans', 'users'));
     }
 
     /**
@@ -53,7 +71,17 @@ class PemesananController extends Controller
      */
     public function update(Request $request, Pemesanan $pemesanan)
     {
-        //
+        $request->validate([
+            'detail_pemesanan_id' => 'required|exists:detail_pemesanans,id',
+            'user_id' => 'required',
+            'total_harga' => 'required|integer',
+            'tanggal_pemesanan' => 'required|date_format:Y-m-d\TH:i',
+            'status_pemesanan' => 'required|string',
+        ]);
+
+        $pemesanan->update($request->all());
+
+        return redirect()->route('admin.transaksi.pemesanan.index')->with('success', 'Pemesanan berhasil diperbarui.');
     }
 
     /**
@@ -61,6 +89,8 @@ class PemesananController extends Controller
      */
     public function destroy(Pemesanan $pemesanan)
     {
-        //
+        $pemesanan->delete();
+
+        return redirect()->route('admin.transaksi.pemesanan.index')->with('success', 'Pemesanan berhasil dihapus.');
     }
 }

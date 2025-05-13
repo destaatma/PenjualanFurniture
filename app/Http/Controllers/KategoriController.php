@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class KategoriController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan daftar kategori.
      */
     public function index()
     {
@@ -17,50 +17,65 @@ class KategoriController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan form untuk membuat kategori baru.
      */
     public function create()
     {
-        //
+        return view('admin.kategori.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Menyimpan kategori baru ke database.
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kategori' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string',
+        ]);
+
+        Kategori::create($request->all());
+
+        return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil ditambahkan');
     }
 
     /**
-     * Display the specified resource.
+     * Menampilkan detail kategori tertentu.
      */
     public function show(Kategori $kategori)
     {
-        //
+        // return view('admin.kategori.show', compact('kategoris'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Menampilkan form edit kategori.
      */
     public function edit(Kategori $kategori)
     {
-        //
+        return view('admin.kategori.edit', compact('kategori'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Memperbarui data kategori.
      */
     public function update(Request $request, Kategori $kategori)
     {
-        //
+        $request->validate([
+            'kategori' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string',
+        ]);
+
+        $kategori->update($request->all());
+
+        return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil diperbarui');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Menghapus kategori dari database.
      */
     public function destroy(Kategori $kategori)
     {
-        //
+        $kategori->delete();
+        return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil dihapus');
     }
 }

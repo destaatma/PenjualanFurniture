@@ -26,9 +26,16 @@ class User extends Authenticatable
         'alamat',
     ];
 
-    public function role(){
+    public function role()
+    {
         return $this->belongsTo(Role::class);
     }
+
+    public function ulasan()
+    {
+        return $this->hasMany(Ulasan::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
