@@ -3,14 +3,14 @@
 @section('content')
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Tambah Ulasan Produk</h1>
-        <ol class="breadcrumb mb-4">
+        <h1 class="mt-4 text-muted">Tambah Ulasan</h1>
+        <ol class="breadcrumb mb-4 bg-light p-3 rounded">
             <li class="breadcrumb-item"><a href="{{ route('admin.ulasan.index') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Tambah Ulasan</li>
         </ol>
 
         <div class="card mb-4">
-            <div class="card-header bg-success text-white">
+            <div class="card-header bg-info text-white">
                 <i class="fas fa-chart-area me-1"></i> Tambah Ulasan Produk
             </div>
             <div class="card-body">
@@ -47,7 +47,7 @@
                         <textarea name="ulasan" class="form-control" id="ulasan" rows="3" placeholder="Tambahkan ulasan tentang produk"></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-warning">
                         <i class="fas fa-save"></i> Simpan
                     </button>
                     <a href="{{ route('admin.ulasan.index') }}" class="btn btn-secondary">

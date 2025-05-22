@@ -1,22 +1,10 @@
 @extends('layouts.user.main')
 @section('content')
-    <style>
-      .hero-img-wrap img {
-    transform: translateY(-70px); /* Menggeser gambar ke atas */
-}
-.hero-img-wrap img {
-    transform: translateX(100px); /* Geser gambar ke kanan */
-}
-.hero-img {
-    width: 80%; /* Memperbesar gambar */
-    max-width: 100%; /* Memastikan tetap dalam batas */
-    height: auto;
-}
-    </style>
+
     <!-- Start Hero Section -->
     <div class="hero">
         <div class="container">
-            <div class="row justify-content-between align-items-center">
+            <div class="row justify-content-between">
                 <div class="col-lg-5">
                     <div class="intro-excerpt">
                         <h1>Produk Terbaik & <span class="d-block">Bahan Berkualitas</span></h1>
@@ -27,13 +15,13 @@
                     </div>
                 </div>
                 <div class="col-lg-7">
-                    <div class="hero-img-wrap text-center">
+                    <div class="hero-img-wrap">
                         <img src="{{ url('/beranda/assets/images/couch.png') }}" class="img-fluid w-60 hero-img">
                     </div>
                 </div>
             </div>
         </div>
-        </div>
+    </div>
     </div>
     <!-- End Hero Section -->
 
@@ -47,48 +35,45 @@
                     <h2 class="mb-4 section-title">Dibuat dengan bahan berkualitas tinggi</h2>
                     <p class="mb-4">Kami bukan sekadar penyedia furnitur, tetapi mitra dalam menciptakan ruang impian Anda.
                         Temukan inspirasi dan jadikan rumah atau bisnis Anda lebih istimewa dengan Rumah Mebel!. </p>
-                    <p><a href="/pemesanan" class="btn">Beli Sekarang</a></p>
+                    <p><a href="/produk" class="btn btn-secondary me-2">Beli Sekarang</a></p>
                 </div>
                 <!-- End Column 1 -->
 
                 <!-- Start Column 2 -->
                 <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-                    <a class="product-item" href="cart.html">
-                        <img src="{{ url('/beranda/assets/images/meja-7.png') }}" class="img-fluid product-thumbnail" style="width: 250px;">
-                        <h3 class="product-title">kursi jati</h3>
-                        <strong class="product-price">$50.00</strong>
-
-                        <span class="icon-cross">
-                            <img src="{{ url('/beranda/assets/images/cross.svg') }}" class="img-fluid">
-                        </span>
+                    <a class="product-item" href="produk">
+                        <img src="{{ url('/beranda/assets/images/almari.png') }}" class="img-fluid product-thumbnail"
+                            style="width: 250px;">
+                        <h3 class="product-title text-capitalize fw-bold "
+                            style="font-size: 1.1rem; letter-spacing: 0.5px;">
+                            Almari Jati
+                        </h3>
                     </a>
                 </div>
                 <!-- End Column 2 -->
 
                 <!-- Start Column 3 -->
                 <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-                    <a class="product-item" href="cart.html">
-                        <img src="{{ url('/beranda/assets/images/meja-6.png') }}" class="img-fluid product-thumbnail" style="width: 250px; height: auto;">
-                        <h3 class="product-title">Kursi akasia</h3>
-                        <strong class="product-price">$78.00</strong>
-
-                        <span class="icon-cross">
-                            <img src="{{ url('/beranda/assets/images/cross.svg') }}" class="img-fluid">
-                        </span>
+                    <a class="product-item" href="produk">
+                        <img src="{{ url('/beranda/assets/images/meja-8.png') }}" class="img-fluid product-thumbnail"
+                            style="width: 250px; height: auto;">
+                        <h3 class="product-title text-capitalize fw-bold "
+                            style="font-size: 1.1rem; letter-spacing: 0.5px;">
+                            Meja Tamu
+                        </h3>
                     </a>
                 </div>
                 <!-- End Column 3 -->
 
                 <!-- Start Column 4 -->
                 <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-                    <a class="product-item" href="cart.html">
-                        <img src="{{ url('/beranda/assets/images/meja-4.png') }}" class="img-fluid product-thumbnail" style="width: 300px;">
-                        <h3 class="product-title">kursi mahoni</h3>
-                        <strong class="product-price">$43.00</strong>
-
-                        <span class="icon-cross">
-                            <img src="{{ url('/beranda/assets/images/cross.svg') }}" class="img-fluid">
-                        </span>
+                    <a class="product-item" href="produk">
+                        <img src="{{ url('/beranda/assets/images/meja-6.png') }}" class="img-fluid product-thumbnail"
+                            style="width: 250px;">
+                        <h3 class="product-title text-capitalize fw-bold "
+                            style="font-size: 1.1rem; letter-spacing: 0.5px;">
+                            Meja Makan
+                        </h3>
                     </a>
                 </div>
                 <!-- End Column 4 -->
@@ -103,7 +88,7 @@
             <div class="row justify-content-between">
                 <div class="col-lg-6">
                     <h2 class="section-title">"Mengapa Memilih Kami"</h2>
-                    <p>Dengan bahan pilihan terbaik dan pengerjaan yang teliti, Desta Mebel menawarkan produk yang tahan
+                    <p>Dengan bahan pilihan terbaik dan pengerjaan yang teliti, RUMAH Mebel menawarkan produk yang tahan
                         lama, kuat, dan berkelas. Dari meja, kursi, lemari hingga set ruang tamu, setiap karya kami
                         mencerminkan dedikasi terhadap keindahan dan fungsionalitas.</p>
 
@@ -156,88 +141,172 @@
                                     .</p>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
                 <div class="col-lg-5">
                     <div class="img-wrap">
-                        <img src="{{ url('/beranda/assets/images/ruangan-1.jpg') }}" alt="Image" class="img-fluid" style="width: 400px;">
+                        <img src="{{ url('/beranda/assets/images/ruangan-1.jpg') }}" alt="Image" class="img-fluid"
+                            style="width: 400px;">
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
     <!-- End Why Choose Us Section -->
 
-    <!-- Start Popular Product -->
-    <div class="container mt-5 border-bottom pb-4 mb-5" style="max-width: 1100px;">
-        <h2 class="text-center fw-bold mb-4">Produk Terlaris di Rumah Mebel</h2>
+    {{-- start grid --}}
+    <div class="we-help-section border-bottom pb-5 mb-5">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-7 mb-5 mb-lg-0">
+                    <div class="imgs-grid">
+                        <div class="grid grid-1">
+                            <img src="{{ url('/beranda/assets/images/ruangan-1.jpg') }}" height="600" alt="Untree.co">
+                        </div>
+                        <div class="grid grid-2">
+                            <img src="{{ url('/beranda/assets/images/ruangan-1.jpg') }}" height="350" alt="Untree.co">
+                        </div>
+                        <div class="grid grid-3">
+                            <img src="{{ url('/beranda/assets/images/ruangan-1.jpg') }}" height="450" alt="Untree.co">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 ps-lg-5">
+                    <h2 class="section-title mb-4">We Help You Make Modern Interior Design</h2>
+                    <p>
+                        "Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam
+                        ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant
+                        morbi tristique senectus et netus et malesuada."
+                    </p>
+                    <ul class="list-unstyled custom-list my-4">
+                        <li>
+                            "Donec vitae odio quis nisl dapibus malesuada"
+                        </li>
+                        <li>
+                            "Donec vitae odio quis nisl dapibus malesuada"
+                        </li>
+                        <li>
+                            "Donec vitae odio quis nisl dapibus malesuada"
+                        </li>
+                        <li>
+                            "Donec vitae odio quis nisl dapibus malesuada"
+                        </li>
+                    </ul>
+                    <p>
+                        <a href="/produk" class="btn">Explore</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end --}}
 
-        <div class="row g-3 justify-content-center"> <!-- g-3 tetap memberikan jarak antar gambar -->
+    <!-- Start Popular Product -->
+    <style>
+        .product-image {
+            width: 100%;
+            height: 180px;
+            /* Sesuaikan tinggi gambar */
+            object-fit: cover;
+            /* Pastikan gambar tidak terdistorsi */
+        }
+
+        .product-image {
+            width: 100%;
+            height: 180px;
+            /* Sesuaikan tinggi gambar */
+            object-fit: cover;
+            /* Pastikan gambar tidak terdistorsi */
+        }
+
+        .product-label {
+            font-weight: bold;
+            margin-top: 8px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .product-container {
+            padding: 10px;
+        }
+    </style>
+
+    <div class="container mt-5 border-bottom pb-4 mb-5" style="max-width: 1100px;">
+        <h2 class="mb-5 mt-4 fw-bold text-uppercase text-dark text-center"
+            style="font-size: 2rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Rekomendasi Produk Furniture Terlaris</h2>
+
+        <div class="row g-3 justify-content-center"> <!-- g-4 memberikan jarak lebih besar antar produk -->
 
             <!-- Produk 1 -->
             <div class="col-6 col-md-4 col-lg-3">
-                <div class="text-center p-2">
-                    <img src="{{ url('/beranda/assets/images/meja-4.png') }}" alt="meja tamu"
-                        class="img-fluid rounded shadow-sm">
+                <div class="text-center product-container">
+                    <img src="{{ url('/beranda/assets/images/meja-4.png') }}" alt="Meja Tamu"
+                        class="img-fluid rounded shadow-sm product-image">
+                    <div class="product-label">Meja Tamu</div>
                 </div>
             </div>
 
             <!-- Produk 2 -->
             <div class="col-6 col-md-4 col-lg-3">
-                <div class="text-center p-2">
-                    <img src="{{ url('/beranda/assets/images/meja-2.png') }}" alt="Meja Tamu"
-                        class="img-fluid rounded shadow-sm">
+                <div class="text-center product-container">
+                    <img src="{{ url('/beranda/assets/images/meja-6.png') }}" alt="Meja Tamu"
+                        class="img-fluid rounded shadow-sm product-image">
+                    <div class="product-label">Meja Tamu</div>
                 </div>
             </div>
 
             <!-- Produk 3 -->
             <div class="col-6 col-md-4 col-lg-3">
-                <div class="text-center p-2">
+                <div class="text-center product-container">
                     <img src="{{ url('/beranda/assets/images/meja-4.png') }}" alt="Meja Makan"
-                        class="img-fluid rounded shadow-sm">
+                        class="img-fluid rounded shadow-sm product-image">
+                    <div class="product-label">Meja Makan</div>
                 </div>
             </div>
 
             <!-- Produk 4 -->
             <div class="col-6 col-md-4 col-lg-3">
-                <div class="text-center p-2">
+                <div class="text-center product-container">
                     <img src="{{ url('/beranda/assets/images/meja-6.png') }}" alt="Almari"
-                        class="img-fluid rounded shadow-sm">
+                        class="img-fluid rounded shadow-sm product-image">
+                    <div class="product-label">Almari</div>
                 </div>
             </div>
 
             <!-- Produk 5 -->
             <div class="col-6 col-md-4 col-lg-3">
-                <div class="text-center p-2">
+                <div class="text-center product-container">
                     <img src="{{ url('/beranda/assets/images/meja-7.png') }}" alt="Almari TV"
-                        class="img-fluid rounded shadow-sm">
+                        class="img-fluid rounded shadow-sm product-image">
+                    <div class="product-label">Almari TV</div>
                 </div>
             </div>
 
             <!-- Produk 6 -->
             <div class="col-6 col-md-4 col-lg-3">
-                <div class="text-center p-2">
+                <div class="text-center product-container">
                     <img src="{{ url('/beranda/assets/images/meja-4.png') }}" alt="Kursi Santai"
-                        class="img-fluid rounded shadow-sm">
+                        class="img-fluid rounded shadow-sm product-image">
+                    <div class="product-label">Kursi Santai</div>
                 </div>
             </div>
 
             <!-- Produk 7 -->
             <div class="col-6 col-md-4 col-lg-3">
-                <div class="text-center p-2">
+                <div class="text-center product-container">
                     <img src="{{ url('/beranda/assets/images/meja-7.png') }}" alt="Meja Makan"
-                        class="img-fluid rounded shadow-sm">
+                        class="img-fluid rounded shadow-sm product-image">
+                    <div class="product-label">Meja Makan</div>
                 </div>
             </div>
 
             <!-- Produk 8 -->
             <div class="col-6 col-md-4 col-lg-3">
-                <div class="text-center p-2">
-                    <img src="{{ url('/beranda/assets/images/meja-7.png') }}" alt="Meja Makan"
-                        class="img-fluid rounded shadow-sm">
+                <div class="text-center product-container">
+                    <img src="{{ url('/beranda/assets/images/meja-8.png') }}" alt="Meja Makan"
+                        class="img-fluid rounded shadow-sm product-image">
+                    <div class="product-label">Meja Makan</div>
                 </div>
             </div>
         </div>
@@ -248,8 +317,8 @@
     <div class="testimonial-section border-bottom pb-4 mb-5">
         <div class="container">
             <div class="row">
-                <div class="col-lg-7 mx-auto text-center">
-                    <h2 class="section-title">Ulasan</h2>
+                <div class="col-lg-7 mx-auto text-center text-uppercase text-primary">
+                    <h1 class="section-title text-center mb-4"> Ulasan </h1>
                 </div>
             </div>
 
@@ -271,7 +340,8 @@
                                         <div class="testimonial-block text-center">
                                             <blockquote class="mb-5">
                                                 <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae
-                                                    odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
+                                                    odio quis nisl dapibus malesuada. Nullam ac aliquet velit.
+                                                    Aliquam
                                                     vulputate velit imperdiet dolor tempor tristique. Pellentesque
                                                     habitant morbi tristique senectus et netus et malesuada fames ac
                                                     turpis egestas. Integer convallis volutpat dui quis
@@ -300,7 +370,8 @@
                                         <div class="testimonial-block text-center">
                                             <blockquote class="mb-5">
                                                 <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae
-                                                    odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
+                                                    odio quis nisl dapibus malesuada. Nullam ac aliquet velit.
+                                                    Aliquam
                                                     vulputate velit imperdiet dolor tempor tristique. Pellentesque
                                                     habitant morbi tristique senectus et netus et malesuada fames ac
                                                     turpis egestas. Integer convallis volutpat dui quis
@@ -329,7 +400,8 @@
                                         <div class="testimonial-block text-center">
                                             <blockquote class="mb-5">
                                                 <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae
-                                                    odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
+                                                    odio quis nisl dapibus malesuada. Nullam ac aliquet velit.
+                                                    Aliquam
                                                     vulputate velit imperdiet dolor tempor tristique. Pellentesque
                                                     habitant morbi tristique senectus et netus et malesuada fames ac
                                                     turpis egestas. Integer convallis volutpat dui quis
@@ -350,9 +422,7 @@
                                 </div>
                             </div>
                             <!-- END item -->
-
                         </div>
-
                     </div>
                 </div>
             </div>

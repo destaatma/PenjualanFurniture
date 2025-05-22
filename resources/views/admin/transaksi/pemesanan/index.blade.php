@@ -4,15 +4,18 @@
 
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Data Pemesanan</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+            <h1 class="mt-4 text-muted ">Data Pemesanan</h1>
+            <ol class="breadcrumb mb-4 bg-light p-3 rounded">
+                <li class="breadcrumb-item"><a href="/admin" class="text-info">Dashboard</a></li>
                 <li class="breadcrumb-item active">Pemesanan</li>
             </ol>
 
-            <a href="/admin/pemesanan/create" class="btn btn-success mb-3 col-mb-3">Tambah</a>
+            <a href="{{ route('admin.transaksi.pemesanan.create') }}" class="btn btn-warning mb-3 col-mb-3">
+                <i class="fas fa-plus-circle"></i> Tambah
+            </a>
+            <a href="/admin/detail_pemesanan" class="btn btn-info mb-3 col-mb-3">Detail Pemesanan</a>
             <div class="card mb-4">
-                <div class="card-header bg-success text-white">
+                <div class="card-header bg-info text-white">
                     <i class="fas fa-shopping-cart me-1"></i> Daftar Pemesanan
                 </div>
                 <div class="card-body">
@@ -39,21 +42,25 @@
                                         <td>{{ $p->tanggal_pemesanan }}</td>
                                         <td>{{ $p->status_pemesanan }}</td>
                                         <td>
-                                        <div class="action-buttons d-flex gap-2">
-                                            <a href="{{ route('admin.transaksi.detail_pemesanan.index') }}" class="btn btn-info btn-sm">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            <a href="{{ route('admin.transaksi.pemesanan.edit', $p->id) }}" class="btn btn-warning btn-sm">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <form action="{{ route('admin.transaksi.pemesanan.destroy', $p->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus pemesanan ini?')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </div>
+                                            <div class="action-buttons d-flex gap-2">
+                                                <a href="{{ route('admin.transaksi.detail_pemesanan.index') }}"
+                                                    class="btn btn-info btn-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="{{ route('admin.transaksi.pemesanan.edit', $p->id) }}"
+                                                    class="btn btn-warning btn-sm">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <form action="{{ route('admin.transaksi.pemesanan.destroy', $p->id) }}"
+                                                    method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus pemesanan ini?')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

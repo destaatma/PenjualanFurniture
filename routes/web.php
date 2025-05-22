@@ -2,13 +2,17 @@
 
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\DetailPemesananController;
+use App\Http\Controllers\FronandController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\PengirimanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UlasanController;
+use App\Http\Controllers\UlasanprodukController;
 use App\Http\Controllers\UserController;
 use App\Models\DetailPemesanan;
 use App\Models\Kategori;
@@ -48,17 +52,18 @@ Route::post('/login', [AuthController::class, 'authenticate'])
 Route::post('logout', [AuthController::class, 'logout'])
     ->middleware('auth')
     ->name('logout');
-
+//route user
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'isAdmin'])->group(function () {
 
     Route::get('/admin', function () {
         return view('admin.beranda');
     });
+    Route::get('/admin', [BerandaController::class, 'index'])->name('admin.beranda.index');
 
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
 
@@ -133,113 +138,31 @@ Route::middleware('auth')->group(function () {
     ]);
 });
 
-// Route::get('/admin', DashboardController::class, 'index')->name('admin.dashboard');
-//     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
-
-// route untuk admin kategori
-// Route::get('/admin/kategori', function () {
-//     return view('admin.kategori.kategori');
-// });
-
-// Route::get('/admin/kategori/create', function () {
-//     return view('admin.kategori.create');
-// });
-
-// Route::get('/admin/kategori/edit', function () {
-//     return view('admin.kategori.edit');
-// });
-
-// route untuk admin produk
-// Route::get('/admin/produk', function () {
-//     return view('admin.produk.produk');
-// });
-
-// Route::get('/admin/produk/create', function () {
-//     return view('admin.produk.create');
-// });
-
-// Route::get('/admin/produk/edit', function () {
-//     return view('admin.produk.edit');
-// });
-
-// route untuk admin detailpemesanan
-// Route::get('/admin/detail_pemesanan', function () {
-//     return view('admin.transaksi.detail_pemesanan.detail_pemesanan');
-// });
-
-// Route::get('/admin/transaksi/pemesanan/create', function () {
-//     return view('admin.transaksi.pemesanan.create');
-// });
-
-// Route::get('/admin/transaksi/pemesanan/edit', function () {
-//     return view('admin.transaksi.pemesanan.edit');
-// });
-
-
-// route untuk admin pemesanan
-// Route::get('/admin/pemesanan', function () {
-//     return view('admin.transaksi.pemesanan.pemesanan');
-// });
-
-// Route::get('/admin/transaksi/pemesanan/create', function () {
-//     return view('admin.transaksi.pemesanan.create');
-// });
-
-// Route::get('/admin/transaksi/pemesanan/edit', function () {
-//     return view('admin.transaksi.pemesanan.edit');
-// });
-
-
-// route untuk admin pembayaran
-// Route::get('/admin/pembayaran', function () {
-//     return view('admin.transaksi.pembayaran.pembayaran');
-// });
-
-// Route::get('/admin/transaksi/pembayaran/create', function () {
-//     return view('admin.transaksi.pembayaran.create');
-// });
-
-// Route::get('/admin/transaksi/pembayaran/edit', function () {
-//     return view('admin.transaksi.pembayaran.edit');
-// });
-
-// route untuk admin pengiriman
-
-// route untuk admin ulasan
-// Route::get('/admin/ulasan', function () {
-//     return view('admin.ulasan.index');
-// });
-
-// Route::get('/admin/ulasan/create', function () {
-//     return view('admin.ulasan.create');
-// });
-
-// Route::get('/admin/ulasan/edit', function () {
-//     return view('admin.ulasan.edit');
-// });
-
-
-
-
 
 //route untuk user tentang kami
 Route::get('/tentangKami', function () {
     return view('tentangKami');
 });
+
 //route untuk user produk
-Route::get('/produk', function () {
-    return view('produk');
-});
+Route::get('/produk', [FronandController::class, 'produk']);
+
+//route untuk user detail
+Route::get('/produk/{id}', [FronandController::class, 'show'])->name('produk.show');
+
+//route untuk ulasan user
+Route::post('/ulasans', [UlasanprodukController::class, 'store'])->name('ulasans.store');
+Route::get('/ulasans/{id}', [FronandController::class, 'show'])->name('ulasans.show');
+
 //route untuk user kategori
-Route::get('/kategori', function () {
-    return view('kategori');
-});
+Route::get('/keranjang', [KeranjangController::class, 'keranjang']);
+Route::post('/keranjang/tambah/{id}', [KeranjangController::class, 'tambahKeKeranjang'])->name('keranjang.tambah');
+Route::post('/keranjang/hapus/{id}', [KeranjangController::class, 'hapus'])->name('keranjang.hapus');
+
 //route untuk user pemesanan
-Route::get('/pemesanan', function () {
-    return view('pemesanan');
+Route::get('/caraPemesanan', function () {
+    return view('caraPemesanan');
 });
-
-
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();

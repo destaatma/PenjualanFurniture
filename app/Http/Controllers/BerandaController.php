@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
+use App\Models\Pemesanan;
 use App\Models\Produk;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BerandaController extends Controller
@@ -12,56 +15,10 @@ class BerandaController extends Controller
      */
     public function index()
     {
-       $produks = Produk::latest()->take(6)->get();
-    return view('admin.beranda', compact('produks'));
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $kategoriCount = Kategori::count();
+        $produkCount = Produk::count();
+        $pemesananCount = Pemesanan::count();
+        $userCount = User::count();
+        return view('admin.beranda', compact('kategoriCount', 'produkCount', 'pemesananCount', 'userCount'));
     }
 }

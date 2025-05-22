@@ -4,14 +4,14 @@
 
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Edit Pembayaran</h1>
-        <ol class="breadcrumb mb-4">
+        <h1 class="mt-4 text-muted">Edit Pembayaran</h1>
+        <ol class="breadcrumb mb-4 bg-light p-3 rounded">
             <li class="breadcrumb-item"><a href="{{ route('admin.transaksi.pembayaran.index') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Edit Pembayaran</li>
         </ol>
 
         <div class="card mb-4">
-            <div class="card-header bg-success text-white">
+            <div class="card-header bg-info text-white">
                 <i class="fas fa-edit me-1"></i> Edit Pembayaran
             </div>
             <div class="card-body">
@@ -57,8 +57,8 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-success">
-                        <i class="fas fa-save"></i>
+                    <button type="submit" class="btn btn-warning">
+                        <i class="fas fa-save"></i> Perbarui
                     </button>
                     <a href="{{ route('admin.transaksi.pembayaran.index') }}" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i> Kembali

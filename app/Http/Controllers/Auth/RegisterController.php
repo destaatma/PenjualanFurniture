@@ -10,37 +10,32 @@ use App\Models\User;
 
 class RegisterController extends Controller
 {
-    /**
-     * Tampilkan form registrasi.
-     */
     public function showRegistrationForm()
     {
         return view('auth.register');
     }
 
-    /**
-     * Proses data registrasi.
-     */
     public function register(Request $request)
     {
         $validated = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'telepon' => ['required', 'string', 'max:15'],
+            'telpon' => ['required', 'string', 'max:15'],
             'alamat' => ['required', 'string', 'max:255'],
         ]);
 
         $user = User::create([
-            'nama' => $validated['name'],
+            'nama' => $validated['nama'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
-            'telepon' => $validated['telepon'],
+            'telpon' => $validated['telpon'],
             'alamat' => $validated['alamat'],
+            'role_id' => 2, // Default sebagai user biasa
         ]);
 
         Auth::login($user);
 
-        return redirect()->intended('dashboard');
+        return redirect()->intended('login');
     }
 }

@@ -9,7 +9,8 @@
     <meta name="author" content="" />
     <title>Login - SB Admin</title>
     <link href="{{ url('/dashboard/css/styles.css') }}" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -22,15 +23,17 @@
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header bg-light text-dark">
                                     <h3 class="text-center font-weight-light my-4">Masuk</h3>
-                                    <p class="mb-4 text-center text-dark fs-5">Silahkan masukkan informasi login anda</p>
+                                    <p class="mb-4 text-center text-dark fs-5">Silahkan masukkan informasi login anda
+                                    </p>
                                 </div>
                                 <div class="card-body">
                                     <form action="{{ route('login') }}" method="POST">
                                         @csrf
-                                       <div class="form-floating mb-3">
+                                        <div class="form-floating mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                                <input class="form-control" name="email" type="email" placeholder="name@example.com" required />
+                                                <input class="form-control" name="email" type="email"
+                                                    placeholder="name@example.com" required />
                                             </div>
                                         </div>
                                         @error('email')
@@ -41,7 +44,8 @@
                                         <div class="form-floating mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                                                <input class="form-control" name="password" type="password" placeholder="Password" required />
+                                                <input class="form-control" name="password" type="password"
+                                                    placeholder="Password" required />
                                             </div>
                                         </div>
                                         <div class="form-check mb-3">
@@ -59,7 +63,8 @@
                                             <button class="btn btn-dark col-4">Login</button>
                                         </div>
                                         <div class="card-footer text-center py-3">
-                                            <div class="small"><a href="/register" class="text-dark">Belum Punya Akun? Buat Akun !</a></div>
+                                            <div class="small"><a href="/register" class="text-dark">Belum Punya Akun?
+                                                    Buat Akun !</a></div>
                                         </div>
                                     </form>
                                 </div>

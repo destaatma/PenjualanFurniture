@@ -31,7 +31,7 @@ class KategoriController extends Controller
     {
         $request->validate([
             'kategori' => 'required|string|max:255',
-            'deskripsi' => 'nullable|string',
+            'deskripsi' => 'required|string',
         ]);
 
         Kategori::create($request->all());
@@ -62,7 +62,7 @@ class KategoriController extends Controller
     {
         $request->validate([
             'kategori' => 'required|string|max:255',
-            'deskripsi' => 'nullable|string',
+            'deskripsi' => 'required|string',
         ]);
 
         $kategori->update($request->all());

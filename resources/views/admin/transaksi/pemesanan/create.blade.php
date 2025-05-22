@@ -3,14 +3,14 @@
 @section('content')
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Tambah Pemesanan</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{ route('admin.transaksi.pemesanan.index') }}">Dashboard</a></li>
+        <h1 class="mt-4 text-muted">Tambah Pemesanan</h1>
+        <ol class="breadcrumb mb-4 bg-light p-3 rounded">
+            <li class="breadcrumb-item"><a href="{{ route('admin.transaksi.pemesanan.index') }}" class="text-info">Dashboard</a></li>
             <li class="breadcrumb-item active">Tambah Pemesanan</li>
         </ol>
 
         <div class="card mb-4">
-            <div class="card-header bg-success text-white">
+            <div class="card-header bg-info text-white">
                 <i class="fas fa-shopping-cart me-1"></i> Tambah Pemesanan
             </div>
             <div class="card-body">
@@ -43,9 +43,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="tanggal_pemesanan" class="form-label">Tanggal Pemesanan</label>
-                        <input type="datetime-local" name="tanggal_pemesanan" class="form-control" value="{{ old('tanggal_pemesanan', date('Y-m-d\TH:i', strtotime($pemesanan->tanggal_pemesanan ?? now()))) }}">
-                    </div>
+                            <label for="tanggal_pemesanan" class="form-label">Tanggal pemesanan</label>
+                            <input type="datetime-local" name="tanggal_pemesanan" id="tanggal_pemesanan" class="form-control" required>
+                        </div>
 
                     <div class="mb-3">
                         <label for="status_pemesanan" class="form-label">Status Pemesanan</label>
@@ -58,7 +58,7 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-warning">
                         <i class="fas fa-save"></i> Simpan
                     </button>
                     <a href="{{ route('admin.transaksi.pemesanan.index') }}" class="btn btn-secondary">

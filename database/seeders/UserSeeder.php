@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             'alamat' => 'pacitan',
         ]);
         User::create([
-            'role_id' => 3,
+            'role_id' => 1,
             'nama' => 'desta',
             'email' => 'operator@gmail.com',
             'password' => bcrypt('admin'),

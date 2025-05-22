@@ -32,18 +32,21 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'kategori_id' => 'required|exists:kategoris,id',
             'nama' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
             'harga' => 'required|numeric',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'gambar' => 'nullable',
         ]);
 
         // Simpan gambar ke storage
-        $gambarPath = $request->file('gambar')->store('produk', 'public');
+        if ($request->hasFile('gambar')) {
+            $gambarPath = $request->file('gambar')->store('produk', 'public');
+            $data['gambar'] = $gambarPath;
+        }
 
-        Produk::create($request->all());
+        Produk::create($data);
 
         return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil ditambahkan');
     }
@@ -53,7 +56,7 @@ class ProdukController extends Controller
      */
     public function show(Produk $produk)
     {
-        //return view('admin.produk.show', compact('produk'));
+        return view('admin.produk.show', compact('produk'));
     }
 
     /**
@@ -72,7 +75,7 @@ class ProdukController extends Controller
      */
     public function update(Request $request, Produk $produk)
     {
-        $request->validate([
+        $data = $request->validate([
             'kategori_id' => 'required|exists:kategoris,id',
             'nama' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
@@ -83,10 +86,10 @@ class ProdukController extends Controller
         // Periksa apakah ada gambar baru yang diunggah
         if ($request->hasFile('gambar')) {
             $gambarPath = $request->file('gambar')->store('produk', 'public');
-            $produk->gambar = $gambarPath;
+            $data['gambar'] = $gambarPath;
         }
 
-        $produk->update($request->all());
+        $produk->update($data);
 
         return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil diperbarui');
     }
@@ -99,5 +102,9 @@ class ProdukController extends Controller
     {
         $produk->delete();
         return redirect()->route('admin.produk.index')->with('success', 'Kategori berhasil dihapus');
+    }
+
+    public function ulasan(){
+        
     }
 }

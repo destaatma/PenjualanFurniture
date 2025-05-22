@@ -4,15 +4,17 @@
 
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Data Pengiriman</h1>
-            <ol class="breadcrumb mb-4">
+            <h1 class="mt-4 text-muted">Data Pengiriman</h1>
+            <ol class="breadcrumb mb-4 bg-light p-3 rounded">
                 <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
                 <li class="breadcrumb-item active">Pengiriman</li>
             </ol>
 
-            <a href="/admin/pengiriman/create" class="btn btn-success mb-3 col-mb-3">Tambah Pengiriman</a>
+            <a href="{{ route('admin.transaksi.pengiriman.create') }}" class="btn btn-warning mb-3 col-mb-3">
+                <i class="fas fa-plus-circle"></i> Tambah Produk
+            </a>
             <div class="card mb-4">
-                <div class="card-header bg-success text-white">
+                <div class="card-header bg-info">
                     <i class="fas fa-truck me-1"></i> Daftar Pengiriman
                 </div>
                 <div class="card-body">
@@ -35,16 +37,21 @@
                                         <td>{{ $p->tanggal_pengiriman }}</td>
                                         <td>{{ $p->status_pengiriman }}</td>
                                         <td>
-                                            <a href="{{ route('admin.transaksi.pengiriman.edit', $p->id) }}" class="btn btn-warning btn-sm">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <form action="{{ route('admin.transaksi.pengiriman.destroy', $p->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus pengiriman ini?')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
+                                            <div class="action-buttons d-flex gap-2">
+                                                <a href="{{ route('admin.transaksi.pengiriman.edit', $p->id) }}"
+                                                    class="btn btn-warning btn-sm">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <form action="{{ route('admin.transaksi.pengiriman.destroy', $p->id) }}"
+                                                    method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus pengiriman ini?')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

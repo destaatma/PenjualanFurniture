@@ -14,6 +14,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware
             ->redirectGuestsTo('/login')
             ->redirectUsersTo('/admin');
+
+
+        $middleware->alias([
+            'isAdmin' => \App\Http\Middleware\CheckAuthAction::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

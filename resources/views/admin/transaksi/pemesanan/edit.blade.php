@@ -2,15 +2,15 @@
 
 @section('content')
 <main>
-    <div class="container-fluid col-11">
-        <h1 class="mt-4">Edit Pemesanan</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{ route('admin.transaksi.pemesanan.index') }}">Dashboard</a></li>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4 text-muted">Edit Pemesanan</h1>
+        <ol class="breadcrumb mb-4 bg-light p-3 rounded">
+            <li class="breadcrumb-item"><a href="{{ route('admin.transaksi.pemesanan.index') }}" class="text-info">Data Pemesanan</a></li>
             <li class="breadcrumb-item active">Edit Pemesanan</li>
         </ol>
 
         <div class="card mb-4">
-            <div class="card-header bg-success text-dark">
+            <div class="card-header bg-info text-dark">
                 <i class="fas fa-edit me-1"></i> Edit Pemesanan
             </div>
             <div class="card-body">
@@ -49,10 +49,10 @@
                                 value="{{ $pemesanan->total_harga }}" required>
                         </div>
 
-                        <div class="mb-2 col-mb-6">
-                            <label for="tanggal_pemesanan" class="form-label">Tanggal Pemesanan</label>
-                            <input type="datetime-local" name="tanggal_pemesanan" class="form-control form-control-sm" id="tanggal_pemesanan"
-                                value="{{ $pemesanan->tanggal_pemesanan }}" required>
+                          <div class="mb-3">
+                            <label for="tanggal_pemesanan" class="form-label">Tanggal pemesanan</label>
+                            <input type="datetime-local" name="tanggal_pemesanan" id="tanggal_pemesanan" class="form-control"
+                                   value="{{ \Carbon\Carbon::parse($pemesanan->tanggal_pemesanan)->format('Y-m-d\TH:i') }}" required>
                         </div>
 
                         <div class="mb-2 col-mb-6">
@@ -66,8 +66,8 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-success">
-                        <i class="fas fa-save"></i> Update Pemesanan
+                    <button type="submit" class="btn btn-warning">
+                        <i class="fas fa-save"></i> Perbarui
                     </button>
                     <a href="{{ route('admin.transaksi.pemesanan.index') }}" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i> Kembali

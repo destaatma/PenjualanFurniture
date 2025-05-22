@@ -3,14 +3,14 @@
 @section('content')
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Tambah Kategori</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="/admin/kategori">Dashboard</a></li>
+        <h1 class="mt-4 text-dark text-muted">Tambah Kategori</h1>
+        <ol class="breadcrumb mb-4 bg-light p-3 rounded">
+            <li class="breadcrumb-item"><a href="/admin/kategori" class="text-info">Dashboard</a></li>
             <li class="breadcrumb-item active">Tambah Kategori</li>
         </ol>
 
         <div class="card mb-4">
-            <div class="card-header bg-success text-white">
+            <div class="card-header bg-info text-white">
                 <i class="fas fa-list-alt me-1"></i> Tambah Kategori Produk
             </div>
             <div class="card-body">
@@ -26,7 +26,7 @@
                         <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3" placeholder="Tambahkan deskripsi (Opsional)"></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-warning">
                         <i class="fas fa-save"></i> Simpan
                     </button>
                     <a href="{{ route('admin.kategori.index') }}" class="btn btn-secondary">
