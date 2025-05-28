@@ -5,11 +5,13 @@
         <div class="container-fluid px-4">
             <h1 class="mt-4 text-dark text-muted">Data Kategori</h1>
             <ol class="breadcrumb mb-4 bg-light p-3 rounded">
-                <li class="breadcrumb-item"><a href="/admin" class="text-info">Dashboard</a></li>
+                <li class="breadcrumb-item">
+                    <a href="/admin" class="text-info">Dashboard</a>
+                </li>
                 <li class="breadcrumb-item active">Kategori Produk</li>
             </ol>
 
-            <a href="/admin/kategori/create" class="btn btn-warning mb-3 col-mb-3">
+            <a href="/admin/kategori/create" class="btn btn-warning mb-3">
                 <i class="fas fa-plus-circle"></i> Tambah Kategori
             </a>
 
@@ -30,7 +32,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($kategoris as $k)
-                                    <tr class="table-hover">
+                                    <tr>
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>{{ $k->kategori }}</td>
                                         <td>{{ $k->deskripsi }}</td>
@@ -41,11 +43,11 @@
                                                     <i class="fas fa-edit"></i>
                                                 </a>
 
-                                                <form action="{{ route('admin.kategori.destroy', $k->id) }}" method="POST">
+                                                <form action="{{ route('admin.kategori.destroy', $k->id) }}" method="POST"
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm shadow-sm"
-                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
+                                                    <button type="submit" class="btn btn-danger btn-sm shadow-sm">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </button>
                                                 </form>

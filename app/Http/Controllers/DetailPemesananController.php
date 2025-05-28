@@ -48,7 +48,7 @@ class DetailPemesananController extends Controller
      */
     public function show(DetailPemesanan $detailPemesanan)
     {
-        return view('admin.transaksi.detail_pemesanan.show', compact('detailPemesanan'));
+        //return view('admin.transaksi.detail_pemesanan.show', compact('detailPemesanan'));
     }
 
     /**

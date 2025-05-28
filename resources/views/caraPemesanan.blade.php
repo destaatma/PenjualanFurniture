@@ -1,51 +1,60 @@
 @extends('layouts.user.main')
 
 @section('content')
-    <div class="container mt-3">
-        <h1 class="mb-5 mt-4 fw-bold text-uppercase text-secondary text-center"
-            style="font-size: 3rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Cara Pemesanan</h1>
-        <p class="mb-4 text-secondary fs-5 fw-bold" style="font-size: 1.25rem;">
-            Ikuti langkah-langkah berikut untuk melakukan pemesanan :
-        </p>
+    <div class="container">
+        <!-- Heading -->
+        <div class="row text-center">
+            <div class="col-12">
+                <h1 class="mb-5 mt-4 fw-bold text-uppercase">
+                    Cara Pemesanan
+                </h1>
+                <p class="mb-4 text-secondary fs-5">
+                    RUMAH Mebel – Ikuti langkah-langkah berikut untuk melakukan pemesanan produk:
+                </p>
+            </div>
+        </div>
 
+        <!-- Card Content -->
         <div class="row">
             <div class="col-lg-12 mx-auto mb-4">
                 <div class="card shadow-sm p-4 text-black" style="border-radius: 10px;">
-                    <p> - Pilih produk mebel yang sudah kami sediakan pada katalog mebel online RUMAHMebel.com, kami telah
-                        menyediakan berbagai jenis produk yg memudahkan anda dalam memilih kebutuhan mebel sesuai keinginan
-                        anda, kemudian tentukan Kategori Produk, Produk dan Jumlah Barang yang akan dipesan,
-                        Informasikan pesanan anda dengan langsung menghubungi kami melalui Email : rumahmebel@gmail.com atau
-                        Call & Whatsapp : 08x xxx xxx xxx/08x xxx xxx xx A/N Desta.</p>
-
-                    <p> - Langkah berikutnya, kami akan menginformasikan prosedur order, total harga dan biaya kirim kepada
-                        saudara, jika harga sudah disepakati dan ready stok ada, maka kami minta biaya untuk ditransfer ke
-                        salah satu rekening kami.</p>
-
-                    <p> - Apabila produk mebel yang dipesan belum ready stok / habis, maka kami mohon kepada saudara untuk
-                        mengirimkan DP 50 % dari total harga, Setelah deposit menetap di salah satu account bank kami, kami
-                        akan mulai proses produksi barang yang anda pesan sebelumnya dengan segera. sisa 50% pelunasan
-                        dibayarkan setelah kami informasikan bahwa pesanan sudah siap untuk dikirim</p>
-
-                    <p> - Proses produksi dalam tempo 7 – 15 hari tergantung dari jenis produk yang dipesan.
-                        Pembatalan pesanan dapat dilakukan jika proses produksi barang yang dipesan belum dimulai dan DP
-                        dikembalikan penuh tanpa potongan.</p>
-
-                    <p> - Setiap proses produksi atau finishing kita laporkan kepada pemesan dengan mengirim foto-fotonya
-                        Via
-                        Whatsapp atau Email.</p>
-
-                    <p> - Proses pengiriman barang biasanya kami lakukan dengan menggunakan Jasa Expedisi Truck Lokal /
-                        Kargo
-                        Lokal, hal ini dapat memberikan efisiensi biaya kirim supaya dapat ditekan lebih murah, karena biaya
-                        kirim akan menjadi tanggung jawab sepenuhnya pada pihak pembeli.</p>
-
-                    <p> - Jika barang sudah diterima tetapi dalam keadaan rusak / lecet., maka klaim dapat diterima selama
-                        sopir pengantar barang masih dilokasi terima barang, karena akan sepenuhnya menjadi tanggung jawab
-                        kargo atau jasa ekspedisi yang bersangkutan. Jika barang dalam keadaan lecet ringan, maka kami akan
-                        mengirimkan bahan warna finishing yang sama lewat paket sehingga barang yang lecet dapat langsung
-                        dikuas / dicolok dengan warna yang kami kirimkan. Jika ternyata barang yang diterima dalam keadaan
-                        rusak berat, maka kami siap mengganti dengan yang baru, setelah barang dikirim kembali ( diretur ).
-                    </p>
+                    <ul class="ps-3">
+                        <li class="mb-3">
+                            Pilih produk mebel yang tersedia di katalog online <strong>RUMAHMebel.com</strong>. Kami
+                            menyediakan berbagai jenis produk sesuai kebutuhan Anda. Tentukan kategori, produk, dan jumlah
+                            barang, lalu anda bisa langsung melakukan pembelian didalam web atau dapat hubungi kami melalui
+                            WhatsApp/telepon: <strong>0878 6035 2236</strong> a.n. Desta.
+                        </li>
+                        <li class="mb-3">
+                            Kami akan menginformasikan prosedur order, total harga, dan biaya kirim. Jika setuju dan produk
+                            ready stok, silakan lakukan pembayaran penuh ke rekening kami.
+                        </li>
+                        <li class="mb-3">
+                            Jika produk tidak ready stok, silakan transfer DP sebesar 50% dari total harga. Produksi akan
+                            segera dilakukan, dan pelunasan (50%) dibayarkan setelah pesanan siap dikirim.
+                        </li>
+                        <li class="mb-3">
+                            Proses produksi memakan waktu 7–15 hari tergantung jenis produk. Pembatalan hanya dapat
+                            dilakukan
+                            jika produksi belum dimulai, dan DP akan dikembalikan penuh.
+                        </li>
+                        <li class="mb-3">
+                            Setiap proses produksi atau finishing akan dilaporkan kepada Anda melalui foto via WhatsApp atau
+                            email.
+                        </li>
+                        <li class="mb-3">
+                            Pengiriman menggunakan jasa ekspedisi lokal/kargo agar biaya lebih efisien. Biaya pengiriman
+                            menjadi tanggung jawab pembeli.
+                        </li>
+                        <li class="mb-3">
+                            Jika barang diterima dalam keadaan rusak:
+                            <ul class="mt-2">
+                                <li>Klaim hanya berlaku selama kurir masih berada di lokasi penerimaan.</li>
+                                <li>Jika lecet ringan, kami akan kirim bahan finishing untuk perbaikan.</li>
+                                <li>Jika rusak berat, kami akan mengganti dengan barang baru setelah retur diterima.</li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

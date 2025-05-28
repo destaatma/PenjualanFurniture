@@ -29,6 +29,22 @@
 
     @include('layouts.user.navbar')
 
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
+
     @yield('content')
 
     @include('layouts.user.footer')
@@ -37,6 +53,7 @@
     <script src="{{ url('/beranda/assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url('/beranda/assets/js/tiny-slider.js') }}"></script>
     <script src="{{ url('/beranda/assets/js/custom.js') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>

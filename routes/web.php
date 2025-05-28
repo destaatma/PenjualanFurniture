@@ -7,6 +7,7 @@ use App\Http\Controllers\DetailPemesananController;
 use App\Http\Controllers\FronandController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\PengirimanController;
@@ -163,6 +164,10 @@ Route::post('/keranjang/hapus/{id}', [KeranjangController::class, 'hapus'])->nam
 Route::get('/caraPemesanan', function () {
     return view('caraPemesanan');
 });
+
+Route::post('/checkout/pay', [PaymentController::class, 'pay'])->name('payment.pay')->middleware('auth');
+Route::get('/checkout/success', [PaymentController::class, 'success'])->name('payment.success')->middleware('auth');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();

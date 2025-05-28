@@ -61,6 +61,7 @@ class PemesananController extends Controller
      */
     public function edit(Pemesanan $pemesanan)
     {
+        $pemesanans = Pemesanan::all();
         $detail_pemesanans = DetailPemesanan::all();
         $users = User::all();
         return view('admin.transaksi.pemesanan.edit', compact('pemesanan', 'detail_pemesanans', 'users'));

@@ -2,66 +2,71 @@
 
 @section('content')
     <div class="container mt-5">
-        <div class="row mb-4">
+        <div class="row mb-5 g-4 align-items-start">
+
+            <!-- Gambar Produk -->
             <div class="col-lg-6">
-                <img src="{{ asset('storage/' . $produk->gambar) }}" class="img-fluid rounded" alt="{{ $produk->nama }}">
+                <div class="border rounded shadow-sm p-2 bg-white">
+                    <img src="{{ asset('storage/' . $produk->gambar) }}" alt="{{ $produk->nama }}"
+                        class="img-fluid rounded w-100 zoomable"
+                        style="aspect-ratio: 4/3; object-fit: contain; background-color: #f8f9fa;">
+                </div>
             </div>
+
+            <!-- Detail Produk -->
             <div class="col-lg-6">
-                <h1 class="font-weight-bold">{{ $produk->nama }}</h1>
-                <p>{{ $produk->deskripsi }}</p>
-                <p class="fw-bold text-primary">Rp {{ number_format($produk->harga, 0, ',', '.') }}</p>
-                <form action="{{ route('keranjang.tambah', $produk->id) }}" method="POST">
+                <h2 class="fw-bold">{{ $produk->nama }}</h2>
+                <p class="fs-4 text-primary fw-bold">
+                    Rp {{ number_format($produk->harga, 0, ',', '.') }}
+                </p>
+
+                <p><strong>SKU:</strong> RM-ID {{ $produk->id }}</p>
+                <p><strong>Kategori:</strong> <span class="text-warning">{{ $produk->kategori->kategori }}</span></p>
+
+                <div class="d-flex align-items-start mb-4">
+                    <div>
+                        <strong>Gratis Pengiriman</strong><br>
+                        <small class="text-muted">Seluruh Pulau Jawa – Min. belanja IDR 5.000.000</small>
+                    </div>
+                </div>
+
+                <!-- Form Tambah ke Keranjang -->
+                <form action="{{ route('keranjang.tambah', $produk->id) }}" method="POST" class="d-flex mb-3">
                     @csrf
-                    <button type="submit" class="btn btn-primary">Tambah ke Keranjang</button>
+                    <input type="number" name="quantity" min="1" value="1" class="form-control w-auto me-2 text-center"
+                        style="max-width: 80px;">
+                    <button type="submit" class="btn btn-dark d-flex align-items-center">
+                        <i class="bi bi-cart me-2"></i> Tambah ke Keranjang
+                    </button>
                 </form>
+                <div class="mt-4 col-lg-6">
+                    @auth
+                        <button id="bayarSekarang" class="btn btn-success w-100">Beli Sekarang</button>
+                    @else
+                        <a href="{{ url('/login') }}" class="btn btn-warning w-100">Login untuk Checkout</a>
+                    @endauth
+                </div>
+                <br>
+
+
+                <!-- Deskripsi dan Spesifikasi -->
+                <div>
+                    <h4 class="fw-bold mb-3">Deskripsi Produk</h4>
+                    <hr>
+                    <p><strong>{{ $produk->nama }}</strong></p>
+                    <p>{{ $produk->deskripsi }}</p>
+
+                    @if($produk->spesifikasi)
+                        <h5 class="fw-bold mt-4">Spesifikasi Produk:</h5>
+                        <ul>
+                            @foreach (explode(';', $produk->spesifikasi) as $item)
+                                <li>{{ trim($item) }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
             </div>
+
         </div>
-        <hr>
-
-        <h2>Ulasan Produk</h2>
-        <div class="row">
-            <div class="col-lg-12">
-                @if ($ulasans && count($ulasans) > 0)
-                    @foreach ($ulasans as $ulasan)
-                        <div class="testimonial-block mb-4 p-3 border rounded">
-                            <blockquote class="mb-2">
-                                <p>&ldquo;{{ $ulasan->ulasan }}&rdquo;</p>
-                            </blockquote>
-                            <div class="author-info mt-2">
-                                <h5>{{ $ulasan->user->name }}</h5>
-                                <span class="position d-block mb-3">Rating: {{ $ulasan->rating }}</span>
-                            </div>
-                        </div>
-                    @endforeach
-                @else
-                    <p>Tidak ada ulasan untuk produk ini.</p>
-                @endif
-            </div>
-        </div>
-
-        <h3>Tambah Ulasan</h3>
-        <form action="{{ route('ulasans.store') }}" method="POST" class="bg-light p-4 rounded">
-            @csrf
-            <input type="hidden" name="produk_id" value="{{ $produk->id }}">
-            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-            <div class="mb-3">
-                <label for="rating" class="form-label">Rating</label>
-                <select name="rating" id="rating" class="form-select" required>
-                    <option value="">Pilih Rating</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label for="ulasan" class="form-label">Ulasan</label>
-                <textarea name="ulasan" id="ulasan" class="form-control" rows="4" required></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Kirim Ulasan</button>
-        </form>
     </div>
 @endsection

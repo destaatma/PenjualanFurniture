@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
             $table->foreignid('pemesanan_id')->constrained('pemesanans')->onDelete('cascade');
-            $table->string('token');
+            $table->string('snap_token')->nullable();
             $table->integer('jumlah_bayar');
             $table->dateTime('tanggal_pembayaran');
             $table->string('status_pembayaran');
