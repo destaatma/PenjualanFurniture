@@ -21,4 +21,15 @@ class BerandaController extends Controller
         $userCount = User::count();
         return view('admin.beranda', compact('kategoriCount', 'produkCount', 'pemesananCount', 'userCount'));
     }
+
+    // public function chartBarangService()
+    // {
+    //     $data = Produk::selectRaw("DATE_FORMAT(tanggal_masuk, '%Y-%m') as bulan, COUNT(*) as total")
+    //         ->groupBy(DB::raw("DATE_FORMAT(tanggal_masuk, '%Y-%m')"))
+    //         ->orderBy('bulan', 'asc')
+    //         ->get()
+    //         ->toArray();
+
+    //     return $data;
+    // }
 }

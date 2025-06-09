@@ -34,15 +34,15 @@ class PembayaranController extends Controller
     {
         $request->validate([
             'pemesanan_id' => 'required|exists:pemesanans,id',
-            'token' => 'required|string|unique:pembayarans,token',
+            'snap_token' => 'nullable',
             'jumlah_bayar' => 'required|numeric',
-            'tanggal_pembayaran' => 'required|date',
+            'tanggal_pembayaran' => 'required|date_format:Y-m-d\TH:i',
             'status_pembayaran' => 'required|string|in:Menunggu,Dikonfirmasi,Selesai',
         ]);
 
         Pembayaran::create([
             'pemesanan_id' => $request->pemesanan_id,
-            'token' => $request->token,
+            'snap_token' => $request->token,
             'jumlah_bayar' => $request->jumlah_bayar,
             'tanggal_pembayaran' => $request->tanggal_pembayaran,
             'status_pembayaran' => $request->status_pembayaran,
@@ -67,15 +67,15 @@ class PembayaranController extends Controller
     {
         $request->validate([
             'pemesanan_id' => 'required|exists:pemesanans,id',
-            'token' => 'required|string|unique:pembayarans,token,' . $pembayaran->id,
+            'snap_token' => 'nullable|string|unique:pembayarans,snap_token,' . $pembayaran->id,
             'jumlah_bayar' => 'required|numeric',
-            'tanggal_pembayaran' => 'required|date_format:Y-m-d H:i:s',
+            'tanggal_pembayaran' => 'required|date_format:Y-m-d\TH:i',
             'status_pembayaran' => 'required|string|in:Menunggu,Dikonfirmasi,Selesai',
         ]);
 
         $pembayaran->update([
             'pemesanan_id' => $request->pemesanan_id,
-            'token' => $request->token,
+            'snap_token' => $request->token,
             'jumlah_bayar' => $request->jumlah_bayar,
             'tanggal_pembayaran' => $request->tanggal_pembayaran,
             'status_pembayaran' => $request->status_pembayaran,

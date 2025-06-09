@@ -6,18 +6,18 @@
             <h1 class="mt-4 text-muted">Data Produk</h1>
             <ol class="breadcrumb mb-4 bg-light p-3 rounded">
                 <li class="breadcrumb-item">
-                    <a href="/admin" class="text-info">Dashboard</a>
+                    <a href="/admin" class="text-primary">Dashboard</a>
                 </li>
                 <li class="breadcrumb-item active">Produk</li>
             </ol>
 
             <!-- Tombol Tambah Produk -->
             <a href="{{ route('admin.produk.create') }}" class="btn btn-warning mb-3">
-                <i class="fas fa-plus-circle me-1"></i> Tambah Produk
+                <i class="fas fa-plus-circle me-1"></i> Tambah 
             </a>
 
             <div class="card mb-4 shadow-sm">
-                <div class="card-header bg-info text-white">
+                <div class="card-header bg-primary text-white">
                     <i class="fas fa-box-open me-1"></i> Daftar Produk
                 </div>
                 <div class="card-body">

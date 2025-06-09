@@ -11,8 +11,8 @@
             </ol>
 
             <div class="card mb-4">
-                <div class="card-header bg-info">
-                    <i class="fas fa-truck me-1"></i> Form Edit Pengiriman
+                <div class="card-header bg-primary">
+                    <i class="fas fa-truck me-1"></i>Edit Pengiriman
                 </div>
                 <div class="card-body">
                     <form action="{{ route('admin.transaksi.pengiriman.update', $pengiriman->id) }}" method="POST">
@@ -22,14 +22,19 @@
                         <div class="mb-3">
                             <label for="pemesanan_id" class="form-label">Pemesanan</label>
                             <select name="pemesanan_id" class="form-control" required>
-                                <option disabled>Pilih ID Pemesanan</option>
+                                <option disabled selected>Pilih ID Pemesanan</option>
                                 @foreach($pemesanans as $p)
                                     <option value="{{ $p->id }}" {{ $pengiriman->pemesanan_id == $p->id ? 'selected' : '' }}>
-                                        {{ $p->id }}
+                                        {{ $p->user->nama ?? '-' }} |
+                                        {{ \Carbon\Carbon::parse($p->tanggal_pemesanan)->format('d-m-Y') }} |
+                                        @foreach ($p->detailPemesanan as $detail)
+                                            {{ $detail->produk->nama }}{{ !$loop->last ? ', ' : '' }}
+                                        @endforeach
                                     </option>
                                 @endforeach
                             </select>
                         </div>
+
 
                         <div class="mb-3">
                             <label for="tanggal_pengiriman" class="form-label">Tanggal Pengiriman</label>

@@ -6,17 +6,17 @@
             <h1 class="mt-4 text-dark text-muted">Data Kategori</h1>
             <ol class="breadcrumb mb-4 bg-light p-3 rounded">
                 <li class="breadcrumb-item">
-                    <a href="/admin" class="text-info">Dashboard</a>
+                    <a href="/admin" class="text-primary">Dashboard</a>
                 </li>
                 <li class="breadcrumb-item active">Kategori Produk</li>
             </ol>
 
             <a href="/admin/kategori/create" class="btn btn-warning mb-3">
-                <i class="fas fa-plus-circle"></i> Tambah Kategori
+                <i class="fas fa-plus-circle"></i> Tambah
             </a>
 
             <div class="card mb-4 shadow-lg">
-                <div class="card-header bg-info text-white">
+                <div class="card-header bg-primary text-white">
                     <i class="fas fa-list-alt me-1"></i> Daftar Kategori Produk
                 </div>
                 <div class="card-body">

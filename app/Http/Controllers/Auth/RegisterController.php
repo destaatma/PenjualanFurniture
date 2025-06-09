@@ -34,8 +34,8 @@ class RegisterController extends Controller
             'role_id' => 2, // Default sebagai user biasa
         ]);
 
-        Auth::login($user);
+        // Auth::login($user);
 
-        return redirect()->intended('login');
+        return redirect('/login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
 }

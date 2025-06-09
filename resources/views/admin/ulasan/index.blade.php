@@ -4,7 +4,7 @@
         <div class="container-fluid px-4">
             <h1 class="mt-4 text-muted">Data Ulasan</h1>
             <ol class="breadcrumb mb-4 bg-light p-3 rounded">
-                <li class="breadcrumb-item"><a href="/admin/ulasan" class="text-info">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="/admin/ulasan" class="text-primary">Dashboard</a></li>
                 <li class="breadcrumb-item active">Ulasan Produk</li>
             </ol>
 
@@ -13,7 +13,7 @@
                     class="fas fa-plus-circle"></i>
                 Tambah</a>
             <div class="card mb-4">
-                <div class="card-header bg-info text-white">
+                <div class="card-header bg-primary text-white">
                     <i class="fas fa-chart-area me-1"></i> Daftar Ulasan Produk
                 </div>
                 <div class="card-body">
@@ -50,7 +50,7 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"
                                                         onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
-                                                        <i class="fas fa-trash"></i>
+                                                        <i class="fas fa-trash-alt"></i>
                                                     </button>
                                                 </form>
                                             </div>

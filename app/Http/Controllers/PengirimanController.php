@@ -13,7 +13,7 @@ class PengirimanController extends Controller
      */
     public function index()
     {
-        $pengirimans = Pengiriman::with('pemesanan')->get();
+        $pengirimans = Pengiriman::with('pemesanan.user', 'pemesanan.detailPemesanan.produk')->get();
         return view('admin.transaksi.pengiriman.index', compact('pengirimans'));
     }
 

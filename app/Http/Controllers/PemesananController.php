@@ -4,90 +4,71 @@ namespace App\Http\Controllers;
 
 use App\Models\DetailPemesanan;
 use App\Models\Pemesanan;
+use App\Models\Produk;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class PemesananController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $pemesanans = Pemesanan::all();
-        $detail_pemesanans = DetailPemesanan::all();
-        $users = User::all();
-        return view('admin.transaksi.pemesanan.index', compact('pemesanans', 'detail_pemesanans', 'users'));
+        // Ambil semua pemesanan dengan relasi user dan detail_pemesanan
+        $pemesanans = Pemesanan::with(['user', 'detail_pemesanan'])->get();
+        return view('admin.transaksi.pemesanan.index', compact('pemesanans'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $detail_pemesanans = DetailPemesanan::all();
         $users = User::all();
-        return view('admin.transaksi.pemesanan.create', compact('detail_pemesanans', 'users'));
+        $produks = Produk::all();
+        return view('admin.transaksi.pemesanan.create', compact('users', 'produks'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         $request->validate([
-            'detail_pemesanan_id' => 'required|exists:detail_pemesanans,id',
-            'user_id' => 'required',
+            'user_id' => 'required|exists:users,id',
             'total_harga' => 'required|integer',
             'tanggal_pemesanan' => 'required|date_format:Y-m-d\TH:i',
             'status_pemesanan' => 'required|string',
         ]);
 
-        Pemesanan::create($request->all());
+        Pemesanan::create([
+            'user_id' => $request->user_id,
+            'total_harga' => $request->total_harga,
+            'tanggal_pemesanan' => $request->tanggal_pemesanan,
+            'status_pemesanan' => $request->status_pemesanan,
+        ]);
 
         return redirect()->route('admin.transaksi.pemesanan.index')->with('success', 'Pemesanan berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Pemesanan $pemesanan)
-    {
-        //return view('admin.transaksi.pemesanan.show', compact('pemesanan'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Pemesanan $pemesanan)
     {
-        $pemesanans = Pemesanan::all();
-        $detail_pemesanans = DetailPemesanan::all();
         $users = User::all();
-        return view('admin.transaksi.pemesanan.edit', compact('pemesanan', 'detail_pemesanans', 'users'));
+        return view('admin.transaksi.pemesanan.edit', compact('pemesanan', 'users'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Pemesanan $pemesanan)
     {
         $request->validate([
-            'detail_pemesanan_id' => 'required|exists:detail_pemesanans,id',
-            'user_id' => 'required',
+            'user_id' => 'required|exists:users,id',
             'total_harga' => 'required|integer',
             'tanggal_pemesanan' => 'required|date_format:Y-m-d\TH:i',
             'status_pemesanan' => 'required|string',
         ]);
 
-        $pemesanan->update($request->all());
+        $pemesanan->update([
+            'user_id' => $request->user_id,
+            'total_harga' => $request->total_harga,
+            'tanggal_pemesanan' => $request->tanggal_pemesanan,
+            'status_pemesanan' => $request->status_pemesanan,
+        ]);
 
         return redirect()->route('admin.transaksi.pemesanan.index')->with('success', 'Pemesanan berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Pemesanan $pemesanan)
     {
         $pemesanan->delete();

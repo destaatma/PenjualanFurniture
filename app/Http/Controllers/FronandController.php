@@ -11,6 +11,7 @@ class FronandController extends Controller
     public function produk(Request $request)
     {
         $kategoris = Kategori::all();
+        $produks = Produk::all();
 
         // Ambil produk berdasarkan kategori jika ada filter
         $produkQuery = Produk::query();

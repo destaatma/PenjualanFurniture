@@ -39,13 +39,14 @@
                         <i class="bi bi-cart me-2"></i> Tambah ke Keranjang
                     </button>
                 </form>
-                <div class="mt-4 col-lg-6">
-                    @auth
-                        <button id="bayarSekarang" class="btn btn-success w-100">Beli Sekarang</button>
-                    @else
-                        <a href="{{ url('/login') }}" class="btn btn-warning w-100">Login untuk Checkout</a>
-                    @endauth
-                </div>
+                <form action="{{ route('bayar-langsung') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="produk_id" value="{{ $produk->id }}">
+                    <button type="submit" class="btn btn-success w-50">Beli Sekarang</button>
+                </form>
+
+
+
                 <br>
 
 
@@ -65,8 +66,33 @@
                         </ul>
                     @endif
                 </div>
-            </div>
+                @if(auth()->check())
+                    <form action="{{ route('ulasans.store') }}" method="POST" class="mb-4">
+                        @csrf
+                        <input type="hidden" name="produk_id" value="{{ $produk->id }}">
 
+                        <div>
+                            <label for="rating">Rating:</label>
+                            <select name="rating" required>
+                                <option value="">Pilih rating</option>
+                                @for($i = 1; $i <= 5; $i++)
+                                    <option value="{{ $i }}">{{ $i }} ⭐</option>
+                                @endfor
+                            </select>
+                        </div>
+
+                        <div class="mt-2">
+                            <textarea name="ulasan" rows="3" class="w-full border p-2" placeholder="Tulis ulasan kamu..."
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded mt-2">Kirim Ulasan</button>
+                    </form>
+                @else
+                    <p class="text-gray-600">Silakan <a href="{{ route('login') }}" class="text-blue-600 underline">login</a>
+                        untuk menulis ulasan.</p>
+                @endif
+            </div>
         </div>
     </div>
 @endsection

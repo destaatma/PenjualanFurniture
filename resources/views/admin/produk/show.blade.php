@@ -9,7 +9,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card shadow-lg">
-                        <div class="card-header bg-info text-light d-flex align-items-center">
+                        <div class="card-header bg-primary text-light d-flex align-items-center">
                             <i class="fas fa-box-open me-2 fs-4"></i>
                             <h5 class="fw-bold mb-0">{{ $produk->nama }}</h5>
                         </div>

@@ -9,7 +9,7 @@
 
     .sb-sidenav .nav-link:hover {
         background-color: rgba(255, 255, 255, 0.1);
-        color: #17a2b8 !important;
+        color: #0d6efd !important;
         border-radius: 8px;
     }
 
@@ -51,8 +51,9 @@
                 </a>
 
                 <!-- Manajemen Produk (Dropdown) -->
-                <a class="nav-link {{ request()->is('manajemen-produk*') ? 'active' : 'collapsed' }}" href="#"
-                    data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false"
+                <a class="nav-link {{ request()->is('admin/kategori*') || request()->is('admin/produk*') ? '' : 'collapsed' }}"
+                    href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
+                    aria-expanded="{{ request()->is('admin/kategori*') || request()->is('admin/produk*') ? 'true' : 'false' }}"
                     aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-columns" style="color: #007bff;"></i>
@@ -60,7 +61,9 @@
                     Manajemen Produk
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseLayouts" data-bs-parent="#sidenavAccordion">
+
+                <div class="collapse {{ request()->is('admin/kategori*') || request()->is('admin/produk*') ? 'show' : '' }}"
+                    id="collapseLayouts" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link {{ request()->is('admin/kategori') ? 'active' : '' }}"
                             href="/admin/kategori">
@@ -78,16 +81,20 @@
                     </nav>
                 </div>
 
+
                 <!-- Transaksi (Dropdown) -->
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                    aria-expanded="false" aria-controls="collapsePages">
+                <a class="nav-link {{ request()->is('admin/pemesanan*') || request()->is('admin/pembayaran*') || request()->is('admin/pengiriman*') ? '' : 'collapsed' }}"
+                    href="#" data-bs-toggle="collapse" data-bs-target="#collapseTransaksi"
+                    aria-expanded="{{ request()->is('admin/pemesanan*') || request()->is('admin/pembayaran*') || request()->is('admin/pengiriman*') ? 'true' : 'false' }}"
+                    aria-controls="collapseTransaksi">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-book-open" style="color: #17a2b8;"></i>
                     </div>
                     Transaksi
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapsePages" data-bs-parent="#sidenavAccordion">
+                <div class="collapse {{ request()->is('admin/pemesanan*') || request()->is('admin/pembayaran*') || request()->is('admin/pengiriman*') ? 'show' : '' }}"
+                    id="collapseTransaksi" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link {{ request()->is('admin/pemesanan') ? 'active' : '' }}"
                             href="/admin/pemesanan">
@@ -112,6 +119,7 @@
                         </a>
                     </nav>
                 </div>
+
 
                 <!-- Ulasan -->
                 <a class="nav-link {{ request()->is('admin/ulasan') ? 'active' : '' }}" href="/admin/ulasan">

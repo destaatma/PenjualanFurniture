@@ -46,15 +46,15 @@
                 <!-- Produk Items -->
                 @php
                     $products = [
-                        ['src' => 'almari.png', 'name' => 'Almari Jati'],
-                        ['src' => 'meja-8.png', 'name' => 'Meja Tamu'],
-                        ['src' => 'meja-6.png', 'name' => 'Meja Makan'],
+                        ['id' => 3, 'src' => 'almari.png', 'name' => 'Almari Jati'],
+                        ['id' => 1, 'src' => 'meja-8.png', 'name' => 'Kursi Tamu'],
+                        ['id' => 5, 'src' => 'meja-6.png', 'name' => 'Meja Makan'],
                     ];
                 @endphp
 
                 @foreach ($products as $product)
                     <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-                        <a class="product-item" href="/produk">
+                        <a class="product-item" href="{{ url('/produk/' . $product['id']) }}">
                             <img src="{{ url('/beranda/assets/images/' . $product['src']) }}"
                                 class="img-fluid product-thumbnail" style="width: 250px;">
                             <h3 class="product-title text-capitalize fw-bold" style="font-size: 1.1rem; letter-spacing: 0.5px;">
@@ -144,18 +144,25 @@
                 </div>
 
                 <div class="col-lg-5 ps-lg-5">
-                    <h2 class="section-title mb-4">Kami Siap Membantu Mewujudkan Desain Interior Modern Anda</h2>
+                    <h2 class="section-title mb-4">
+                        Kami Siap Membantu Mewujudkan Desain Interior Modern Anda
+                    </h2>
                     <p>
-                        "Kami menghadirkan solusi praktis dan elegan. Desain produk yang berkelas, fungsional, dan
-                        disesuaikan dengan kebutuhan Anda. Temukan ruang yang mencerminkan gaya hidup Anda..."
+                        Kami menawarkan solusi desain interior yang praktis dan elegan — produk berkelas, fungsional, dan
+                        disesuaikan dengan kebutuhan serta gaya hidup Anda. Wujudkan ruang yang tak hanya indah dipandang,
+                        tetapi juga nyaman untuk digunakan.
                     </p>
                     <ul class="list-unstyled custom-list my-4">
-                        @for ($i = 0; $i < 4; $i++)
-                            <li>"Donec vitae odio quis nisl dapibus malesuada"</li>
-                        @endfor
+                        <li>Furnitur minimalis dengan desain sederhana namun fungsional</li>
+                        <li>Material berkualitas dari kayu alami dan elemen premium lainnya</li>
+                        <li>Tata ruang terbuka yang mendukung aktivitas harian secara dinamis</li>
+                        <li>Aksen dekoratif yang mencerminkan karakter dan kepribadian Anda</li>
                     </ul>
-                    <p><a href="/produk" class="btn">Explore</a></p>
+                    <p>
+                        <a href="/produk" class="btn btn-primary">Explore</a>
+                    </p>
                 </div>
+
             </div>
         </div>
     </div>

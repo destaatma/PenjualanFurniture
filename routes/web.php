@@ -21,6 +21,7 @@ use App\Models\Pembayaran;
 use App\Models\Pemesanan;
 use App\Models\Pengiriman;
 use App\Models\Produk;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -66,7 +67,17 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     });
     Route::get('/admin', [BerandaController::class, 'index'])->name('admin.beranda.index');
 
-    Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+    //Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+
+    Route::resource('admin/users', UserController::class)->names([
+        'index' => 'admin.users.index',
+        'create' => 'admin.users.create',
+        'store' => 'admin.users.store',
+        'show' => 'admin.users.show',
+        'edit' => 'admin.users.edit',
+        'update' => 'admin.users.update',
+        'destroy' => 'admin.users.destroy',
+    ]);
 
     Route::resource('admin/kategori', KategoriController::class)->names([
         'index' => 'admin.kategori.index',
@@ -146,7 +157,8 @@ Route::get('/tentangKami', function () {
 });
 
 //route untuk user produk
-Route::get('/produk', [FronandController::class, 'produk']);
+Route::get('/produk', [FronandController::class, 'produk'])->name('produk');
+
 
 //route untuk user detail
 Route::get('/produk/{id}', [FronandController::class, 'show'])->name('produk.show');
@@ -155,18 +167,29 @@ Route::get('/produk/{id}', [FronandController::class, 'show'])->name('produk.sho
 Route::post('/ulasans', [UlasanprodukController::class, 'store'])->name('ulasans.store');
 Route::get('/ulasans/{id}', [FronandController::class, 'show'])->name('ulasans.show');
 
-//route untuk user kategori
+//route untuk user pembelian
 Route::get('/keranjang', [KeranjangController::class, 'keranjang']);
 Route::post('/keranjang/tambah/{id}', [KeranjangController::class, 'tambahKeKeranjang'])->name('keranjang.tambah');
 Route::post('/keranjang/hapus/{id}', [KeranjangController::class, 'hapus'])->name('keranjang.hapus');
+
+//Route::post('/bayar-langsung', [PaymentController::class, 'directBuy'])->name('payment.directBuy');
+Route::post('/bayar-langsung', [PaymentController::class, 'directBuy'])->name('bayar-langsung');
+
+Route::post('/payment/pay', [PaymentController::class, 'pay'])->name('payment.pay');
+Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
+Route::post('/payment/notification', [PaymentController::class, 'handleNotification']);
+
+
+
 
 //route untuk user pemesanan
 Route::get('/caraPemesanan', function () {
     return view('caraPemesanan');
 });
 
-Route::post('/checkout/pay', [PaymentController::class, 'pay'])->name('payment.pay')->middleware('auth');
-Route::get('/checkout/success', [PaymentController::class, 'success'])->name('payment.success')->middleware('auth');
+// Route::get('/keranjang', [PaymentController::class, 'showform'])->name('keranjang.show');
+// Route::post('/payment/pay', [PaymentController::class, 'pay'])->name('payment.pay')->middleware('auth');
+// Route::get('/checkout/success', [PaymentController::class, 'success'])->name('payment.success')->middleware('auth');
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

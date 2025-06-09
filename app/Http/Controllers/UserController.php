@@ -45,7 +45,8 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -53,7 +54,22 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama'   => 'required|string|max:255',
+            'email'  => 'required|email|max:255|unique:users,email,' . $id,
+            'telpon' => 'nullable|string|max:20',
+            'alamat' => 'nullable|string|max:255',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->update([
+            'nama'   => $request->nama,
+            'email'  => $request->email,
+            'telpon' => $request->telpon,
+            'alamat' => $request->alamat,
+        ]);
+
+        return redirect()->route('admin.users.index')->with('success', 'Data pengguna berhasil diperbarui.');
     }
 
     /**

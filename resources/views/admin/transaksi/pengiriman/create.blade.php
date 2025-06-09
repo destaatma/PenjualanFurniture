@@ -11,7 +11,7 @@
             </ol>
 
             <div class="card mb-4">
-                <div class="card-header bg-info text-white">
+                <div class="card-header bg-primary">
                     <i class="fas fa-truck me-1"></i> Tambah Pengiriman
                 </div>
                 <div class="card-body">
@@ -20,11 +20,15 @@
 
                         <div class="mb-3">
                             <label for="pemesanan_id" class="form-label">Pemesanan</label>
-                            <select name="pemesanan_id" class="form-control">
-                                <option selected disabled>Pilih ID Pemesanan</option>
-                                @foreach($pemesanans as $p)
+                            <select name="pemesanan_id" id="pemesanan_id" class="form-select" required>
+                                <option value="" disabled selected>Pilih Pemesanan</option>
+                                @foreach ($pemesanans as $p)
                                     <option value="{{ $p->id }}">
-                                        {{ $p->id }}
+                                        {{ $p->user->nama ?? '-' }} |
+                                        {{ \Carbon\Carbon::parse($p->tanggal_pemesanan)->format('d-m-Y') }} |
+                                        @foreach ($p->detailPemesanan as $detail)
+                                            {{ $detail->produk->nama }}{{ !$loop->last ? ', ' : '' }}
+                                        @endforeach
                                     </option>
                                 @endforeach
                             </select>
@@ -39,6 +43,7 @@
                         <div class="mb-3">
                             <label for="status_pengiriman" class="form-label">Status Pengiriman</label>
                             <select name="status_pengiriman" id="status_pengiriman" class="form-control">
+                                <option value="" disabled selected>Pilih Status</option>
                                 <option value="Diproses">Diproses</option>
                                 <option value="Dikirim">Dikirim</option>
                                 <option value="Selesai">Selesai</option>

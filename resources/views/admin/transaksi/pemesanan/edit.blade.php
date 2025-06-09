@@ -19,18 +19,24 @@
                         @csrf
                         @method('PUT')
 
-                        <div class="row justify-content-center">
-                            <div class="mb-3 col-mb-6">
-                                <label for="detail_pemesanan_id" class="form-label">Detail Pemesanan</label>
-                                <select name="detail_pemesanan_id" id="detail_pemesanan_id" class="form-select" required>
-                                    <option value="" disabled {{ is_null($pemesanan->detail_pemesanan_id) ? 'selected' : '' }}>Pilih Detail Pemesanan</option>
-                                    @foreach ($detail_pemesanans as $d)
-                                        <option value="{{ $d->id }}" {{ $pemesanan->detail_pemesanan_id == $d->id ? 'selected' : '' }}>
-                                            {{ $d->produk->nama ?? 'Nama produk tidak ditemukan' }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
+                        <div class="mb-3 col-md-12">
+                            <label class="form-label">Produk dalam Pemesanan</label>
+                            <ul class="list-group">
+                                @forelse ($pemesanan->detail_pemesanan as $detail)
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <strong>{{ $detail->produk->nama ?? '-' }}</strong><br>
+                                            Jumlah: {{ $detail->jumlah_produk }}<br>
+                                            Harga: Rp {{ number_format($detail->harga, 0, ',', '.') }}<br>
+                                            Subtotal: Rp {{ number_format($detail->harga_subtotal, 0, ',', '.') }}
+                                        </div>
+                                    </li>
+                                @empty
+                                    <li class="list-group-item text-muted">Tidak ada detail pemesanan</li>
+                                @endforelse
+                            </ul>
+
+
 
                             <div class="mb-3 col-mb-6">
                                 <label for="user_id" class="form-label">Pelanggan</label>

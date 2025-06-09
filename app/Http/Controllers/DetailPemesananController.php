@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DetailPemesanan;
+use App\Models\Pemesanan;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 
@@ -22,8 +23,9 @@ class DetailPemesananController extends Controller
      */
     public function create()
     {
+        $pemesanans = Pemesanan::with('user')->latest()->get();
         $produks = Produk::all();
-        return view('admin.transaksi.detail_pemesanan.create', compact('produks'));
+        return view('admin.transaksi.detail_pemesanan.create', compact('produks', 'pemesanans'));
     }
 
     /**
@@ -32,6 +34,8 @@ class DetailPemesananController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+
+            'pemesanan_id' => 'required|exists:pemesanans,id',
             'produk_id' => 'required|exists:produks,id',
             'jumlah_produk' => 'required|integer|min:1',
             'harga' => 'required|integer|min:0',
@@ -66,6 +70,7 @@ class DetailPemesananController extends Controller
     public function update(Request $request, DetailPemesanan $detailPemesanan)
     {
         $request->validate([
+            'pemesanan_id' => 'required|exists:pemesanans,id',
             'produk_id' => 'required|exists:produks,id',
             'jumlah_produk' => 'required|integer|min:1',
             'harga' => 'required|integer|min:0',
@@ -74,7 +79,7 @@ class DetailPemesananController extends Controller
 
         $detailPemesanan->update($request->all());
 
-        return redirect()->route('admin.transaksi.detail_pemesanan.index')->with('success', 'Detail pemesanan berhasil diperbarui.');
+        return redirect()->route('admin.transaksi.pemesanan.index')->with('success', 'Detail pemesanan berhasil diperbarui.');
     }
 
     /**

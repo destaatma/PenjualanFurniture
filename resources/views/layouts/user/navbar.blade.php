@@ -18,14 +18,14 @@
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('tentangKami') ? 'active' : '' }}" href="/tentangKami">Tentang
+                    <a class="nav-link {{ request()->is('tentangKami*') ? 'active' : '' }}" href="/tentangKami">Tentang
                         Kami</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('produk') ? 'active' : '' }}" href="/produk">Produk</a>
+                    <a class="nav-link {{ request()->is('produk*') ? 'active' : '' }}" href="/produk">Produk</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('caraPemesanan') ? 'active' : '' }}" href="/caraPemesanan">Cara
+                    <a class="nav-link {{ request()->is('caraPemesanan*') ? 'active' : '' }}" href="/caraPemesanan">Cara
                         Pemesanan</a>
                 </li>
 
@@ -46,26 +46,59 @@
                     </li>
                 @endguest
             </ul>
-
-            <!-- Right: Cart & Notification -->
-            <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-4 d-flex align-items-center gap-3">
-                <li>
-                    <a class="nav-link" href="/keranjang" title="Keranjang Belanja">
-                        <img src="{{ url('/beranda/assets/images/cart.svg') }}" alt="Cart">
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link position-relative" href="/notifikasi" title="Notifikasi">
-                        <i class="bi bi-bell fs-4"></i>
-                        <!-- Optional: Notification Badge -->
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            3
-                            <span class="visually-hidden">notifikasi baru</span>
-                        </span>
-                    </a>
-                </li>
-            </ul>
         </div>
+
+
+        <!-- Right: Cart & Notification -->
+        <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-4 d-flex align-items-center gap-3">
+            <!-- Keranjang -->
+            <li>
+                <a class="nav-link" href="/keranjang" title="Keranjang Belanja">
+                    <img src="{{ url('/beranda/assets/images/cart.svg') }}" alt="Cart">
+                </a>
+            </li>
+
+            <!-- Notifikasi -->
+            <li>
+                <a class="nav-link position-relative" href="/notifikasi" title="Notifikasi">
+                    <i class="bi bi-bell fs-4"></i>
+                    <!-- Badge Notifikasi -->
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        3
+                        <span class="visually-hidden">notifikasi baru</span>
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
     </div>
 </nav>
 <!-- End Header/Navigation -->
+<style>
+    .nav-link {
+        color: rgba(255, 255, 255, 0.6);
+        position: relative;
+        padding-bottom: 5px;
+        transition: all 0.3s;
+        font-weight: normal;
+    }
+
+    .nav-link.active {
+        color: white;
+        font-weight: bold;
+    }
+
+    .nav-link.active::after {
+        content: '';
+        position: absolute;
+        width: 50px;
+        height: 5px;
+        background-color: #f4c542;
+        /* warna kuning */
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        border-radius: 2px;
+    }
+</style>

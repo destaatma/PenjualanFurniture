@@ -14,6 +14,7 @@ class DetailPemesananSeeder extends Seeder
     public function run(): void
     {
         DetailPemesanan::create([
+            'pemesanan_id' => 1,
             'produk_id' => 1,
             'jumlah_produk' => '2',
             'harga' => '1000000',

@@ -14,7 +14,7 @@
                 <i class="fas fa-plus-circle"></i> Tambah Produk
             </a>
             <div class="card mb-4">
-                <div class="card-header bg-info">
+                <div class="card-header bg-primary">
                     <i class="fas fa-truck me-1"></i> Daftar Pengiriman
                 </div>
                 <div class="card-body">
@@ -23,19 +23,29 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">No</th>
-                                    <th>Pemesanan</th>
+                                    <th>pemesanan</th>
                                     <th>Tanggal Pengiriman</th>
                                     <th>Status Pengiriman</th>
                                     <th>Aksi</th>
                                 </tr>
-                            </thead>
                             <tbody>
                                 @foreach ($pengirimans as $p)
                                     <tr>
                                         <td class="text-center">{{ $loop->iteration }}</td>
-                                        <td>{{ $p->pemesanan->id }}</td>
-                                        <td>{{ $p->tanggal_pengiriman }}</td>
+
+                                        {{-- Menampilkan Nama Customer dan Daftar Produk --}}
+                                        <td>
+                                            <strong>{{ $p->pemesanan->user->nama ?? '-' }}</strong><br>
+                                            <small>
+                                                @foreach ($p->pemesanan->detailPemesanan as $detail)
+                                                    • {{ $detail->produk->nama }}<br>
+                                                @endforeach
+                                            </small>
+                                        </td>
+
+                                        <td>{{ \Carbon\Carbon::parse($p->tanggal_pengiriman)->format('d-m-Y') }}</td>
                                         <td>{{ $p->status_pengiriman }}</td>
+
                                         <td>
                                             <div class="action-buttons d-flex gap-2">
                                                 <a href="{{ route('admin.transaksi.pengiriman.edit', $p->id) }}"
@@ -43,11 +53,11 @@
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <form action="{{ route('admin.transaksi.pengiriman.destroy', $p->id) }}"
-                                                    method="POST" style="display:inline;">
+                                                    method="POST"
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus pengiriman ini?')">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"
-                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus pengiriman ini?')">
+                                                    <button type="submit" class="btn btn-danger btn-sm">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>

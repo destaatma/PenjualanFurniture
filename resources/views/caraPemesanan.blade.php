@@ -20,38 +20,69 @@
                 <div class="card shadow-sm p-4 text-black" style="border-radius: 10px;">
                     <ul class="ps-3">
                         <li class="mb-3">
-                            Pilih produk mebel yang tersedia di katalog online <strong>RUMAHMebel.com</strong>. Kami
-                            menyediakan berbagai jenis produk sesuai kebutuhan Anda. Tentukan kategori, produk, dan jumlah
-                            barang, lalu anda bisa langsung melakukan pembelian didalam web atau dapat hubungi kami melalui
-                            WhatsApp/telepon: <strong>0878 6035 2236</strong> a.n. Desta.
+                            <strong>Temukan produk mebel pilihan Anda</strong> di katalog online kami!
+                            <strong>RUMAHMebel.com</strong> menyediakan berbagai jenis furnitur berkualitas sesuai kebutuhan
+                            rumah Anda.
                         </li>
+
                         <li class="mb-3">
-                            Kami akan menginformasikan prosedur order, total harga, dan biaya kirim. Jika setuju dan produk
-                            ready stok, silakan lakukan pembayaran penuh ke rekening kami.
-                        </li>
-                        <li class="mb-3">
-                            Jika produk tidak ready stok, silakan transfer DP sebesar 50% dari total harga. Produksi akan
-                            segera dilakukan, dan pelunasan (50%) dibayarkan setelah pesanan siap dikirim.
-                        </li>
-                        <li class="mb-3">
-                            Proses produksi memakan waktu 7–15 hari tergantung jenis produk. Pembatalan hanya dapat
-                            dilakukan
-                            jika produksi belum dimulai, dan DP akan dikembalikan penuh.
-                        </li>
-                        <li class="mb-3">
-                            Setiap proses produksi atau finishing akan dilaporkan kepada Anda melalui foto via WhatsApp atau
-                            email.
-                        </li>
-                        <li class="mb-3">
-                            Pengiriman menggunakan jasa ekspedisi lokal/kargo agar biaya lebih efisien. Biaya pengiriman
-                            menjadi tanggung jawab pembeli.
-                        </li>
-                        <li class="mb-3">
-                            Jika barang diterima dalam keadaan rusak:
+                            ✅ <strong>Cara Memesan:</strong>
                             <ul class="mt-2">
-                                <li>Klaim hanya berlaku selama kurir masih berada di lokasi penerimaan.</li>
-                                <li>Jika lecet ringan, kami akan kirim bahan finishing untuk perbaikan.</li>
-                                <li>Jika rusak berat, kami akan mengganti dengan barang baru setelah retur diterima.</li>
+                                <li><strong>Langsung Checkout di Website</strong><br>
+                                    Pilih kategori, produk, dan jumlah barang, lalu lanjutkan ke proses checkout melalui
+                                    sistem kami. Anda dapat melakukan pembayaran secara langsung dan aman melalui metode
+                                    pembayaran yang tersedia di website.
+                                </li>
+                                <li class="mt-2"><strong>Hubungi Kami via WhatsApp/Telepon</strong><br>
+                                    Jika Anda ingin konsultasi terlebih dahulu atau memesan secara manual, hubungi kami
+                                    melalui:<br>
+                                    📱 WhatsApp/Telepon: <strong>0878 6035 2236 (a.n. Desta)</strong><br>
+                                    Kami akan menginformasikan prosedur order, total harga, dan estimasi biaya kirim.
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="mb-3">
+                            💳 <strong>Ketentuan Pembayaran:</strong>
+                            <ul class="mt-2">
+                                <li>Jika produk <strong>ready stok</strong>, Anda dapat langsung melakukan pembayaran penuh.
+                                </li>
+                                <li>Jika produk <strong>pre-order (tidak ready stok)</strong>, Anda perlu melakukan
+                                    <strong>DP sebesar 50%</strong> dari total harga.
+                                </li>
+                                <li><strong>Pelunasan (50%)</strong> dilakukan setelah produk siap kirim.</li>
+                            </ul>
+                        </li>
+
+                        <li class="mb-3">
+                            🛠️ <strong>Proses Produksi:</strong>
+                            <ul class="mt-2">
+                                <li>Waktu produksi: <strong>7–15 hari kerja</strong>, tergantung jenis produk.</li>
+                                <li>Kami akan mengirim <strong>foto update proses produksi atau finishing</strong> melalui
+                                    WhatsApp Anda.</li>
+                                <li><strong>Pembatalan</strong> hanya berlaku sebelum proses produksi dimulai, dan
+                                    <strong>DP akan dikembalikan 100%</strong>.
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="mb-3">
+                            🚚 <strong>Pengiriman:</strong>
+                            <ul class="mt-2">
+                                <li>Menggunakan <strong>jasa ekspedisi lokal/kargo</strong> agar biaya lebih hemat.</li>
+                                <li><strong>Biaya kirim ditanggung pembeli.</strong></li>
+                            </ul>
+                        </li>
+
+                        <li class="mb-3">
+                            📦 <strong>Jika Barang Diterima Rusak:</strong>
+                            <ul class="mt-2">
+                                <li>Klaim hanya bisa dilakukan <strong>saat kurir masih berada di lokasi
+                                        penerimaan</strong>.</li>
+                                <li>Jika <strong>lecet ringan</strong>, kami akan kirimkan bahan finishing untuk perbaikan.
+                                </li>
+                                <li>Jika <strong>rusak berat</strong>, kami akan mengganti barang baru setelah barang rusak
+                                    dikembalikan (retur).</li>
                             </ul>
                         </li>
                     </ul>
