@@ -42,7 +42,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                                 <input class="form-control" name="email" type="email"
-                                                    placeholder="name@example.com" required />
+                                                    placeholder="name@gmail.com" required />
                                             </div>
                                         </div>
 

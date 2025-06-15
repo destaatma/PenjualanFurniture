@@ -226,7 +226,6 @@ class PaymentController extends Controller
         }
     }
 
-
     public function success()
     {
         $user = Auth::user();

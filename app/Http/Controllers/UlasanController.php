@@ -14,7 +14,7 @@ class UlasanController extends Controller
      */
     public function index()
     {
-        $ulasans = Ulasan::all();
+        $ulasans = Ulasan::with(['produk', 'user'])->get();
         $produks = Produk::all();
         $users = User::all();
         return view('admin.ulasan.index', compact('ulasans'));

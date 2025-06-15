@@ -2,6 +2,12 @@
 
 @section('content')
     <div class="container py-5">
+        <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/detail">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Beli Sekarang</li>
+            </ol>
+        </nav>
         <h2 class="text-center mb-4">Pembayaran</h2>
         <p class="text-center">Silakan periksa pesanan Anda sebelum membayar.</p>
 

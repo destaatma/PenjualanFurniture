@@ -2,6 +2,13 @@
 
 @section('content')
     <div class="container py-5">
+        {{-- Breadcrumb navigation to improve user experience --}}
+        <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/produk">Produk</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Keranjang</li>
+            </ol>
+        </nav>
         <h2 class="text-center mb-4">Keranjang Belanja</h2>
 
         {{-- Notifikasi --}}

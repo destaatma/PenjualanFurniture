@@ -11,7 +11,7 @@
             </ol>
 
             <div class="card mb-4">
-                <div class="card-header bg-info text-dark">
+                <div class="card-header bg-primary text-dark">
                     <i class="fas fa-edit me-1"></i> Edit Detail Pemesanan
                 </div>
                 <div class="card-body">

@@ -179,9 +179,6 @@ Route::post('/payment/pay', [PaymentController::class, 'pay'])->name('payment.pa
 Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
 Route::post('/payment/notification', [PaymentController::class, 'handleNotification']);
 
-
-
-
 //route untuk user pemesanan
 Route::get('/caraPemesanan', function () {
     return view('caraPemesanan');
@@ -191,6 +188,8 @@ Route::get('/caraPemesanan', function () {
 // Route::post('/payment/pay', [PaymentController::class, 'pay'])->name('payment.pay')->middleware('auth');
 // Route::get('/checkout/success', [PaymentController::class, 'success'])->name('payment.success')->middleware('auth');
 
+//route untuk grafik
+Route::get('/chart-penjualan', [BerandaController::class, 'chartPenjualan'])->name('chart.penjualan');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();

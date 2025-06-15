@@ -47,7 +47,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-warning">
-                            <i class="fas fa-save me-1"></i> Simpan Perubahan
+                            <i class="fas fa-save me-1"></i> Perbarui
                         </button>
                         <a href="{{ route('admin.users.index') }}" class="btn btn-secondary ms-2">
                             <i class="fas fa-arrow-left me-1"></i> Batal

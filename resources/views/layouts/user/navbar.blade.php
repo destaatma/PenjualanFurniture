@@ -58,7 +58,7 @@
                 </a>
             </li>
 
-            <!-- Notifikasi -->
+            {{-- <!-- Notifikasi -->
             <li>
                 <a class="nav-link position-relative" href="/notifikasi" title="Notifikasi">
                     <i class="bi bi-bell fs-4"></i>
@@ -68,7 +68,7 @@
                         <span class="visually-hidden">notifikasi baru</span>
                     </span>
                 </a>
-            </li>
+            </li> --}}
         </ul>
 
     </div>

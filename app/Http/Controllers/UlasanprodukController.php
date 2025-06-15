@@ -2,28 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produk;
 use App\Models\Ulasan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UlasanprodukController extends Controller
 {
+    /**
+     * Menampilkan detail produk beserta ulasan-ulasannya.
+     * Halaman ini juga akan berisi form untuk menambahkan ulasan baru.
+     */
+    public function show($id)
+    {
+        // Mengambil data produk beserta relasi kategori dan ulasan (termasuk data user yang memberi ulasan)
+        $produk = Produk::with(['kategori', 'ulasans.user'])->findOrFail($id);
+
+        // Menampilkan view 'produk' dan mengirim data produk
+        return view('produk', compact('produk'));
+    }
+
+    /**
+     * Menyimpan ulasan baru yang dikirim oleh pengguna.
+     */
     public function store(Request $request)
     {
-        // Validasi input
         $request->validate([
             'produk_id' => 'required|exists:produks,id',
-            'user_id' => 'required|exists:users,id',
             'rating' => 'required|integer|min:1|max:5',
-            'ulasan' => 'required|string|max:1000',
+            'ulasan' => 'required|string',
         ]);
-        // Simpan ulasan
+
         Ulasan::create([
             'produk_id' => $request->produk_id,
-            'user_id' => $request->user_id,
+            'user_id' => auth()->id(), // pastikan user sudah login
             'rating' => $request->rating,
             'ulasan' => $request->ulasan,
         ]);
-        // Redirect kembali ke halaman produk dengan pesan sukses
-        return redirect()->back()->with('success', 'Ulasan berhasil ditambahkan!');
+
+        return redirect()->back()->with('success', 'Ulasan berhasil dikirim.');
     }
 }

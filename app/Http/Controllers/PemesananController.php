@@ -34,8 +34,37 @@ class PemesananController extends Controller
             'status_pemesanan' => 'required|string',
         ]);
 
+        // Cek input berdasarkan jenis pelanggan
+        if ($request->input_type === 'manual') {
+            // Validasi tambahan untuk input manual
+            $request->validate([
+                'manual_nama' => 'required|string|max:255',
+                'manual_email' => 'nullable|email',
+                'manual_telepon' => 'nullable|string|max:20',
+            ]);
+
+            // Simpan user dummy (atau logika lain seperti tidak menyimpan user sama sekali)
+            $user = User::create([
+                'nama' => $request->manual_nama,
+                'email' => $request->manual_email ?? 'guest_' . time() . '@example.com',
+                'telepon' => $request->manual_telepon ?? '-',
+                'password' => bcrypt('defaultpassword'), // password default, bisa dibuat acak
+                'role' => 'pelanggan', // sesuaikan dengan sistemmu
+            ]);
+
+            $userId = $user->id;
+        } else {
+            // Validasi untuk user terdaftar
+            $request->validate([
+                'user_id' => 'required|exists:users,id',
+            ]);
+
+            $userId = $request->user_id;
+        }
+
+        // Simpan pemesanan
         Pemesanan::create([
-            'user_id' => $request->user_id,
+            'user_id' => $userId,
             'total_harga' => $request->total_harga,
             'tanggal_pemesanan' => $request->tanggal_pemesanan,
             'status_pemesanan' => $request->status_pemesanan,

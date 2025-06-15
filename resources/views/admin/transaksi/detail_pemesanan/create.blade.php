@@ -3,16 +3,16 @@
 @section('content')
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4 text-muted">Tambah Detail Pemesanan</h1>
+            <h1 class="mt-4 text-muted">Tambah Detail</h1>
             <ol class="breadcrumb mb-4 bg-light p-3 rounded">
                 <li class="breadcrumb-item"><a href="{{ route('admin.transaksi.detail_pemesanan.index') }}"
-                        class="text-info">Dashboard</a></li>
+                        class="text-primary">Dashboard</a></li>
                 <li class="breadcrumb-item active">Tambah Detail Pemesanan</li>
             </ol>
 
             <div class="card mb-4">
-                <div class="card-header bg-info text-white">
-                    <i class="fas fa-plus me-1"></i> Tambah Detail Pemesanan
+                <div class="card-header bg-primary text-white">
+                    <i class="fas fa-plus me-1"></i> Tambah Detail
                 </div>
                 <div class="card-body">
                     <form action="{{ route('admin.transaksi.detail_pemesanan.store') }}" method="POST">

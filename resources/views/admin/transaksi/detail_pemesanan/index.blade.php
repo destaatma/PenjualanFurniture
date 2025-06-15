@@ -6,7 +6,7 @@
             <h1 class="mt-4 text-muted">Detail Pemesanan</h1>
             <ol class="breadcrumb mb-4 bg-light p-3 rounded">
                 <li class="breadcrumb-item">
-                    <a href="{{ route('admin.transaksi.detail_pemesanan.index') }}" class="text-info">Dashboard</a>
+                    <a href="{{ route('admin.transaksi.detail_pemesanan.index') }}" class="text-primary">Dashboard</a>
                 </li>
                 <li class="breadcrumb-item active">Detail Pemesanan</li>
             </ol>
@@ -21,7 +21,7 @@
 
 
             <div class="card mb-4">
-                <div class="card-header bg-info text-white">
+                <div class="card-header bg-primary text-white">
                     <i class="fas fa-table me-1"></i> Daftar Detail Pemesanan
                 </div>
                 <div class="card-body">

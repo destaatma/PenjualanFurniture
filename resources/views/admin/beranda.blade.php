@@ -81,7 +81,7 @@
                 <!-- Grafik Penjualan -->
                 <div class="col-xl-12 mt-3">
                     <div class="card mb-4">
-                        <div class="card-header bg-info text-light">
+                        <div class="card-header bg-primary text-light">
                             <h5 class="fw-bold mt-2">
                                 <i class="fas fa-chart-line me-2"></i> Grafik Penjualan
                             </h5>
@@ -95,69 +95,89 @@
         </div>
     </main>
 
-    <!-- Script Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const ctx = document.getElementById('grafikPenjualan').getContext('2d');
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: [
-                        "Januari", "Februari", "Maret", "April", "Mei", "Juni",
-                        "Juli", "Agustus", "September", "Oktober", "November", "Desember"
-                    ],
-                    datasets: [{
-                        label: "Produk Terjual",
-                        backgroundColor: "rgba(13, 202, 240, 1)",
-                        borderColor: "rgba(13, 202, 240, 1)",
-                        data: [4215, 5312, 6251, 7841, 9821, 14984, 12300, 11000, 13400, 14000, 13800, 14500],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: {
-                            ticks: {
-                                maxTicksLimit: 12
-                            },
-                            grid: {
-                                display: false
-                            }
+            fetch(@json(route('chart.penjualan')))
+                .then(response => response.json())
+                .then(data => {
+                    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+                    const formattedLabels = data.labels.map(label => {
+                        const [monthName, year] = label.split(' '); // e.g. "January 2025"
+                        const monthIndex = new Date(Date.parse(monthName + " 1, 2020")).getMonth();
+                        return `${monthNames[monthIndex]} ${year}`;
+                    });
+
+                    const ctx = document.getElementById('grafikPenjualan').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: formattedLabels,
+                            datasets: [{
+                                label: 'Jumlah Pemesanan per Bulan',
+                                data: data.totals,
+                                borderColor: '#13caf0',
+                                backgroundColor: 'rgba(13, 202, 240, 0.1)',
+                                tension: 0.4,
+                                fill: false,
+                                pointBackgroundColor: '#13caf0',
+                                pointBorderColor: '#ffffff',
+                                pointBorderWidth: 2,
+                                pointRadius: 6,
+                                pointHoverRadius: 8,
+                                pointStyle: 'circle'
+                            }]
                         },
-                        y: {
-                            beginAtZero: true,
-                            max: 15000,
-                            ticks: {
-                                stepSize: 3000
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: {
+                                duration: 1000,
+                                easing: 'easeOutCubic'
                             },
-                            grid: {
-                                display: true
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    position: 'top',
+                                    labels: {
+                                        usePointStyle: true,
+                                        pointStyle: 'circle'
+                                    }
+                                },
+                                tooltip: {
+                                    backgroundColor: '#191d21',
+                                    titleColor: '#fff',
+                                    bodyColor: '#fff',
+                                    borderColor: '#fff',
+                                    borderWidth: 1,
+                                    usePointStyle: true,
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Bulan',
+                                        font: {
+                                            size: 14
+                                        }
+                                    }
+                                },
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Jumlah Pemesanan',
+                                        font: {
+                                            size: 14
+                                        }
+                                    }
+                                }
                             }
                         }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    }
-                }
-            });
+                    });
+                });
         });
     </script>
-
-    {{--
-    <script>
-        document.getElementById('searchInput').addEventListener('keyup', function () {
-            var value = this.value.toLowerCase();
-            var rows = document.querySelectorAll('#datatablesSimple tbody tr');
-            rows.forEach(function (row) {
-                var text = row.textContent.toLowerCase();
-                row.style.display = text.includes(value) ? '' : 'none';
-            });
-        });
-    </script>
-    --}}
-
 @endsection

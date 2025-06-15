@@ -9,9 +9,9 @@
             </ol>
 
             <!-- Daftar Ulasan -->
-            <a href="{{ route('admin.ulasan.create') }}" class="btn btn-warning mb-3 col-mb-3"> <i
+            {{-- <a href="{{ route('admin.ulasan.create') }}" class="btn btn-warning mb-3 col-mb-3"> <i
                     class="fas fa-plus-circle"></i>
-                Tambah</a>
+                Tambah</a>--}}
             <div class="card mb-4">
                 <div class="card-header bg-primary text-white">
                     <i class="fas fa-chart-area me-1"></i> Daftar Ulasan Produk
@@ -23,7 +23,7 @@
                                 <tr>
                                     <th class="text-center">No</th>
                                     <th>Produk</th>
-                                    <th>Nama Pemesan</th>
+                                    <th>Nama Pelanggan</th>
                                     <th>Rating</th>
                                     <th>Ulasan</th>
                                     <th>Aksi</th>

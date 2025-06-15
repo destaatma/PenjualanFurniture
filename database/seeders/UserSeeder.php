@@ -23,14 +23,14 @@ class UserSeeder extends Seeder
         ]);
         User::create([
             'role_id' => 2,
-            'nama' => 'desta',
-            'email' => 'user@gmail.com',
-            'password' => bcrypt('user'),
+            'nama' => 'DestaAtma',
+            'email' => 'destaatma@gmail.com',
+            'password' => bcrypt('desta1234'),
             'telpon' => '1234566667',
             'alamat' => 'pacitan',
         ]);
         User::create([
-            'role_id' => 3,
+            'role_id' => 2,
             'nama' => 'desta',
             'email' => 'operator@gmail.com',
             'password' => bcrypt('admin'),

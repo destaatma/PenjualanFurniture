@@ -8,15 +8,17 @@
             <div class="row justify-content-between">
                 <div class="col-lg-5">
                     <div class="intro-excerpt">
-                        <h1>Produk Terbaik & <span class="d-block">Bahan Berkualitas</span></h1>
+                        <h1>
+                            Temukan Kenyamanan & <span class="d-block">Gaya dalam Rumah Anda</span>
+                        </h1>
                         <p class="mb-4">
-                            Rumah Mebel hadir untuk menghadirkan furnitur berkualitas tinggi dengan desain yang elegan dan
-                            fungsional.
-                            Kami percaya bahwa setiap ruangan memiliki karakter, dan furnitur yang tepat dapat memberikan
-                            sentuhan estetika
-                            serta kenyamanan maksimal.
+                            Selamat datang di <strong>Rumah Mebel</strong> — tempat di mana desain elegan bertemu kualitas
+                            terbaik.
+                            Pilih furnitur yang bukan hanya indah dilihat, tapi juga nyaman digunakan, untuk menciptakan
+                            ruang
+                            yang benar-benar mencerminkan kepribadian dan gaya hidup Anda.
                         </p>
-                        <a href="/produk" class="btn btn-dark me-2">Jelajahi Produk</a>
+                        <a href="/produk" class="btn btn-dark me-2">Lihat Koleksi</a>
                     </div>
                 </div>
                 <div class="col-lg-7">
@@ -35,12 +37,16 @@
             <div class="row">
                 <!-- Column 1 -->
                 <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-                    <h2 class="mb-4 section-title">Dibuat dengan bahan berkualitas tinggi</h2>
+                    <h2 class="mb-4 section-title">Produk Mebel Terbaik, Untuk Hidup Lebih Nyaman</h2>
                     <p class="mb-4">
-                        Kami bukan sekadar penyedia furnitur, tetapi mitra dalam menciptakan ruang impian Anda.
-                        Temukan inspirasi dan jadikan rumah atau bisnis Anda lebih istimewa dengan Rumah Mebel!
+                        Ubah rumah Anda menjadi tempat yang penuh kehangatan dan gaya dengan koleksi furnitur berkualitas
+                        tinggi dari Rumah Mebel.
+                        Dirancang untuk kenyamanan, dibuat untuk ketahanan, dan dipilih dengan cinta — sempurna untuk setiap
+                        sudut ruang Anda.
                     </p>
-                    <p><a href="/produk" class="btn btn-secondary me-2">Beli Sekarang</a></p>
+                    <p>
+                        <a href="/produk" class="btn btn-secondary me-2">Jelajahi Produk Kami</a>
+                    </p>
                 </div>
 
                 <!-- Produk Items -->
@@ -48,7 +54,7 @@
                     $products = [
                         ['id' => 3, 'src' => 'almari.png', 'name' => 'Almari Jati'],
                         ['id' => 1, 'src' => 'meja-8.png', 'name' => 'Kursi Tamu'],
-                        ['id' => 5, 'src' => 'meja-6.png', 'name' => 'Meja Makan'],
+                        ['id' => 4, 'src' => 'meja-6.png', 'name' => 'Meja Makan'],
                     ];
                 @endphp
 
@@ -67,6 +73,51 @@
         </div>
     </div>
     <!-- End Product Section -->
+
+    <!-- Start Grid Section -->
+    <div class="we-help-section border-bottom pb-5 mb-5">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-7 mb-5 mb-lg-0">
+                    <div class="imgs-grid">
+                        <div class="grid grid-1 text-center mb-3">
+                            <img src="{{ url('/beranda/assets/images/ruangan-5.jpg') }}" alt="Image"
+                                class="img-fluid rounded shadow-sm" style="max-width: 100%;">
+                        </div>
+                        <div class="grid grid-2 text-center mb-3">
+                            <img src="{{ url('/beranda/assets/images/ruangan-6.jpg') }}" alt="Image"
+                                class="img-fluid rounded shadow-sm" style="max-width: 100%;">
+                        </div>
+                        <div class="grid grid-3 text-center">
+                            <img src="{{ url('/beranda/assets/images/ruangan-3.jpg') }}" alt="Image"
+                                class="img-fluid rounded shadow-sm" style="max-width: 70%;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 ps-lg-5">
+                    <h2 class="section-title mb-4">
+                        Kami Siap Membantu Mewujudkan Desain Interior Modern Anda
+                    </h2>
+                    <p>
+                        Kami menawarkan solusi desain interior yang praktis dan elegan — produk berkelas, fungsional, dan
+                        disesuaikan dengan kebutuhan serta gaya hidup Anda. Wujudkan ruang yang tak hanya indah dipandang,
+                        tetapi juga nyaman untuk digunakan.
+                    </p>
+                    <ul class="list-unstyled custom-list my-4">
+                        <li>Furnitur minimalis dengan desain sederhana namun fungsional</li>
+                        <li>Material berkualitas dari kayu alami dan elemen premium lainnya</li>
+                        <li>Tata ruang terbuka yang mendukung aktivitas harian secara dinamis</li>
+                        <li>Aksen dekoratif yang mencerminkan karakter dan kepribadian Anda</li>
+                    </ul>
+                    <p>
+                        <a href="/produk" class="btn btn-primary">Explore</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Grid Section -->
 
     <!-- Start Why Choose Us Section -->
     <div class="why-choose-section border-bottom pb-4 mb-5">
@@ -108,76 +159,50 @@
 
                 <div class="col-lg-5">
                     <div class="img-wrap">
-                        <img src="{{ url('/beranda/assets/images/ruangan-2.jpg') }}" alt="Image" class="img-fluid">
+                        <img src="{{ url('/beranda/assets/images/ruangan-2.jpg') }}" alt="Image"
+                            class="img-fluid rounded shadow-sm" style="max-width: 90%;">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <style>
-        .imgs-grid img {
-            width: 80%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 10px;
-            /* opsional, untuk tampilan lebih halus */
-        }
-    </style>
     <!-- End Why Choose Us Section -->
 
-    <!-- Start Grid Section -->
-    <div class="we-help-section border-bottom pb-5 mb-5">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-lg-7 mb-5 mb-lg-0">
-                    <div class="imgs-grid">
-                        <div class="grid grid-1">
-                            <img src="{{ url('/beranda/assets/images/ruangan-5.jpg') }}" alt="Image">
-                        </div>
-                        <div class="grid grid-2">
-                            <img src="{{ url('/beranda/assets/images/ruangan-6.jpg') }}" alt="Image">
-                        </div>
-                        <div class="grid grid-3">
-                            <img src="{{ url('/beranda/assets/images/ruangan-3.jpg') }}" alt="Image">
-                        </div>
+    {{-- <!-- Start Popular Product Section -->
+    <div class="container mt-5 border-bottom pb-4 mb-5" style="max-width: 1100px;">
+        <h2 class="section-title mb-4 text-uppercase text-center">Rekomendasi Produk Furniture Terlaris</h2>
+
+        <div class="row g-4 justify-content-center">
+            @php
+            $popularProducts = [
+            ['src' => 'meja-4.png', 'label' => 'Meja Tamu', 'id' => 1],
+            ['src' => 'meja-6.png', 'label' => 'Meja Tamu', 'id' => 2],
+            ['src' => 'meja-4.png', 'label' => 'Meja Makan', 'id' => 3],
+            ['src' => 'meja-6.png', 'label' => 'Almari', 'id' => 4],
+            ['src' => 'meja-7.png', 'label' => 'Almari TV', 'id' => 5],
+            ['src' => 'meja-4.png', 'label' => 'Kursi Santai', 'id' => 6],
+            ['src' => 'meja-7.png', 'label' => 'Meja Makan', 'id' => 7],
+            ['src' => 'meja-8.png', 'label' => 'Meja Makan', 'id' => 8],
+            ];
+            @endphp
+
+            @foreach ($popularProducts as $product)
+            <div class="col-6 col-sm-6 col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0 product-card text-center">
+                    <img src="{{ url('/beranda/assets/images/' . $product['src']) }}" alt="{{ $product['label'] }}"
+                        class="card-img-top img-fluid rounded-top product-image">
+                    <div class="card-body">
+                        <h6 class="card-title text-uppercase">{{ $product['label'] }}</h6>
+                        <a href="{{ url('/produk/' . $product['id']) }}" class="btn btn-outline-primary btn-sm mt-2">
+                            Lihat Detail
+                        </a>
                     </div>
                 </div>
-
-                <div class="col-lg-5 ps-lg-5">
-                    <h2 class="section-title mb-4">
-                        Kami Siap Membantu Mewujudkan Desain Interior Modern Anda
-                    </h2>
-                    <p>
-                        Kami menawarkan solusi desain interior yang praktis dan elegan — produk berkelas, fungsional, dan
-                        disesuaikan dengan kebutuhan serta gaya hidup Anda. Wujudkan ruang yang tak hanya indah dipandang,
-                        tetapi juga nyaman untuk digunakan.
-                    </p>
-                    <ul class="list-unstyled custom-list my-4">
-                        <li>Furnitur minimalis dengan desain sederhana namun fungsional</li>
-                        <li>Material berkualitas dari kayu alami dan elemen premium lainnya</li>
-                        <li>Tata ruang terbuka yang mendukung aktivitas harian secara dinamis</li>
-                        <li>Aksen dekoratif yang mencerminkan karakter dan kepribadian Anda</li>
-                    </ul>
-                    <p>
-                        <a href="/produk" class="btn btn-primary">Explore</a>
-                    </p>
-                </div>
-
             </div>
+            @endforeach
         </div>
-    </div>
-    <style>
-        .imgs-grid img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 10px;
-            /* opsional, untuk tampilan lebih halus */
-        }
-    </style>
-    <!-- End Grid Section -->
+    </div> --}}
 
-    <!-- Start Popular Product Section -->
     <style>
         .product-image {
             width: 100%;
@@ -195,35 +220,43 @@
         .product-container {
             padding: 10px;
         }
+
+        .imgs-grid img {
+            width: 80%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            /* opsional, untuk tampilan lebih halus */
+        }
+
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            object-fit: cover;
+            height: 180px;
+        }
+
+        @media (max-width: 576px) {
+            .product-image {
+                height: 150px;
+            }
+        }
+
+        .imgs-grid img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            /* opsional, untuk tampilan lebih halus */
+        }
     </style>
 
-    <div class="container mt-5 border-bottom pb-4 mb-5" style="max-width: 1100px;">
-        <h2 class="section-title mb-4 text-uppercase text-center">Rekomendasi Produk Furniture Terlaris</h2>
-
-        <div class="row g-3 justify-content-center">
-            @php
-                $popularProducts = [
-                    ['src' => 'meja-4.png', 'label' => 'Meja Tamu'],
-                    ['src' => 'meja-6.png', 'label' => 'Meja Tamu'],
-                    ['src' => 'meja-4.png', 'label' => 'Meja Makan'],
-                    ['src' => 'meja-6.png', 'label' => 'Almari'],
-                    ['src' => 'meja-7.png', 'label' => 'Almari TV'],
-                    ['src' => 'meja-4.png', 'label' => 'Kursi Santai'],
-                    ['src' => 'meja-7.png', 'label' => 'Meja Makan'],
-                    ['src' => 'meja-8.png', 'label' => 'Meja Makan'],
-                ];
-            @endphp
-
-            @foreach ($popularProducts as $product)
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="text-center product-container">
-                        <img src="{{ url('/beranda/assets/images/' . $product['src']) }}" alt="{{ $product['label'] }}"
-                            class="img-fluid rounded shadow-sm product-image">
-                        <div class="product-label">{{ $product['label'] }}</div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
     <!-- End Popular Product Section -->
 @endsection
