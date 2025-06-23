@@ -27,6 +27,18 @@
                                     <p class="mb-4 text-center text-dark fs-5">Daftar dan buat akun di toko kami</p>
                                 </div>
                                 <div class="card-body">
+
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger" role="alert">
+                                            <h4 class="alert-heading">Terjadi Kesalahan!</h4>
+                                            <ul class="mb-0">
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+
                                     <form action="{{ route('register') }}" method="POST">
                                         @csrf
 
@@ -35,6 +47,14 @@
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                                 <input class="form-control" name="nama" type="text"
                                                     placeholder="Nama Lengkap" required />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                                <input class="form-control" name="telpon" type="number"
+                                                    placeholder="Nomor Telpon" required />
                                             </div>
                                         </div>
 
@@ -62,22 +82,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-floating mb-3">
-                                            <div class="input-group">
-                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                                <input class="form-control" name="telpon" type="number"
-                                                    placeholder="Nomor Telpon" required />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-floating mb-3">
+                                        {{-- <div class="form-floating mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text"><i
                                                         class="fas fa-map-marker-alt"></i></span>
                                                 <textarea class="form-control" name="alamat"
                                                     placeholder="Alamat Lengkap" required></textarea>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="d-flex align-items-center justify-content-center mt-4 mb-3">
                                             <button type="submit" class="btn btn-dark col-4">Daftar</button>

@@ -1,59 +1,71 @@
 @extends('layouts.user.main')
 
 @section('content')
-    <!-- Start Produk Section -->
     <div class="produk py-5">
         <div class="container">
 
             <!-- Heading -->
             <div class="row text-center">
                 <div class="col-12">
-                    {{-- Breadcrumb navigation to improve user experience --}}
-                    <h1 class="mb-4 fw-bold text-uppercase">Koleksi Produk Rumah Mebel</h1>
+                    <h1 class="mb-4 fw-bold text-uppercase">Koleksi Produk OMAH Mebel</h1>
                     <p class="mb-4 text-secondary fs-5">
-                        RUMAH Mebel – Sentuhan Elegan untuk Rumah Anda! ✨ Hadirkan kenyamanan dan gaya dengan furnitur
+                        OMAH Mebel – Sentuhan Elegan untuk Rumah Anda! ✨ Hadirkan kenyamanan dan gaya dengan furnitur
                         berkualitas tinggi yang dirancang khusus untuk Anda.
                     </p>
                 </div>
             </div>
 
+            <!-- Toggle kategori (mobile only) -->
+            <div class="d-flex justify-content-between align-items-center mb-3 d-md-none">
+                <button class="btn btn-success w-100" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#kategoriCollapse" aria-expanded="false" aria-controls="kategoriCollapse">
+                    CATEGORIES <i class="bi bi-chevron-down ms-1"></i>
+                </button>
+            </div>
+
             <!-- Filter Kategori -->
-            <form method="GET" action="{{ url('/produk') }}">
-                <div class="row mb-4 justify-content-center gx-2 gy-2">
-                    @foreach ($kategoris as $k)
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                            <button type="submit" name="kategori_id" value="{{ $k->id }}"
-                                class="btn btn-outline-secondary w-100 text-truncate">
-                                {{ $k->kategori }}
-                            </button>
-                        </div>
-                    @endforeach
-                </div>
-            </form>
+            <div class="collapse d-md-block" id="kategoriCollapse">
+                <form method="GET" action="{{ url('/produk') }}">
+                    <div class="row mb-4 gx-2 gy-2 justify-content-center">
+                        @foreach ($kategoris as $k)
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                                <button type="submit" name="kategori_id" value="{{ $k->id }}"
+                                    class="btn {{ request()->get('kategori_id') == $k->id ? 'btn-success' : 'btn-outline-secondary' }} w-100 text-truncate">
+                                    {{ $k->kategori }}
+                                </button>
+                            </div>
+                        @endforeach
+                    </div>
+                </form>
+            </div>
 
             <hr class="custom-divider">
 
-            <!-- Daftar Produk -->
             <div class="row g-4">
                 @forelse ($produks as $produk)
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                        <div class="card h-100 shadow-sm border-0 product-card text-center d-flex flex-column p-3">
-
-                            <!-- Gambar Produk -->
-                            <a href="{{ route('produk.show', $produk->id) }}" class="d-block mb-3">
-                                <img src="{{ asset('storage/' . $produk->gambar) }}"
-                                    class="card-img-top img-fluid rounded product-image mx-auto" alt="{{ $produk->nama }}">
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                        <div class="card border-0 h-100 shadow-sm">
+                            <!-- Gambar -->
+                            <a href="{{ route('produk.show', $produk->id) }}"
+                                class="d-block overflow-hidden rounded-top bg-white text-center" style="height: 220px;">
+                                <img src="{{ asset('storage/' . $produk->gambar) }}" class="h-100"
+                                    style="max-width: 100%; object-fit: contain;" alt="{{ $produk->nama }}">
                             </a>
 
-                            <!-- Nama Produk -->
-                            <h3 class="fw-bold mb-2 text-dark fs-6 flex-grow-1">
-                                {{ $produk->nama }}
-                            </h3>
-
-                            <!-- Harga Produk -->
-                            <p class="fw-bold text-primary fs-6 mb-0">
-                                Rp {{ number_format($produk->harga, 0, ',', '.') }}
-                            </p>
+                            <!-- Konten -->
+                            <div class="p-3">
+                                <h6 class="fw-semibold mb-2">
+                                    <a href="{{ route('produk.show', $produk->id) }}" class="text-decoration-none text-dark">
+                                        {{ $produk->nama }}
+                                    </a>
+                                </h6>
+                                <p class="mb-0 text-primary fw-semibold">
+                                    Rp {{ number_format($produk->harga, 0, ',', '.') }}
+                                </p>
+                                <p class="text-muted small mt-1 mb-0">
+                                    <strong>Stok Produk:</strong> {{ $produk->stok }}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 @empty
@@ -65,7 +77,6 @@
         </div>
     </div>
 
-    <!-- Custom Styles -->
     <style>
         .custom-divider {
             border: none;
@@ -74,14 +85,12 @@
             margin: 50px 0;
         }
 
-        /* Efek hover transisi seperti produk rekomendasi */
-        .product-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .card img {
+            transition: transform 0.3s ease;
         }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        .card:hover img {
+            transform: scale(1.03);
         }
 
         .product-image {
@@ -94,10 +103,6 @@
         @media (max-width: 576px) {
             .product-image {
                 height: 160px;
-            }
-
-            .produk .product-title {
-                font-size: 0.95rem;
             }
         }
     </style>

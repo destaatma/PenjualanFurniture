@@ -22,7 +22,7 @@
                         <div class="mb-3 col-md-12">
                             <label class="form-label">Produk dalam Pemesanan</label>
                             <ul class="list-group">
-                                @forelse ($pemesanan->detail_pemesanan as $detail)
+                                @forelse ($pemesanan->detailPemesanan as $detail)
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <div>
                                             <strong>{{ $detail->produk->nama ?? '-' }}</strong><br>

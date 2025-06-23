@@ -17,11 +17,12 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->integer('rating');
             $table->text('ulasan');
+            $table->string('status');
             $table->timestamps();
         });
     }
 
-    
+
     /**
      * Reverse the migrations.
      */

@@ -23,7 +23,6 @@ class User extends Authenticatable
         'email',
         'password',
         'telpon',
-        'alamat',
     ];
 
     public function role()
@@ -34,6 +33,10 @@ class User extends Authenticatable
     public function ulasan()
     {
         return $this->hasMany(Ulasan::class);
+    }
+    public function profile()
+    {
+        return $this->hasOne(UserProfile::class, 'users_id');
     }
 
     /**

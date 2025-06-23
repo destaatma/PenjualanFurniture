@@ -15,8 +15,9 @@ class UlasanController extends Controller
     public function index()
     {
         $ulasans = Ulasan::with(['produk', 'user'])->get();
-        $produks = Produk::all();
-        $users = User::all();
+        // $produks dan $users tidak diperlukan di sini kecuali jika Anda menggunakannya untuk filtering/display tambahan
+        // $produks = Produk::all();
+        // $users = User::all();
         return view('admin.ulasan.index', compact('ulasans'));
     }
 
@@ -40,11 +41,18 @@ class UlasanController extends Controller
             'user_id' => 'required',
             'rating' => 'required|integer|min:1|max:5',
             'ulasan' => 'nullable|string',
+            // Tidak perlu validasi 'status' di sini karena kita akan mengaturnya secara internal
         ]);
 
-        Ulasan::create($request->all());
+        Ulasan::create([
+            'produk_id' => $request->produk_id,
+            'user_id' => $request->user_id,
+            'rating' => $request->rating,
+            'ulasan' => $request->ulasan,
+            'status' => 'pending', // Tambahkan ini: Set status default 'pending'
+        ]);
 
-        return redirect()->route('admin.ulasan.index')->with('success', 'Ulasan berhasil ditambahkan');
+        return redirect()->route('admin.ulasan.index')->with('success', 'Ulasan berhasil ditambahkan dan menunggu persetujuan.');
     }
 
     /**
@@ -52,7 +60,7 @@ class UlasanController extends Controller
      */
     public function show(Ulasan $ulasan)
     {
-        //return view('admin.ulasan.show', compact('ulasan'));
+        // Metode ini tidak digunakan dalam skema Anda saat ini.
     }
 
     /**
@@ -62,7 +70,8 @@ class UlasanController extends Controller
     {
         $produks = Produk::all();
         $users = User::all();
-        return view('admin.ulasan.edit', compact('ulasan', 'produks', 'users'));
+        $statuses = ['pending', 'published', 'rejected'];
+        return view('admin.ulasan.edit', compact('ulasan', 'produks', 'users', 'statuses'));
     }
 
     /**
@@ -70,12 +79,12 @@ class UlasanController extends Controller
      */
     public function update(Request $request, Ulasan $ulasan)
     {
-        dd($request->all());
         $request->validate([
             'produk_id' => 'required|exists:produks,id',
             'user_id' => 'required',
             'rating' => 'required|integer|min:1|max:5',
             'ulasan' => 'nullable|string',
+            'status' => 'required|in:pending,published,rejected', // Tambahkan ini: Validasi untuk status
         ]);
 
         $ulasan->update($request->all());

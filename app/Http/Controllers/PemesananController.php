@@ -13,7 +13,7 @@ class PemesananController extends Controller
     public function index()
     {
         // Ambil semua pemesanan dengan relasi user dan detail_pemesanan
-        $pemesanans = Pemesanan::with(['user', 'detail_pemesanan'])->get();
+        $pemesanans = Pemesanan::with(['user', 'detailPemesanan'])->get();
         return view('admin.transaksi.pemesanan.index', compact('pemesanans'));
     }
 

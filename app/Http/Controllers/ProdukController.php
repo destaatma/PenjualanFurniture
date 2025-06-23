@@ -24,7 +24,8 @@ class ProdukController extends Controller
     public function create()
     {
         $kategoris = Kategori::all();
-        return view('admin.produk.create', compact('kategoris'));
+        $stokOptions = ['ready', 'preorder']; // Opsi untuk kolom 'stok'
+        return view('admin.produk.create', compact('kategoris', 'stokOptions'));
     }
 
     /**
@@ -37,6 +38,7 @@ class ProdukController extends Controller
             'nama' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
             'harga' => 'required|numeric',
+            'stok' => 'required|string|in:ready,preorder',
             'gambar' => 'nullable',
         ]);
 
@@ -66,7 +68,8 @@ class ProdukController extends Controller
     {
 
         $kategoris = Kategori::all(); // Ambil semua kategori untuk dropdown
-        return view('admin.produk.edit', compact('produk', 'kategoris'));
+        $stokOptions = ['ready', 'preorder']; // Opsi untuk kolom 'stok'
+        return view('admin.produk.edit', compact('produk', 'kategoris', 'stokOptions'));
     }
 
 
@@ -80,6 +83,7 @@ class ProdukController extends Controller
             'nama' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
             'harga' => 'required|numeric',
+            'stok' => 'required|string|in:ready,preorder',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
@@ -104,7 +108,5 @@ class ProdukController extends Controller
         return redirect()->route('admin.produk.index')->with('success', 'Kategori berhasil dihapus');
     }
 
-    public function ulasan(){
-        
-    }
+    public function ulasan() {}
 }

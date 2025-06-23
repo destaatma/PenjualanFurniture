@@ -20,8 +20,8 @@
                 <li>
                     <hr class="dropdown-divider" />
                 </li>
-                <li><a class="dropdown-item" href="/register">Buat Akun</a></li>
-                <li><a class="dropdown-item" href="/">Halaman Beranda</a></li>
+                <li><a class="dropdown-item" href="/profil">Profile</a></li>
+                <li><a class="dropdown-item" href="/">Beranda</a></li>
                 <li>
                     <hr class="dropdown-divider" />
                 </li>

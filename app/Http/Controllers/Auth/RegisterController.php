@@ -22,7 +22,7 @@ class RegisterController extends Controller
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'telpon' => ['required', 'string', 'max:15'],
-            'alamat' => ['required', 'string', 'max:255'],
+            // 'alamat' => ['required', 'string', 'max:255'],
         ]);
 
         $user = User::create([
@@ -30,7 +30,7 @@ class RegisterController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'telpon' => $validated['telpon'],
-            'alamat' => $validated['alamat'],
+            // 'alamat' => $validated['alamat'],
             'role_id' => 2, // Default sebagai user biasa
         ]);
 

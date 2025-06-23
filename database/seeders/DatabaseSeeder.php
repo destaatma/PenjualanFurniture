@@ -23,11 +23,11 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             KategoriSeeder::class,
             ProdukSeeder::class,
-            PemesananSeeder::class,
-            DetailPemesananSeeder::class,
-            PembayaranSeeder::class,
-            PengirimanSeeder::class,
-            UlasanSeeder::class,
+            // PemesananSeeder::class,
+            // DetailPemesananSeeder::class,
+            // PembayaranSeeder::class,
+            // PengirimanSeeder::class,
+            // UlasanSeeder::class,
         ]);
     }
 }

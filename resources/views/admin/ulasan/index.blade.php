@@ -8,10 +8,6 @@
                 <li class="breadcrumb-item active">Ulasan Produk</li>
             </ol>
 
-            <!-- Daftar Ulasan -->
-            {{-- <a href="{{ route('admin.ulasan.create') }}" class="btn btn-warning mb-3 col-mb-3"> <i
-                    class="fas fa-plus-circle"></i>
-                Tambah</a>--}}
             <div class="card mb-4">
                 <div class="card-header bg-primary text-white">
                     <i class="fas fa-chart-area me-1"></i> Daftar Ulasan Produk
@@ -26,6 +22,7 @@
                                     <th>Nama Pelanggan</th>
                                     <th>Rating</th>
                                     <th>Ulasan</th>
+                                    <th>Status</th> {{-- New: Status Column --}}
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -38,18 +35,27 @@
                                         <td>{{ $u->rating }}</td>
                                         <td>{{ $u->ulasan }}</td>
                                         <td>
+                                            @if ($u->status == 'published')
+                                                <span class="badge bg-success">Published</span>
+                                            @elseif ($u->status == 'pending')
+                                                <span class="badge bg-warning">Pending</span>
+                                            @else
+                                                <span class="badge bg-danger">Rejected</span>
+                                            @endif
+                                        </td> {{-- Display Status --}}
+                                        <td>
                                             <div class="action-buttons d-flex gap-2">
-                                                <a href="{{ route('admin.ulasan.edit', $u->id) }}"
+                                                {{-- <a href="{{ route('admin.ulasan.edit', $u->id) }}"
                                                     class="btn btn-warning btn-sm">
                                                     <i class="fas fa-edit"></i>
-                                                </a>
+                                                </a> --}}
 
                                                 <form action="{{ route('admin.ulasan.destroy', $u->id) }}" method="POST"
                                                     style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"
-                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus ulasan ini?')">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </button>
                                                 </form>

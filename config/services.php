@@ -41,4 +41,9 @@ return [
         'is_production' => false,
     ],
 
+    // 'fonnte' => [
+    //     'api_key' => env('FONNTE_API_KEY'),
+    //     'base_url' => env('FONNTE_BASE_URL', 'https://api.fonnte.com'),
+    // ],
+
 ];

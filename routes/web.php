@@ -12,6 +12,8 @@ use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\PengirimanController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RiwayatPemesananController;
 use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\UlasanprodukController;
 use App\Http\Controllers\UserController;
@@ -54,6 +56,7 @@ Route::post('/login', [AuthController::class, 'authenticate'])
 Route::post('logout', [AuthController::class, 'logout'])
     ->middleware('auth')
     ->name('logout');
+
 //route user
 Route::get('/', function () {
     return view('welcome');
@@ -184,12 +187,18 @@ Route::get('/caraPemesanan', function () {
     return view('caraPemesanan');
 });
 
-// Route::get('/keranjang', [PaymentController::class, 'showform'])->name('keranjang.show');
-// Route::post('/payment/pay', [PaymentController::class, 'pay'])->name('payment.pay')->middleware('auth');
-// Route::get('/checkout/success', [PaymentController::class, 'success'])->name('payment.success')->middleware('auth');
-
 //route untuk grafik
 Route::get('/chart-penjualan', [BerandaController::class, 'chartPenjualan'])->name('chart.penjualan');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
+
+Route::get('/profil', [ProfileController::class, 'show'])->name('profil.show');
+
+Route::get('/profil/edit', [ProfileController::class, 'edit'])->name('profil.edit');
+
+Route::put('/profil', [ProfileController::class, 'update'])->name('profil.update');
+
+//route riwatar pemesanan
+Route::get('/pesanan-saya', [RiwayatPemesananController::class, 'index'])->name('pesanan.riwayat');
+Route::get('/pesanan-saya/{id}', [RiwayatPemesananController::class, 'show'])->name('detailpesanan');

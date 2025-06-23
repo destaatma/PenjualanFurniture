@@ -22,7 +22,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="{{ url('/beranda/assets/css/tiny-slider.css') }}" rel="stylesheet">
     <link href="{{ url('/beranda/assets/css/style.css') }}" rel="stylesheet">
-    <title>DESTA Furniture</title>
+    <title>OMAH Mebel</title>
 </head>
 
 <body>

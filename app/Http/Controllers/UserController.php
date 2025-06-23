@@ -12,7 +12,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        // $users = User::all();
+        // $users = User::whereHas('role', function ($query) {
+        //     $query->where('nama', '!=', 'admin');
+        // })->get();
+        // $users = User::where('role_id', '!=', 1)->get();
+        // return view('admin.users.index', compact('users'));
+        $users = User::with('profile')->where('role_id', '!=', 1)->get();
+
         return view('admin.users.index', compact('users'));
     }
 
@@ -58,7 +65,6 @@ class UserController extends Controller
             'nama'   => 'required|string|max:255',
             'email'  => 'required|email|max:255|unique:users,email,' . $id,
             'telpon' => 'nullable|string|max:20',
-            'alamat' => 'nullable|string|max:255',
         ]);
 
         $user = User::findOrFail($id);
@@ -66,7 +72,6 @@ class UserController extends Controller
             'nama'   => $request->nama,
             'email'  => $request->email,
             'telpon' => $request->telpon,
-            'alamat' => $request->alamat,
         ]);
 
         return redirect()->route('admin.users.index')->with('success', 'Data pengguna berhasil diperbarui.');

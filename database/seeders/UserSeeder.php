@@ -19,7 +19,6 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin'),
             'telpon' => '1234566667',
-            'alamat' => 'pacitan',
         ]);
         User::create([
             'role_id' => 2,
@@ -27,7 +26,6 @@ class UserSeeder extends Seeder
             'email' => 'destaatma@gmail.com',
             'password' => bcrypt('desta1234'),
             'telpon' => '1234566667',
-            'alamat' => 'pacitan',
         ]);
         User::create([
             'role_id' => 2,
@@ -35,7 +33,6 @@ class UserSeeder extends Seeder
             'email' => 'operator@gmail.com',
             'password' => bcrypt('admin'),
             'telpon' => '1234566667',
-            'alamat' => 'pacitan',
         ]);
     }
 }

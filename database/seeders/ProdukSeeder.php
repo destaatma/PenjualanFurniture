@@ -17,21 +17,24 @@ class ProdukSeeder extends Seeder
             'kategori_id' => 1,
             'nama' => 'almari',
             'deskripsi' => 'almari dengan bahan berkualitas',
-            'harga' => '1000000',
+            'harga' => '100',
+            'stok' => 'ready',
             'gambar' => '',
         ]);
         Produk::create([
             'kategori_id' => 1,
             'nama' => 'almari',
             'deskripsi' => 'almari dengan bahan berkualitas',
-            'harga' => '1000000',
+            'harga' => '100',
+            'stok' => 'ready',
             'gambar' => '',
         ]);
         Produk::create([
             'kategori_id' => 1,
             'nama' => 'almari',
             'deskripsi' => 'almari dengan bahan berkualitas',
-            'harga' => '1000000',
+            'harga' => '100',
+            'stok' => 'ready',
             'gambar' => '',
         ]);
     }

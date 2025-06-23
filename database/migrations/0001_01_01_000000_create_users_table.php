@@ -20,8 +20,15 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('telpon');
-            $table->string('alamat');
             $table->rememberToken();
+            $table->timestamps();
+        });
+
+        Schema::create('users_profile', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('users_id')->constrained('users')->onDelete('cascade');
+            $table->string('alamat');
+            $table->string('foto_profil');
             $table->timestamps();
         });
 
@@ -47,6 +54,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('users');
+        Schema::dropIfExists('users_profile');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
     }

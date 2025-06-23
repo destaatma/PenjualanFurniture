@@ -16,7 +16,10 @@ class UlasanprodukController extends Controller
     public function show($id)
     {
         // Mengambil data produk beserta relasi kategori dan ulasan (termasuk data user yang memberi ulasan)
-        $produk = Produk::with(['kategori', 'ulasans.user'])->findOrFail($id);
+        // Hanya ambil ulasan yang berstatus 'published'
+        $produk = Produk::with(['kategori', 'ulasans' => function ($query) {
+            $query->where('status', 'published')->with('user');
+        }])->findOrFail($id);
 
         // Menampilkan view 'produk' dan mengirim data produk
         return view('produk', compact('produk'));
@@ -27,6 +30,7 @@ class UlasanprodukController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'produk_id' => 'required|exists:produks,id',
             'rating' => 'required|integer|min:1|max:5',
@@ -38,8 +42,9 @@ class UlasanprodukController extends Controller
             'user_id' => auth()->id(), // pastikan user sudah login
             'rating' => $request->rating,
             'ulasan' => $request->ulasan,
+            'status' => 'pending', // Set status default 'pending' untuk ulasan yang baru dikirim oleh user
         ]);
 
-        return redirect()->back()->with('success', 'Ulasan berhasil dikirim.');
+        return redirect()->back()->with('success', 'Ulasan berhasil dikirim dan akan ditampilkan setelah disetujui.');
     }
 }

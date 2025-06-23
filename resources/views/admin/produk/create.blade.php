@@ -25,32 +25,74 @@
                             <select name="kategori_id" id="kategori_id" class="form-select" required>
                                 <option value="" disabled selected>Pilih Kategori</option>
                                 @foreach ($kategoris as $k)
-                                    <option value="{{ $k->id }}">{{ $k->kategori }}</option>
+                                    <option value="{{ $k->id }}" {{ old('kategori_id') == $k->id ? 'selected' : '' }}>
+                                        {{ $k->kategori }}
+                                    </option>
                                 @endforeach
                             </select>
+                            @error('kategori_id')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
+                        {{-- <div class="mb-3">
+                            <label for="kategori_id" class="form-label">Kategori</label>
+                            <select name="kategori_id" id="kategori_id" class="form-select" required>
+                                <option value="" disabled selected>Pilih Kategori</option>
+                                @foreach ($kategoris as $k)
+                                <option value="{{ $k->id }}">{{ $k->kategori }}</option>
+                                @endforeach
+                            </select>
+                        </div> --}}
 
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama Produk</label>
                             <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukkan nama produk"
-                                required>
+                                value="{{ old('nama') }}" required>
+                            @error('nama')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
                             <label for="deskripsi" class="form-label">Deskripsi</label>
                             <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3"
-                                placeholder="Tambahkan deskripsi produk"></textarea>
+                                placeholder="Tambahkan deskripsi produk">{{ old('deskripsi') }}</textarea>
+                            @error('deskripsi')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
                             <label for="harga" class="form-label">Harga</label>
                             <input type="number" name="harga" id="harga" class="form-control"
-                                placeholder="Masukkan harga produk" required>
+                                placeholder="Masukkan harga produk" value="{{ old('harga') }}" required min="0">
+                            @error('harga')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Input untuk Status Stok (Ready/Preorder) --}}
+                        <div class="mb-3">
+                            <label for="stok" class="form-label">Status Stok</label>
+                            <select class="form-control" id="stok" name="stok" required>
+                                <option value="" disabled selected>Pilih Status Stok</option>
+                                @foreach($stokOptions as $option) {{-- Variabel $stokOptions dari controller --}}
+                                    <option value="{{ $option }}" {{ old('stok') == $option ? 'selected' : '' }}>
+                                        {{ ucfirst($option) }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('stok')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
                             <label for="gambar" class="form-label">Gambar Produk</label>
-                            <input type="file" name="gambar" id="gambar" class="form-control">
+                            <input type="file" name="gambar" id="gambar" class="form-control" accept="image/*">
+                            @error('gambar')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="d-flex gap-2">

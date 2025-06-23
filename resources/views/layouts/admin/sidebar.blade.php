@@ -1,41 +1,3 @@
-<!-- Sidebar CSS -->
-<style>
-    .sb-sidenav .nav-link {
-        margin-bottom: 8px;
-        font-size: 16px;
-        padding: 12px 20px;
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .sb-sidenav .nav-link:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        color: #0d6efd !important;
-        border-radius: 8px;
-    }
-
-    .sb-sidenav .nav-link.active {
-        color: white !important;
-        font-weight: bold;
-        background-color: #343a40;
-        border-radius: 8px;
-    }
-
-    .sb-sidenav .sb-nav-link-icon {
-        margin-right: 10px;
-    }
-
-    .sb-sidenav-menu {
-        padding: 10px;
-    }
-
-    .sb-sidenav-footer {
-        padding: 20px;
-        font-size: 15px;
-        background-color: #212529;
-        color: #adb5bd;
-    }
-</style>
-
 <!-- Sidebar HTML -->
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -146,3 +108,40 @@
         </div>
     </nav>
 </div>
+<!-- Sidebar CSS -->
+<style>
+    .sb-sidenav .nav-link {
+        margin-bottom: 8px;
+        font-size: 16px;
+        padding: 12px 20px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .sb-sidenav .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #0d6efd !important;
+        border-radius: 8px;
+    }
+
+    .sb-sidenav .nav-link.active {
+        color: white !important;
+        font-weight: bold;
+        background-color: #343a40;
+        border-radius: 8px;
+    }
+
+    .sb-sidenav .sb-nav-link-icon {
+        margin-right: 10px;
+    }
+
+    .sb-sidenav-menu {
+        padding: 10px;
+    }
+
+    .sb-sidenav-footer {
+        padding: 20px;
+        font-size: 15px;
+        background-color: #212529;
+        color: #adb5bd;
+    }
+</style>

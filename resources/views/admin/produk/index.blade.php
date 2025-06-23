@@ -13,7 +13,7 @@
 
             <!-- Tombol Tambah Produk -->
             <a href="{{ route('admin.produk.create') }}" class="btn btn-warning mb-3">
-                <i class="fas fa-plus-circle me-1"></i> Tambah 
+                <i class="fas fa-plus-circle me-1"></i> Tambah
             </a>
 
             <div class="card mb-4 shadow-sm">
@@ -30,6 +30,7 @@
                                     <th>Nama</th>
                                     <th>Deskripsi</th>
                                     <th>Harga</th>
+                                    <th>Stok</th> {{-- Tambah kolom Stok --}}
                                     <th>Gambar</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -38,12 +39,26 @@
                                 @foreach ($produks as $p)
                                     <tr>
                                         <td class="text-center">{{ $loop->iteration }}</td>
-                                        <td>{{ $p->kategori->kategori }}</td>
+                                        <td>{{ $p->kategori->kategori }}</td> {{-- Pastikan menggunakan $p->kategori->nama --}}
                                         <td>{{ $p->nama }}</td>
                                         <td>{{ $p->deskripsi }}</td>
                                         <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                         <td>
-                                            <img src="{{ asset('storage/' . $p->gambar) }}" width="120" alt="{{ $p->nama }}">
+                                            @if ($p->stok == 'ready')
+                                                <span class="badge bg-success">{{ ucfirst($p->stok) }}</span>
+                                            @elseif ($p->stok == 'preorder')
+                                                <span class="badge bg-info">{{ ucfirst($p->stok) }}</span>
+                                            @else
+                                                <span class="badge bg-secondary">{{ ucfirst($p->stok) }}</span>
+                                            @endif
+                                        </td> {{-- Tampilkan stok dengan badge --}}
+                                        <td>
+                                            @if($p->gambar)
+                                                <img src="{{ asset('storage/' . $p->gambar) }}" width="120" alt="{{ $p->nama }}"
+                                                    class="img-thumbnail">
+                                            @else
+                                                <span class="text-muted">Tidak ada gambar</span>
+                                            @endif
                                         </td>
                                         <td>
                                             <div class="d-flex gap-2">

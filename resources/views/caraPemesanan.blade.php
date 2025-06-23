@@ -6,7 +6,6 @@
             <!-- Heading -->
             <div class="row text-center">
                 <div class="col-12">
-                    {{-- Breadcrumb navigation to improve user experience --}}
                     <h1 class="mb-4 mt-4 fw-bold text-uppercase">
                         Cara Pemesanan
                     </h1>
@@ -19,7 +18,7 @@
             <!-- Card Content -->
             <div class="row">
                 <div class="col-lg-12 mx-auto mb-4">
-                    <div class="shadow-sm p-4 text-black" style="border-radius: 10px;">
+                    <div class="shadow-sm p-4 text-black info-box-poppins" style="border-radius: 10px; font-size: 1.1rem;">
                         <ul class="ps-3">
                             <li class="mb-3">
                                 <strong>Temukan produk mebel pilihan Anda</strong> di katalog online kami!
@@ -29,7 +28,7 @@
                             </li>
 
                             <li class="mb-3">
-                                ✅ <strong>Cara Memesan:</strong>
+                                ✅ <strong>Cara Pemesanan:</strong>
                                 <ul class="mt-2">
                                     <li><strong>Langsung Checkout di Website</strong><br>
                                         Pilih kategori, produk, dan jumlah barang, lalu lanjutkan ke proses checkout melalui
@@ -97,4 +96,19 @@
                 </div>
             </div>
         </div>
+    </div>
+    <style>
+        /* Mengimpor font Poppins (regular 400 & bold 700) dari Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+        /* Menerapkan font Poppins dan style lainnya ke container utama */
+        .info-box-poppins {
+            font-family: 'Poppins', sans-serif;
+            /* Mengatur font menjadi Poppins */
+            font-size: 1.1rem;
+            /* Ukuran font yang sedikit lebih besar */
+            border-radius: 10px;
+            /* Style radius dari kode asli */
+        }
+    </style>
 @endsection

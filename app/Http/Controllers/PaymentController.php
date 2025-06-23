@@ -74,7 +74,7 @@ class PaymentController extends Controller
         Config::$isSanitized = true;
 
         // Gunakan ID pemesanan langsung sebagai order_id Midtrans
-        $orderId = (string) $pemesanan->id;
+        $orderId = 'ORDER-' . $pemesanan->id . '-' . uniqid();
 
         $params = [
             'transaction_details' => [
@@ -153,8 +153,13 @@ class PaymentController extends Controller
         $jumlah = max(1, (int) $request->jumlah);
         $user = Auth::user();
 
-        if (!$user) {
-            return redirect('/login')->with('error', 'Silakan login untuk melanjutkan pembelian.');
+        // if (!$user) {
+        //     return redirect('/login')->with('error', 'Silakan login untuk melanjutkan pembelian.');
+        // }
+        if (!Auth::check()) {
+            // Simpan URL redirect ke session
+            session(['url.intended' => $request->input('redirect_to', url()->previous())]);
+            return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
         }
 
         // Hitung total harga

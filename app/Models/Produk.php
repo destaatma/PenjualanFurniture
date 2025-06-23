@@ -15,6 +15,7 @@ class Produk extends Model
         'nama',
         'deskripsi',
         'harga',
+        'stok',
         'gambar',
     ];
 
@@ -25,5 +26,9 @@ class Produk extends Model
     public function ulasans()
     {
         return $this->hasMany(Ulasan::class);
+    }
+    public function detailPemesanans()
+    {
+        return $this->hasMany(DetailPemesanan::class);
     }
 }

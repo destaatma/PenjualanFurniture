@@ -80,14 +80,16 @@
 
                 <!-- Grafik Penjualan -->
                 <div class="col-xl-12 mt-3">
-                    <div class="card mb-4">
+                    <div class="card mb-5">
                         <div class="card-header bg-primary text-light">
                             <h5 class="fw-bold mt-2">
                                 <i class="fas fa-chart-line me-2"></i> Grafik Penjualan
                             </h5>
                         </div>
                         <div class="card-body">
-                            <canvas id="grafikPenjualan"></canvas>
+                            <div class="chart-container" style="position: relative; height:350px; width:100%">
+                                <canvas id="grafikPenjualan"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -102,9 +104,8 @@
                 .then(response => response.json())
                 .then(data => {
                     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
                     const formattedLabels = data.labels.map(label => {
-                        const [monthName, year] = label.split(' '); // e.g. "January 2025"
+                        const [monthName, year] = label.split(' ');
                         const monthIndex = new Date(Date.parse(monthName + " 1, 2020")).getMonth();
                         return `${monthNames[monthIndex]} ${year}`;
                     });
@@ -114,20 +115,36 @@
                         type: 'line',
                         data: {
                             labels: formattedLabels,
-                            datasets: [{
-                                label: 'Jumlah Pemesanan per Bulan',
-                                data: data.totals,
-                                borderColor: '#13caf0',
-                                backgroundColor: 'rgba(13, 202, 240, 0.1)',
-                                tension: 0.4,
-                                fill: false,
-                                pointBackgroundColor: '#13caf0',
-                                pointBorderColor: '#ffffff',
-                                pointBorderWidth: 2,
-                                pointRadius: 6,
-                                pointHoverRadius: 8,
-                                pointStyle: 'circle'
-                            }]
+                            datasets: [
+                                {
+                                    label: 'Pembayaran Selesai',
+                                    data: data.selesai,
+                                    borderColor: '#28a745',
+                                    backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                                    tension: 0.4,
+                                    fill: false,
+                                    pointBackgroundColor: '#28a745',
+                                    pointBorderColor: '#ffffff',
+                                    pointBorderWidth: 2,
+                                    pointRadius: 6,
+                                    pointHoverRadius: 8,
+                                    pointStyle: 'circle'
+                                },
+                                {
+                                    label: 'Pembayaran Belum Selesai',
+                                    data: data.belum,
+                                    borderColor: '#ffc107',
+                                    backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                                    tension: 0.4,
+                                    fill: false,
+                                    pointBackgroundColor: '#ffc107',
+                                    pointBorderColor: '#ffffff',
+                                    pointBorderWidth: 2,
+                                    pointRadius: 6,
+                                    pointHoverRadius: 8,
+                                    pointStyle: 'rectRot'
+                                }
+                            ]
                         },
                         options: {
                             responsive: true,
@@ -141,8 +158,7 @@
                                     display: true,
                                     position: 'top',
                                     labels: {
-                                        usePointStyle: true,
-                                        pointStyle: 'circle'
+                                        usePointStyle: true
                                     }
                                 },
                                 tooltip: {
@@ -151,7 +167,7 @@
                                     bodyColor: '#fff',
                                     borderColor: '#fff',
                                     borderWidth: 1,
-                                    usePointStyle: true,
+                                    usePointStyle: true
                                 }
                             },
                             scales: {
@@ -159,19 +175,15 @@
                                     title: {
                                         display: true,
                                         text: 'Bulan',
-                                        font: {
-                                            size: 14
-                                        }
+                                        font: { size: 14 }
                                     }
                                 },
                                 y: {
                                     beginAtZero: true,
                                     title: {
                                         display: true,
-                                        text: 'Jumlah Pemesanan',
-                                        font: {
-                                            size: 14
-                                        }
+                                        text: 'Jumlah Pembayaran',
+                                        font: { size: 14 }
                                     }
                                 }
                             }
@@ -180,4 +192,5 @@
                 });
         });
     </script>
+
 @endsection
