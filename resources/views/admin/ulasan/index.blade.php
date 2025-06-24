@@ -45,10 +45,10 @@
                                         </td> {{-- Display Status --}}
                                         <td>
                                             <div class="action-buttons d-flex gap-2">
-                                                {{-- <a href="{{ route('admin.ulasan.edit', $u->id) }}"
+                                                <a href="{{ route('admin.ulasan.edit', $u->id) }}"
                                                     class="btn btn-warning btn-sm">
                                                     <i class="fas fa-edit"></i>
-                                                </a> --}}
+                                                </a>
 
                                                 <form action="{{ route('admin.ulasan.destroy', $u->id) }}" method="POST"
                                                     style="display:inline;">

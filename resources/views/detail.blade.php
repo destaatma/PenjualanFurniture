@@ -6,9 +6,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <div class="container mt-5">
-        {{-- ========================== --}}
         {{-- INFORMASI PRODUK --}}
-        {{-- ========================== --}}
         <div class="row mb-5 g-4 align-items-start">
             {{-- Product Image Column --}}
             <div class="col-12 col-lg-6">
@@ -20,7 +18,7 @@
             </div>
 
 
-            {{-- Product Details Column --}}
+            {{-- untuk detail produk --}}
             <div class="col-12 col-lg-6">
                 <h2 class="fw-bold">{{ $produk->nama }}</h2>
                 <p class="fs-4 text-primary fw-bold">Rp {{ number_format($produk->harga, 0, ',', '.') }}</p>
@@ -132,16 +130,16 @@
                     @foreach ($publishedUlasans as $index => $ulasan)
                         <div class="d-flex mb-4 ulasan-item {{ $index > 1 ? 'd-none extra-ulasan' : '' }}">
                             <div class="flex-shrink-0">
-                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"  
                                     style="width: 40px; height: 40px;">
-                                    {{ strtoupper(substr($ulasan->user->name, 0, 1)) }}
+                                    {{ strtoupper(substr($ulasan->user->nama, 0, 1)) }}
                                 </div>
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <div class="d-flex justify-content-between align-items-center flex-wrap">
                                     <div class="d-flex justify-content-between align-items-center flex-grow-1">
                                         <div>
-                                            <span class="fw-bold">{{ $ulasan->user->name }}</span>
+                                            <span class="fw-bold">{{ $ulasan->user->nama }}</span>
                                             <span class="text-muted small ms-2">{{ $ulasan->created_at->diffForHumans() }}</span>
                                         </div>
                                     </div>
@@ -170,9 +168,8 @@
             </div> {{-- AKHIR DARI DIV PEMBUNGKUS BARU --}}
         </div>
 
-        {{-- ========================== --}}
+
         {{-- FORM ULASAN PRODUK --}}
-        {{-- ========================== --}}
         <div>
             <div class="col-12 col-lg-6 mt-5 mt-lg-0">
                 <div class="border rounded-3 p-4">
@@ -216,9 +213,6 @@
                                 <textarea name="ulasan" id="ulasan" class="form-control @error('ulasan') is-invalid @enderror"
                                     rows="4" placeholder="Bagaimana pendapat Anda tentang produk ini?"
                                     required>{{ old('ulasan') }}</textarea>
-                                {{-- @error('ulasan')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror --}}
                             </div>
 
                             <button type="submit" class="btn btn-primary">Kirim Ulasan</button>
@@ -233,11 +227,11 @@
         </div>
     </div>
 
-    {{-- Script to show/hide reviews --}}
+    {{-- Script untuk menampilkan/menyembunyikan ulasan --}}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const toggleBtn = document.getElementById('toggleUlasan');
-            if (toggleBtn) { // Check if the button exists before adding event listener
+            if (toggleBtn) { // Periksa apakah tombol ada sebelum menambahkan event listener
                 let showAll = false;
                 toggleBtn.addEventListener('click', function () {
                     const extraUlasans = document.querySelectorAll('.extra-ulasan');
@@ -251,24 +245,24 @@
                 });
             }
 
-            // Star Rating JavaScript for active state (optional, but good for UX)
+            // JavaScript Peringkat Bintang untuk status aktif (opsional, tapi bagus untuk UX)
             const stars = document.querySelectorAll('.star-rating input');
             stars.forEach(star => {
                 star.addEventListener('change', () => {
-                    // Update the visual state of stars based on the selected input
+                    // Perbarui tampilan visual bintang berdasarkan input yang dipilih
                     const rating = star.value;
                     const labels = star.closest('.star-rating').querySelectorAll('label');
                     labels.forEach(label => {
                         if (parseInt(label.getAttribute('for').replace('star-', '')) <= rating) {
-                            label.style.color = '#ffc107'; // Active star color
+                            label.style.color = '#ffc107'; // Warna bintang aktif
                         } else {
-                            label.style.color = '#d3d3d3'; // Inactive star color
+                            label.style.color = '#d3d3d3'; // Warna bintang tidak aktif
                         }
                     });
                 });
             });
 
-            // Set initial state for stars if old('rating') exists (for validation errors)
+            // Atur status awal untuk bintang jika ada old('rating') (untuk kesalahan validasi)
             const initialRating = document.querySelector('.star-rating input:checked');
             if (initialRating) {
                 const event = new Event('change');
@@ -277,7 +271,7 @@
         });
     </script>
 
-    {{-- Additional Styles --}}
+    {{-- Gaya Tambahan --}}
     <style>
         .zoomable {
             transition: transform 0.3s ease;
@@ -290,15 +284,15 @@
         .star-rating {
             display: flex;
             flex-direction: row-reverse;
-            /* Keeps stars right-aligned */
+            /* Membuat bintang tetap rata kanan */
             justify-content: flex-end;
-            /* Aligns stars to the right */
+            /* Meratakan bintang ke kanan */
             font-size: 2.5rem;
-            /* Larger stars */
+            /* Bintang yang lebih besar */
             color: #d3d3d3;
-            /* Default gray color */
+            /* Warna abu-abu default */
             cursor: pointer;
-            /* Optional: Add a subtle margin between stars */
+            /* Opsional: Tambahkan margin tipis di antara bintang */
             gap: 0.1rem;
         }
 
@@ -309,29 +303,29 @@
         .star-rating label {
             transition: color 0.2s ease-in-out;
             font-size: 2rem;
-            /* Adjusted for better appearance with padding */
+            /* Disesuaikan agar tampilan lebih baik dengan padding */
             padding: 0 0.15rem;
-            /* Space between star characters */
+            /* Jarak antar karakter bintang */
         }
 
         .star-rating label:hover,
         .star-rating label:hover~label {
             color: #ffc107;
-            /* Hover color */
+            /* Warna saat di-hover */
         }
 
         .star-rating input:checked~label {
             color: #ffc107;
-            /* Selected color */
+            /* Warna saat dipilih */
         }
 
-        /* Responsive adjustments for star rating on smaller screens */
+        /* Penyesuaian responsif untuk peringkat bintang di layar yang lebih kecil */
         @media (max-width: 575.98px) {
 
-            /* For extra small devices (phones) */
+            /* Untuk perangkat ekstra kecil (ponsel) */
             .star-rating {
                 font-size: 2rem;
-                /* Slightly smaller stars on tiny screens */
+                /* Bintang yang sedikit lebih kecil di layar kecil */
             }
 
             .star-rating label {

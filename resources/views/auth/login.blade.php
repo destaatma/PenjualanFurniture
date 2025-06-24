@@ -48,11 +48,18 @@
                                                     placeholder="Password" required />
                                             </div>
                                         </div>
-                                        <div class="form-check mb-3">
-                                            <input class="form-check-input" id="inputRememberPassword" type="checkbox"
-                                                value="" />
-                                            <label class="form-check-label" for="inputRememberPassword">Remember
-                                                Password</label>
+                                        <div class="d-flex align-items-center justify-content-between mb-3">
+                                            <div class="form-check">
+                                                {{-- Penambahan atribut name="remember" agar fitur "Remember Me" Laravel
+                                                berfungsi --}}
+                                                <input class="form-check-input" id="inputRememberPassword"
+                                                    name="remember" type="checkbox" />
+                                                <label class="form-check-label" for="inputRememberPassword">Remember
+                                                    Password</label>
+                                            </div>
+                                            {{-- Ini adalah link untuk Lupa Password --}}
+                                            <a class="small text-dark" href="{{ route('password.request') }}">Lupa
+                                                Password?</a>
                                         </div>
                                         @error('email')
                                             <div class="text-danger">

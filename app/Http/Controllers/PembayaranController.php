@@ -9,13 +9,13 @@ use Illuminate\Http\Request;
 
 class PembayaranController extends Controller
 {
-    protected $fonnte;
+    //     protected $fonnte;
 
-    // Inject FonnteService melalui constructor
-    public function __construct(FonnteService $fonnte)
-    {
-        $this->fonnte = $fonnte;
-    }
+    //     // Inject FonnteService melalui constructor
+    //     public function __construct(FonnteService $fonnte)
+    //     {
+    //         $this->fonnte = $fonnte;
+    //     }
 
     /**
      * Display a listing of the resource.
@@ -32,7 +32,9 @@ class PembayaranController extends Controller
      */
     public function create()
     {
-        $pemesanans = Pemesanan::all();
+        $pemesanans = Pemesanan::with('detail_pemesanan.produk')
+            ->where('status_pemesanan', '!=', 'selesai')
+            ->get();
         return view('admin.transaksi.pembayaran.create', compact('pemesanans'));
     }
 

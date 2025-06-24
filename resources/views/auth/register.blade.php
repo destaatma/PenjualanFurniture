@@ -54,7 +54,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                                 <input class="form-control" name="telpon" type="number"
-                                                    placeholder="Nomor Telpon" required />
+                                                    placeholder="Nomor whatsApp" required />
                                             </div>
                                         </div>
 

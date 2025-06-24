@@ -18,11 +18,11 @@
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('tentangKami*') ? 'active' : '' }}" href="/tentangKami">Tentang
-                        Kami</a>
+                    <a class="nav-link {{ request()->is('produk*') ? 'active' : '' }}" href="/produk">Katalog Produk</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('produk*') ? 'active' : '' }}" href="/produk">Produk</a>
+                    <a class="nav-link {{ request()->is('tentangKami*') ? 'active' : '' }}" href="/tentangKami">Tentang
+                        Kami</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('caraPemesanan*') ? 'active' : '' }}" href="/caraPemesanan">Cara

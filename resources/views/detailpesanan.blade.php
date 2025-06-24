@@ -78,7 +78,6 @@
                         <form action="{{ route('bayar-langsung') }}" method="POST" class="ms-2 flex-grow-1">
                             @csrf
                             <input type="hidden" name="produk_id" value="{{ $produk->id }}">
-                            {{-- Warna dikembalikan ke btn-primary --}}
                             <button type="submit" class="btn btn-primary w-100 h-100">Bayar Sekarang</button>
                         </form>
                     </div>

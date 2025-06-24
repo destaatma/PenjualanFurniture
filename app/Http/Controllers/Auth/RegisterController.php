@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -22,7 +23,6 @@ class RegisterController extends Controller
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'telpon' => ['required', 'string', 'max:15'],
-            // 'alamat' => ['required', 'string', 'max:255'],
         ]);
 
         $user = User::create([
@@ -30,12 +30,19 @@ class RegisterController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'telpon' => $validated['telpon'],
-            // 'alamat' => $validated['alamat'],
             'role_id' => 2, // Default sebagai user biasa
         ]);
+        // 3. Memicu event 'Registered'
+        // Ini akan secara otomatis mengirim email verifikasi ke user baru.
+        event(new Registered($user));
 
-        // Auth::login($user);
-
-        return redirect('/login')->with('success', 'Registrasi berhasil! Silakan login.');
+        // 4. Redirect ke halaman notifikasi verifikasi
+        // Inilah bagian yang paling penting untuk alur Anda.
+        return redirect()->route('verification.notice')->with('status', 'Link verifikasi telah dikirim ke email Anda!');
     }
+
+    // Auth::login($user);
+
+    //     return redirect('/login')->with('success', 'Registrasi berhasil! Silakan login.');
+    // }
 }

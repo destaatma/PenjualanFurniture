@@ -51,7 +51,6 @@
                                 <img src="{{ asset('storage/' . $produk->gambar) }}" class="h-100"
                                     style="max-width: 100%; object-fit: contain;" alt="{{ $produk->nama }}">
                             </a>
-
                             <!-- Konten -->
                             <div class="p-3">
                                 <h6 class="fw-semibold mb-2">

@@ -24,14 +24,17 @@
                             <label for="pemesanan_id" class="form-label">Pemesanan</label>
                             <select name="pemesanan_id" id="pemesanan_id" class="form-select" required>
                                 <option value="" disabled selected>Pilih Pemesanan</option>
-                                @foreach($pemesanans as $p)
+
+                                @forelse($pemesanans as $p)
                                     <option value="{{ $p->id }}">
                                         @foreach($p->detail_pemesanan as $detail)
                                             {{ $detail->produk->nama }}{{ !$loop->last ? ', ' : '' }}
                                         @endforeach
                                         - Rp{{ number_format($p->total_harga, 0, ',', '.') }}
                                     </option>
-                                @endforeach
+                                @empty
+                                    <option value="" disabled>Tidak ada pemesanan yang perlu dibayar</option>
+                                @endforelse
                             </select>
                         </div>
 

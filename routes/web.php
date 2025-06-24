@@ -57,20 +57,25 @@ Route::post('logout', [AuthController::class, 'logout'])
     ->middleware('auth')
     ->name('logout');
 
+//route forgot password
+Auth::routes(['verify' => true]);
+
 //route user
 Route::get('/', function () {
     return view('welcome');
-})->name('welcome');
+});
+
+// Route::get('/', function () {
+//     return view('welcome');
+// })->middleware(['auth', 'verified'])->name('welcome');
 
 
-Route::middleware(['auth', 'isAdmin'])->group(function () {
+Route::middleware(['auth', 'verified', 'isAdmin'])->group(function () {
 
     Route::get('/admin', function () {
         return view('admin.beranda');
     });
     Route::get('/admin', [BerandaController::class, 'index'])->name('admin.beranda.index');
-
-    //Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
 
     Route::resource('admin/users', UserController::class)->names([
         'index' => 'admin.users.index',
@@ -189,14 +194,12 @@ Route::get('/caraPemesanan', function () {
 
 //route untuk grafik
 Route::get('/chart-penjualan', [BerandaController::class, 'chartPenjualan'])->name('chart.penjualan');
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
+//route unutk profil
 Route::get('/profil', [ProfileController::class, 'show'])->name('profil.show');
-
 Route::get('/profil/edit', [ProfileController::class, 'edit'])->name('profil.edit');
-
 Route::put('/profil', [ProfileController::class, 'update'])->name('profil.update');
 
 //route riwatar pemesanan

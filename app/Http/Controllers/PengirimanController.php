@@ -72,19 +72,19 @@ class PengirimanController extends Controller
             'status_pengiriman' => 'required|string',
         ]);
 
-        $oldStatus = $pengiriman->status_pengiriman;
-        $pengiriman->update($request->all());
+        // $oldStatus = $pengiriman->status_pengiriman;
+        // $pengiriman->update($request->all());
 
-        // ==========================================================
-        // == 7. LOGIKA NOTIFIKASI SAAT STATUS DIUBAH MENJADI 'DIKIRIM' ==
-        // ==========================================================
-        if ($request->status_pengiriman === 'Dikirim' && $oldStatus !== 'Dikirim') {
-            $pemesanan = Pemesanan::with('user')->find($pengiriman->pemesanan_id);
-            if ($pemesanan) {
-                // Teruskan objek $pengiriman yang diupdate
-                $this->sendShippingNotification($pemesanan, $pengiriman);
-            }
-        }
+        // // ==========================================================
+        // // == 7. LOGIKA NOTIFIKASI SAAT STATUS DIUBAH MENJADI 'DIKIRIM' ==
+        // // ==========================================================
+        // if ($request->status_pengiriman === 'Dikirim' && $oldStatus !== 'Dikirim') {
+        //     $pemesanan = Pemesanan::with('user')->find($pengiriman->pemesanan_id);
+        //     if ($pemesanan) {
+        //         // Teruskan objek $pengiriman yang diupdate
+        //         $this->sendShippingNotification($pemesanan, $pengiriman);
+        //     }
+        // }
 
         return redirect()->route('admin.transaksi.pengiriman.index')
             ->with('success', 'Pengiriman berhasil diperbarui.');
