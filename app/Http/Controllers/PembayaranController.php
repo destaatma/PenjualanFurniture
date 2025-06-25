@@ -166,4 +166,9 @@ class PembayaranController extends Controller
         $pembayaran->delete();
         return redirect()->route('admin.transaksi.pembayaran.index')->with('success', 'Pembayaran berhasil dihapus.');
     }
+
+    public  function Export()
+    {
+        return \Maatwebsite\Excel\Facades\Excel::download(new \App\Exports\PembayaranExport, 'pembayaran.xlsx');
+    }
 }

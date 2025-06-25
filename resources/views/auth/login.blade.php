@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="utf-8" />
@@ -54,8 +54,9 @@
                                                 berfungsi --}}
                                                 <input class="form-check-input" id="inputRememberPassword"
                                                     name="remember" type="checkbox" />
-                                                <label class="form-check-label" for="inputRememberPassword">Remember
-                                                    Password</label>
+                                                <label class="form-check-label" for="inputRememberPassword">Ingat Kata
+                                                    Sandi
+                                                </label>
                                             </div>
                                             {{-- Ini adalah link untuk Lupa Password --}}
                                             <a class="small text-dark" href="{{ route('password.request') }}">Lupa

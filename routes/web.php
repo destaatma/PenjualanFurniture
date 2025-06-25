@@ -61,13 +61,13 @@ Route::post('logout', [AuthController::class, 'logout'])
 Auth::routes(['verify' => true]);
 
 //route user
-Route::get('/', function () {
-    return view('welcome');
-});
-
 // Route::get('/', function () {
 //     return view('welcome');
-// })->middleware(['auth', 'verified'])->name('welcome');
+// });->middleware(['auth'])->name('welcome');
+
+Route::get('/', function () {
+    return view('welcome');
+})->middleware(['auth', 'verified'])->name('welcome');
 
 
 Route::middleware(['auth', 'verified', 'isAdmin'])->group(function () {
@@ -205,3 +205,5 @@ Route::put('/profil', [ProfileController::class, 'update'])->name('profil.update
 //route riwatar pemesanan
 Route::get('/pesanan-saya', [RiwayatPemesananController::class, 'index'])->name('pesanan.riwayat');
 Route::get('/pesanan-saya/{id}', [RiwayatPemesananController::class, 'show'])->name('detailpesanan');
+
+Route::get('pembayaran/export', [PembayaranController::class, 'export'])->name('pembayaran.export');
