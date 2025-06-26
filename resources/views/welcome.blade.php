@@ -99,31 +99,31 @@
                     </div>
                 </div>
 
-                <div class="col-lg-5 ps-lg-5">
+                <div class="col-12 col-lg-5 ps-lg-5">
                     <div class="intro-excerpt">
                         <h2 class="section-title mb-4">
                             Kami Siap Membantu Mewujudkan Desain Interior Modern Anda
                         </h2>
-                        <p>
+                        <p class="mb-4">
                             Kami menawarkan solusi desain interior yang praktis dan elegan — produk berkelas, fungsional,
-                            dan
-                            disesuaikan dengan kebutuhan serta gaya hidup Anda. Wujudkan ruang yang tak hanya indah
-                            dipandang,
-                            tetapi juga nyaman untuk digunakan.
+                            dan disesuaikan dengan kebutuhan serta gaya hidup Anda. Wujudkan ruang yang tak hanya indah
+                            dipandang, tetapi juga nyaman untuk digunakan.
                         </p>
-                        <ul class="list-unstyled custom-list my-4">
+                        <ul class="list-unstyled custom-list">
                             <li>Furnitur minimalis dengan desain sederhana namun fungsional</li>
                             <li>Material berkualitas dari kayu alami dan elemen premium lainnya</li>
                             <li>Tata ruang terbuka yang mendukung aktivitas harian secara dinamis</li>
                             <li>Aksen dekoratif yang mencerminkan karakter dan kepribadian Anda</li>
                         </ul>
-                        {{-- <p>
-                            <a href="/produk" class="btn btn-primary">Jelajahi</a>
-                        </p> --}}
                     </div>
                 </div>
+                {{-- <p>
+                    <a href="/produk" class="btn btn-primary">Jelajahi</a>
+                </p> --}}
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <!-- End Grid Section -->
 
