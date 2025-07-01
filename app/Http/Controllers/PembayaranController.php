@@ -32,9 +32,12 @@ class PembayaranController extends Controller
      */
     public function create()
     {
-        $pemesanans = Pemesanan::with('detail_pemesanan.produk')
-            ->where('status_pemesanan', '!=', 'selesai')
-            ->get();
+        // $pemesanans = Pemesanan::with('detail_pemesanan.produk')
+        //     ->where('status_pemesanan', '!=', 'selesai')
+        //     ->get();
+        // return view('admin.transaksi.pembayaran.create', compact('pemesanans'));
+        $pemesanans = Pemesanan::with('user')->get();
+
         return view('admin.transaksi.pembayaran.create', compact('pemesanans'));
     }
 
@@ -91,69 +94,6 @@ class PembayaranController extends Controller
             'tanggal_pembayaran' => $request->tanggal_pembayaran,
             'status_pembayaran' => $request->status_pembayaran,
         ]);
-
-        // $oldStatus = $pembayaran->status_pembayaran;
-        // $pembayaran->update($request->all());
-
-        // if (($request->status_pembayaran === 'Dikonfirmasi' || $request->status_pembayaran === 'Selesai') && $oldStatus === 'Menunggu') {
-
-        //     $pemesanan = Pemesanan::with(['user', 'details.produk'])->find($pembayaran->pemesanan_id);
-
-        //     if (!$pemesanan || !$pemesanan->user) {
-        //         Log::error("Data pemesanan/user tidak ditemukan untuk pembayaran ID: {$pembayaran->id}");
-        //         return redirect()->route('admin.transaksi.pembayaran.index')->with('warning', 'Pembayaran diperbarui, tapi data user untuk notifikasi tidak lengkap.');
-        //     }
-
-        //     $user = $pemesanan->user;
-
-        //     // ===================================
-        //     // == KIRIM NOTIFIKASI EMAIL ==
-        //     // ===================================
-        //     try {
-        //         // 3. Kirim email ke alamat email user
-        //         Mail::to($user->email)->send(new PembayaranDikonfirmasiMail($pembayaran));
-        //     } catch (\Exception $e) {
-        //         Log::error("Gagal kirim notifikasi EMAIL ke {$user->email}: " . $e->getMessage());
-        //     }
-
-
-        //     // ===================================
-        //     // == KIRIM NOTIFIKASI WHATSAPP (FONNTE) ==
-        //     // ===================================
-        //     $originalTargetNumber = $user->no_hp;
-        //     if ($originalTargetNumber) {
-        //         $cleanedNumber = preg_replace('/[^0-9]/', '', $originalTargetNumber);
-        //         $targetFormatted = null;
-
-        //         if (substr($cleanedNumber, 0, 2) === '62') {
-        //             $targetFormatted = $cleanedNumber;
-        //         } elseif (substr($cleanedNumber, 0, 1) === '0') {
-        //             $targetFormatted = '62' . substr($cleanedNumber, 1);
-        //         }
-
-        //         if ($targetFormatted) {
-        //             // ... (logika pesan Fonnte Anda tetap di sini) ...
-        //             $message  = "Halo {$user->name},\n\n";
-        //             $message .= "Pembayaran untuk pesanan Anda dengan nomor *#{$pemesanan->kode_pemesanan}* telah kami *KONFIRMASI*.\n\n";
-        //             $message .= "Detail Pesanan:\n";
-
-        //             foreach ($pemesanan->details as $detail) {
-        //                 $message .= "- {$detail->produk->nama} (x{$detail->jumlah})\n";
-        //             }
-
-        //             $message .= "\nTotal Pembayaran: *Rp " . number_format($pembayaran->jumlah_bayar, 0, ',', '.') . "*\n\n";
-        //             $message .= "Pesanan Anda akan segera kami proses. Terima kasih!";
-
-        //             $params = ['target' => $targetFormatted, 'message' => $message];
-
-        //             try {
-        //                 $this->fonnte->sendAdvancedMessage($params);
-        //             } catch (\Exception $e) {
-        //                 Log::error("Exception saat kirim notifikasi Fonnte: " . $e->getMessage());
-        //             }
-        //         }
-        //     }
-        // }
 
         return redirect()->route('admin.transaksi.pembayaran.index')->with('success', 'Pembayaran berhasil diperbarui.');
     }

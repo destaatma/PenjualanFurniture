@@ -29,33 +29,29 @@ class PemesananController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_id' => 'required|exists:users,id',
+            'input_type' => 'required|in:manual,registered',
             'total_harga' => 'required|integer',
             'tanggal_pemesanan' => 'required|date_format:Y-m-d\TH:i',
             'status_pemesanan' => 'required|string',
         ]);
 
-        // Cek input berdasarkan jenis pelanggan
         if ($request->input_type === 'manual') {
-            // Validasi tambahan untuk input manual
             $request->validate([
                 'manual_nama' => 'required|string|max:255',
                 'manual_email' => 'nullable|email',
                 'manual_telepon' => 'nullable|string|max:20',
             ]);
 
-            // Simpan user dummy (atau logika lain seperti tidak menyimpan user sama sekali)
             $user = User::create([
                 'nama' => $request->manual_nama,
                 'email' => $request->manual_email ?? 'guest_' . time() . '@example.com',
                 'telepon' => $request->manual_telepon ?? '-',
-                'password' => bcrypt('defaultpassword'), // password default, bisa dibuat acak
-                'role' => 'pelanggan', // sesuaikan dengan sistemmu
+                'password' => bcrypt('defaultpassword'),
+                'role' => 'pelanggan',
             ]);
 
             $userId = $user->id;
         } else {
-            // Validasi untuk user terdaftar
             $request->validate([
                 'user_id' => 'required|exists:users,id',
             ]);
@@ -63,7 +59,6 @@ class PemesananController extends Controller
             $userId = $request->user_id;
         }
 
-        // Simpan pemesanan
         Pemesanan::create([
             'user_id' => $userId,
             'total_harga' => $request->total_harga,
@@ -71,11 +66,9 @@ class PemesananController extends Controller
             'status_pemesanan' => $request->status_pemesanan,
         ]);
 
-
-
-        return redirect()->route('admin.transaksi.pemesanan.index')->with('success', 'Pemesanan berhasil ditambahkan.');
+        return redirect()->route('admin.transaksi.pemesanan.index')
+            ->with('success', 'Pemesanan berhasil ditambahkan.');
     }
-
     public function edit(Pemesanan $pemesanan)
     {
         $users = User::all();
@@ -98,55 +91,6 @@ class PemesananController extends Controller
             'status_pemesanan' => $request->status_pemesanan,
         ]);
 
-        if ($request->status_pemesanan === 'selesai') {
-            $user = $pemesanan->user;
-
-            $originalTargetNumber = $user->telepon ?? null;
-
-            if ($originalTargetNumber) {
-                $cleanedNumber = preg_replace('/[^0-9]/', '', $originalTargetNumber);
-                $targetFormatted = null;
-
-                if (substr($cleanedNumber, 0, 2) === '62') {
-                    $targetFormatted = $cleanedNumber;
-                } elseif (substr($cleanedNumber, 0, 1) === '0') {
-                    $targetFormatted = '62' . substr($cleanedNumber, 1);
-                } elseif (substr($cleanedNumber, 0, 1) === '8') {
-                    $targetFormatted = '62' . $cleanedNumber;
-                }
-
-                if ($targetFormatted) {
-                    $message = "Halo {$user->nama},\n\n";
-                    $message .= "Pesanan Anda dengan total Rp " . number_format($pemesanan->total_harga, 0, ',', '.') . " telah *SELESAI* diproses.\n";
-                    $message .= "Tanggal Pemesanan: " . \Carbon\Carbon::parse($pemesanan->tanggal_pemesanan)->translatedFormat('d F Y H:i') . "\n";
-                    $message .= "\nTerima kasih telah berbelanja bersama kami.";
-
-                    $params = [
-                        'target' => $targetFormatted,
-                        'message' => $message,
-                    ];
-
-                    try {
-                        $response = app('App\Services\FonnteService')->sendAdvancedMessage($params);
-
-                        if (!isset($response['status']) || $response['status'] !== true) {
-                            Log::error("Gagal kirim WA ke {$targetFormatted}. Response: " . json_encode($response));
-                            return redirect()->route('admin.transaksi.pemesanan.index')
-                                ->with('warning', 'Pemesanan diperbarui, tapi gagal mengirim WA.');
-                        }
-                    } catch (\Exception $e) {
-                        Log::error("Exception Fonnte: {$e->getMessage()}", [
-                            'trace' => $e->getTraceAsString(),
-                            'params' => $params
-                        ]);
-                        return redirect()->route('admin.transaksi.pemesanan.index')
-                            ->with('warning', 'Pemesanan diperbarui, tapi terjadi kesalahan sistem saat kirim WA.');
-                    }
-                } else {
-                    Log::info("Nomor HP tidak valid untuk WA: {$originalTargetNumber}");
-                }
-            }
-        }
 
         return redirect()->route('admin.transaksi.pemesanan.index')->with('success', 'Pemesanan berhasil diperbarui.');
     }

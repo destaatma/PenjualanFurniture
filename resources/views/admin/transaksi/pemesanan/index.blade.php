@@ -10,11 +10,11 @@
                 <li class="breadcrumb-item active">Pemesanan</li>
             </ol>
 
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <a href="{{ route('admin.transaksi.pemesanan.create') }}" class="btn btn-warning">
-                    <i class="fas fa-plus-circle me-1"></i> Pemesanan by Order
+                    <i class="fas fa-plus-circle me-1"></i> Pemesanan
                 </a>
-            </div>
+            </div> --}}
 
             <div class="card mb-4">
                 <div class="card-header bg-primary text-white">

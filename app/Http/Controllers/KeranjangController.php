@@ -11,45 +11,8 @@ class KeranjangController extends Controller
     /**
      * Tambah produk ke keranjang
      */
-    // public function tambahKeKeranjang(Request $request, $id)
-    // {
-    //     if (!Auth::check()) {
-    //         return redirect('/login')->with('error', 'Silakan login terlebih dahulu untuk menambahkan produk ke keranjang.');
-    //     }
-    //     $produk = Produk::findOrFail($id);
-
-    //     // Ambil keranjang dari session
-    //     $keranjang = session()->get('keranjang', []);
-
-    //     // Cek apakah produk sudah ada di keranjang
-    //     if (isset($keranjang[$id])) {
-    //         // Jika produk sudah ada, tambahkan jumlahnya
-    //         $keranjang[$id]['jumlah']++;
-    //     } else {
-    //         // Jika produk belum ada, tambahkan ke keranjang
-    //         $keranjang[$id] = [
-    //             'nama' => $produk->nama,
-    //             'harga' => $produk->harga,
-    //             'jumlah' => 1,
-    //             'gambar' => $produk->gambar, // Jika Anda ingin menyimpan gambar
-    //         ];
-    //     }
-
-    //     // Simpan kembali keranjang ke session
-    //     session()->put('keranjang', $keranjang);
-
-    //     return redirect('/keranjang')->with('success', 'Produk berhasil ditambahkan ke keranjang!');
-    // }
     public function tambahKeKeranjang(Request $request, $id)
     {
-        // if (!Auth::check()) {
-        //     $redirectTo = $request->input('redirect_to', url()->previous());
-
-        //     // Simpan URL tujuan ke session
-        //     session(['url.intended' => $redirectTo]);
-
-        //     return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
-        // }
         if (!Auth::check()) {
             $redirectTo = $request->input('redirect_to', url()->previous());
             session(['url.intended' => $redirectTo]);

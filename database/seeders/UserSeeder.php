@@ -15,24 +15,17 @@ class UserSeeder extends Seeder
     {
         User::create([
             'role_id' => 1,
-            'nama' => 'desta',
+            'nama' => 'Desta Atma Herdinnata',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('admin'),
-            'telpon' => '1234566667',
-        ]);
-        User::create([
-            'role_id' => 2,
-            'nama' => 'DestaAtma',
-            'email' => 'destaatma@gmail.com',
             'password' => bcrypt('desta1234'),
-            'telpon' => '1234566667',
+            'telpon' => '',
         ]);
         User::create([
             'role_id' => 2,
-            'nama' => 'desta',
-            'email' => 'operator@gmail.com',
-            'password' => bcrypt('admin'),
-            'telpon' => '1234566667',
+            'nama' => 'Desta Atma',
+            'email' => 'destaatma863@gmail.com',
+            'password' => bcrypt('desta1234'),
+            'telpon' => '087860352236',
         ]);
     }
 }

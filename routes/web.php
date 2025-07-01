@@ -61,10 +61,14 @@ Route::post('logout', [AuthController::class, 'logout'])
 Auth::routes(['verify' => true]);
 
 //route user
+// Route::get('/', function () {
+//     return view('welcome');
+// });->middleware(['auth'])->name('welcome');
+
 Route::get('/', function () {
     return view('welcome');
-});
-//->middleware(['auth', 'verified'])->name('welcome');
+})->name('welcome');
+// ->middleware(['auth', 'verified'])->name('welcome');
 
 
 Route::middleware(['auth', 'verified', 'isAdmin'])->group(function () {

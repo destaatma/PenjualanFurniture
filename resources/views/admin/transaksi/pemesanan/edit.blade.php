@@ -5,13 +5,14 @@
         <div class="container-fluid px-4">
             <h1 class="mt-4 text-muted">Edit Pemesanan</h1>
             <ol class="breadcrumb mb-4 bg-light p-3 rounded">
-                <li class="breadcrumb-item"><a href="{{ route('admin.transaksi.pemesanan.index') }}" class="text-info">Data
+                <li class="breadcrumb-item"><a href="{{ route('admin.transaksi.pemesanan.index') }}"
+                        class="text-primary">Data
                         Pemesanan</a></li>
                 <li class="breadcrumb-item active">Edit Pemesanan</li>
             </ol>
 
             <div class="card mb-4">
-                <div class="card-header bg-info text-dark">
+                <div class="card-header bg-primary text-dark">
                     <i class="fas fa-edit me-1"></i> Edit Pemesanan
                 </div>
                 <div class="card-body">

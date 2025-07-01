@@ -19,10 +19,6 @@ class Pemesanan extends Model
     {
         return $this->hasMany(DetailPemesanan::class);
     }
-    // public function detail_Pemesanan()
-    // {
-    //     return $this->hasMany(DetailPemesanan::class);
-    // }
 
     public function pembayaran()
     {

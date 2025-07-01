@@ -7,13 +7,25 @@ use App\Models\Produk;
 use App\Models\Pemesanan;
 use App\Models\Pembayaran;
 use App\Models\DetailPemesanan;
+use App\Services\FonnteService;
 use Illuminate\Support\Facades\Auth;
 use Midtrans\Snap;
 use Midtrans\Config;
 use Midtrans\Notification;
+use Carbon\Carbon; // <-- TAMBAHKAN
+use Illuminate\Support\Facades\Log; // <-- TAMBAHKAN
+// use App\Services\Fonnte; // <-- Sesuaikan dengan lokasi Fonnte Service Anda
 
 class PaymentController extends Controller
 {
+    protected $fonnte;
+
+    public function __construct()
+    {
+        // Inisialisasi Fonnte di sini
+        $this->fonnte = new FonnteService();
+    }
+
     public function showForm()
     {
         $keranjangs = session()->get('keranjang', []);
@@ -66,6 +78,11 @@ class PaymentController extends Controller
                 'harga_subtotal' => $produk['total'],
             ]);
         }
+
+        // === Panggil Notifikasi Fonnte ===
+        $this->_sendOrderNotification($pemesanan);
+        // ===================================
+
         // dd(config('services.midtrans.server_key'));
         // Konfigurasi Midtrans
         Config::$serverKey = config('services.midtrans.server_key');
@@ -112,33 +129,61 @@ class PaymentController extends Controller
 
     public function handleNotification(Request $request)
     {
+        // Konfigurasi server key Midtrans
+        Config::$serverKey = config('services.midtrans.server_key');
+        Config::$isProduction = config('services.midtrans.is_production', false);
+
         try {
             $notif = new Notification();
-            $orderId = $notif->order_id; // berisi ID dari pemesanan
+
             $transactionStatus = $notif->transaction_status;
+            $fraudStatus = $notif->fraud_status;
+            $orderIdMidtrans = $notif->order_id;
 
-            $pembayaran = Pembayaran::where('pemesanan_id', $orderId)->first();
+            // --- PERBAIKAN PENTING: Mengurai ID Pemesanan dari Order ID Midtrans ---
+            // Asumsi format: 'ORDER-{id_pemesanan}-{uniqid}'
+            $orderParts = explode('-', $orderIdMidtrans);
+            if (count($orderParts) < 2) {
+                Log::error('Format order_id Midtrans tidak valid: ' . $orderIdMidtrans);
+                return response()->json(['message' => 'Format order_id tidak valid'], 400);
+            }
+            $pemesananId = $orderParts[1];
+            // --------------------------------------------------------------------
 
-            if (!$pembayaran) {
-                return response()->json(['message' => 'Pembayaran tidak ditemukan.'], 404);
+            $pemesanan = Pemesanan::find($pemesananId);
+
+            if (!$pemesanan) {
+                return response()->json(['message' => 'Pemesanan tidak ditemukan.'], 404);
             }
 
-            if ($transactionStatus === 'settlement') {
-                $pembayaran->update([
-                    'status_pembayaran' => 'Selesai',
-                    'tanggal_pembayaran' => now()
-                ]);
-                $pembayaran->pemesanan()->update([
-                    'status_pemesanan' => 'Selesai'
-                ]);
+            // Hindari proses ganda
+            if ($pemesanan->status_pemesanan === 'Selesai') {
+                return response()->json(['message' => 'Pembayaran sudah diproses.']);
+            }
+
+            if ($transactionStatus == 'capture') {
+                if ($fraudStatus == 'accept') {
+                    $transactionStatus = 'settlement';
+                }
+            }
+
+            if ($transactionStatus == 'settlement') {
+                // Update status pemesanan menjadi Selesai
+                $pemesanan->status_pemesanan = 'Selesai';
+                $pemesanan->save();
+
+                // Update juga status di tabel pembayaran jika ada
+                $pemesanan->pembayaran()->update(['status_pembayaran' => 'Selesai']);
+
+                // --- PANGGIL FUNGSI NOTIFIKASI PEMBAYARAN SUKSES ---
+                $this->_sendPaymentSuccessNotification($pemesanan);
             } elseif (in_array($transactionStatus, ['cancel', 'deny', 'expire'])) {
-                $pembayaran->update(['status_pembayaran' => 'Gagal']);
-                $pembayaran->pemesanan()->update(['status_pemesanan' => 'Gagal']);
-            } elseif ($transactionStatus === 'pending') {
-                $pembayaran->update(['status_pembayaran' => 'Menunggu']);
+                $pemesanan->status_pemesanan = 'Gagal';
+                $pemesanan->save();
+                $pemesanan->pembayaran()->update(['status_pembayaran' => 'Gagal']);
             }
 
-            return response()->json(['message' => 'Notifikasi diproses']);
+            return response()->json(['message' => 'Notifikasi berhasil diproses.']);
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Gagal memproses notifikasi.',
@@ -168,7 +213,7 @@ class PaymentController extends Controller
         // Buat pemesanan
         $pemesanan = Pemesanan::create([
             'user_id' => $user->id,
-            'status_pemesanan' => 'Menunggu Pembayaran',
+            'status_pemesanan' => 'selesai',
             'total_harga' => $totalHarga,
             'tanggal_pemesanan' => now()
         ]);
@@ -181,6 +226,10 @@ class PaymentController extends Controller
             'harga' => $produk->harga,
             'harga_subtotal' => $totalHarga
         ]);
+
+        // === Panggil Notifikasi Fonnte ===
+        $this->_sendOrderNotification($pemesanan);
+        // ===================================
 
         // Konfigurasi Midtrans
         Config::$serverKey = config('services.midtrans.server_key');
@@ -217,7 +266,7 @@ class PaymentController extends Controller
                 'snap_token' => $snapToken,
                 'jumlah_bayar' => $totalHarga,
                 'tanggal_pembayaran' => now(),
-                'status_pembayaran' => 'Menunggu',
+                'status_pembayaran' => 'selesai',
             ]);
 
             return view('payment', [
@@ -241,5 +290,75 @@ class PaymentController extends Controller
             ->first();
 
         return view('success', compact('pemesananTerakhir'));
+    }
+    /**
+     * Private function untuk mengirim notifikasi pesanan baru.
+     *
+     * @param \App\Models\Pemesanan $pemesanan
+     * @return void
+     */
+    private function _sendOrderNotification(Pemesanan $pemesanan)
+    {
+        try {
+            $customer = $pemesanan->user; // Ambil data user dari relasi
+
+            if ($customer) {
+                // --- Notifikasi untuk Admin (Nomor Tetap) ---
+                $adminNumber = '6285737427393'; // GANTI DENGAN NOMOR WA ADMIN ANDA
+                $messageForAdmin = "🔔 *Pemesanan Baru Diterima*\n\n";
+                $messageForAdmin .= "Halo Admin, ada pesanan baru yang masuk:\n\n";
+                $messageForAdmin .= "👤 *Nama Pelanggan:* {$customer->nama}\n";
+                $messageForAdmin .= "📞 *No Telepon:* " . ($customer->telpon ?? '-') . "\n\n";
+                $messageForAdmin .= "--- *Detail Pesanan* ---\n";
+                $messageForAdmin .= "📅 *Tanggal Pesan:* " . Carbon::parse($pemesanan->tanggal_pemesanan)->isoFormat('dddd, D MMMM YYYY HH:mm') . "\n";
+                $messageForAdmin .= "💰 *Total Harga:* Rp " . number_format($pemesanan->total_harga, 0, ',', '.') . "\n";
+                $messageForAdmin .= "🚦 *Status Awal:* {$pemesanan->status_pemesanan}\n\n";
+                $messageForAdmin .= "Mohon segera diproses di panel admin. Terima kasih.";
+
+                // Ganti baris di bawah dengan implementasi Fonnte Anda
+
+                $this->fonnte->sendAdvancedMessage([
+                    'target' => $adminNumber,
+                    'message' => $messageForAdmin,
+                ]);
+
+
+                // --- Notifikasi Konfirmasi untuk Customer (Nomor Dinamis) ---
+
+                // PERUBAHAN DI SINI: Memeriksa kolom 'telpon' langsung pada objek customer
+                if ($customer->telpon) {
+
+                    // Mengambil nomor telepon langsung dari customer, bukan dari profile
+                    $originalUserNumber = $customer->telpon;
+
+                    $cleanedUserNumber = preg_replace('/[^0-9]/', '', $originalUserNumber);
+                    $userNumberFormatted = null;
+
+                    if (str_starts_with($cleanedUserNumber, '62')) {
+                        $userNumberFormatted = $cleanedUserNumber;
+                    } elseif (str_starts_with($cleanedUserNumber, '0')) {
+                        $userNumberFormatted = '62' . substr($cleanedUserNumber, 1);
+                    }
+
+                    if ($userNumberFormatted) {
+                        $messageForUser = "✅ *Pemesanan Dikonfirmasi*\n\n";
+                        $messageForUser .= "Halo *{$customer->nama}*,\n\n";
+                        $messageForUser .= "Terima kasih telah melakukan pemesanan. Pesanan dan Pembayaran Anda telah kami terima dan akan segera kami proses. Berikut detailnya:\n\n";
+                        $messageForUser .= "📅 *Tanggal Pesan:* " . Carbon::parse($pemesanan->tanggal_pemesanan)->locale('id')->isoFormat('dddd, D MMMM YYYY HH:mm') . "\n";
+                        $messageForUser .= "💰 *Total Dibayar:* Rp " . number_format($pemesanan->total_harga, 0, ',', '.') . "\n";
+                        $messageForUser .= "🚦 *Status Saat Ini:* {$pemesanan->status_pemesanan}\n\n";
+                        $messageForUser .= "Terima kasih telah berbelanja di OMAH Mebel!";
+                        $messageForUser .= "Kami akan segera memberikan update selanjutnya. Mohon simpan pesan ini sebagai bukti pemesanan Anda.";
+
+                        $this->fonnte->sendAdvancedMessage([
+                            'target' => $userNumberFormatted,
+                            'message' => $messageForUser,
+                        ]);
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+            Log::error('Gagal saat mengirim notifikasi WA (pemesanan baru): ' . $e->getMessage());
+        }
     }
 }

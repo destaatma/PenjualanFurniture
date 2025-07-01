@@ -88,7 +88,7 @@
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDropdown">
 
                             {{-- Cek peran pengguna. Tampilkan menu yang sesuai. --}}
-                            @if (Auth::user()->role == 'admin')
+                            @if (Auth::user()->role_id == 1)
 
                                 {{-- =================== --}}
                                 {{-- Menu Khusus ADMIN --}}

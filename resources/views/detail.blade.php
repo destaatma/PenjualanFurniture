@@ -70,9 +70,13 @@
                     {{-- Tampilkan tombol WhatsApp normal jika sudah login --}}
                     @php
                         $nomorWhatsApp = '6285737427393';
-                        $pesanWhatsApp = "Halo, saya tertarik dengan produk: " . $produk->nama . " (SKU: RM-ID " . $produk->id . ").\n\n" .
-                            "Mohon informasinya mengenai detail produk, harga, dan ketersediaannya.\n\n" .
-                            "Ditunggu kabarnya, terima kasih.";
+                        $pesanWhatsApp = "🔔 Permintaan Informasi Produk\n\n";
+                        $pesanWhatsApp .= "Halo Admin, saya tertarik dengan produk berikut:\n\n";
+                        $pesanWhatsApp .= "🛒 Nama Produk: {$produk->nama}\n";
+                        $pesanWhatsApp .= "🆔 SKU: RM-ID {$produk->id}\n\n";
+                        $pesanWhatsApp .= "Mohon informasinya mengenai detail produk, harga, dan ketersediaannya.\n\n";
+                        $pesanWhatsApp .= "Ditunggu kabarnya, terima kasih.";
+
                         $urlWhatsApp = "https://wa.me/" . $nomorWhatsApp . "?text=" . rawurlencode($pesanWhatsApp);
                     @endphp
                     <a href="{{ $urlWhatsApp }}" target="_blank" class="btn btn-lg w-100 text-white"

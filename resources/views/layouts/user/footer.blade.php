@@ -25,8 +25,8 @@
             <div class="col-md-6 col-lg-3">
                 <h5 class="fw-bold mb-3">Hubungi Kami</h5>
                 <ul class="list-unstyled text-muted small">
-                    <li class="mb-2"><i class="fas fa-phone me-2"></i>0878 6035 2236</li>
-                    <li><i class="fas fa-envelope me-2"></i>info@omahmebel.com</li>
+                    <li class="mb-2"><i class="fas fa-phone me-2"></i>0857 3742 7393</li>
+                    <li><i class="fas fa-envelope me-2"></i>info@omahmebel.my.id</li>
                 </ul>
             </div>
 
