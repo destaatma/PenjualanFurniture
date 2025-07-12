@@ -15,6 +15,9 @@
                     <i class="fas fa-plus-circle me-1"></i> Pemesanan
                 </a>
             </div> --}}
+            <a href="{{ route('pemesanan.export') }}" class="btn btn-success mb-3 col-mb-3">
+                <i class="fas fa-file-excel"></i> Export excel
+            </a>
 
             <div class="card mb-4">
                 <div class="card-header bg-primary text-white">

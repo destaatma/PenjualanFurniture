@@ -13,9 +13,9 @@ class RiwayatPemesananController extends Controller
      */
     public function index()
     {
-        // Ambil semua pesanan milik user yang sedang login
-        // Urutkan dari yang terbaru
-        $pesanans = Pemesanan::with('pembayaran')
+        // PERBAIKAN: Mengganti 'detailPesanan' menjadi 'detailPemesanan' agar sesuai dengan nama relasi
+        // Ini akan mengambil semua data yang dibutuhkan dalam satu query efisien.
+        $pesanans = Pemesanan::with(['pembayaran', 'pengiriman', 'detailPemesanan.produk'])
             ->where('user_id', Auth::id())
             ->latest()
             ->paginate(10); // Gunakan paginate untuk halaman yang lebih rapi
@@ -29,8 +29,8 @@ class RiwayatPemesananController extends Controller
      */
     public function show($id)
     {
-        // Cari pesanan berdasarkan ID, dan pastikan relasi 'detailPemesanan' beserta 'produk' di-load
-        $pesanan = Pemesanan::with('detailPemesanan.produk')->findOrFail($id);
+        // PERBAIKAN: Tambahkan juga relasi 'pengiriman' dan 'pembayaran' di sini
+        $pesanan = Pemesanan::with(['detailPemesanan.produk', 'pembayaran', 'pengiriman'])->findOrFail($id);
 
         // Keamanan: Pastikan pesanan ini milik user yang sedang login
         if ($pesanan->user_id !== Auth::id()) {

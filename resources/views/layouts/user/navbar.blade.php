@@ -137,8 +137,19 @@
                 <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-4 d-flex align-items-center gap-3">
                     <!-- Keranjang -->
                     <li>
-                        <a class="nav-link" href="/keranjang" title="Keranjang Belanja">
+                        {{-- 1. Tambahkan class 'position-relative' pada link agar badge bisa diposisikan --}}
+                        <a class="nav-link position-relative" href="/keranjang" title="Keranjang Belanja">
                             <img src="{{ url('/beranda/assets/images/cart.svg') }}" alt="Cart">
+
+                            {{-- 2. Logika untuk menampilkan badge notifikasi --}}
+                            @if(session('keranjang') && count(session('keranjang')) > 0)
+                                <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{-- Tampilkan jumlah item dalam keranjang --}}
+                                    {{ count(session('keranjang')) }}
+                                    <span class="visually-hidden">items in cart</span>
+                                </span>
+                            @endif
                         </a>
                     </li>
                 </ul>

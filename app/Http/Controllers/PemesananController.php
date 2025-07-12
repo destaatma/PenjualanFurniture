@@ -14,7 +14,7 @@ class PemesananController extends Controller
     public function index()
     {
         // Ambil semua pemesanan dengan relasi user dan detail_pemesanan
-        $pemesanans = Pemesanan::with(['user', 'detailPemesanan'])->get();
+        $pemesanans = Pemesanan::with(['user', 'detailPemesanan'])->latest()->get();
         return view('admin.transaksi.pemesanan.index', compact('pemesanans'));
     }
 
@@ -100,5 +100,10 @@ class PemesananController extends Controller
         $pemesanan->delete();
 
         return redirect()->route('admin.transaksi.pemesanan.index')->with('success', 'Pemesanan berhasil dihapus.');
+    }
+
+    public  function Export()
+    {
+        return \Maatwebsite\Excel\Facades\Excel::download(new \App\Exports\PemesananExport, 'pemesanan.xlsx');
     }
 }

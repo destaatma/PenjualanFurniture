@@ -11,7 +11,7 @@
             </ol>
 
             <a href="{{ route('admin.transaksi.pengiriman.create') }}" class="btn btn-warning mb-3 col-mb-3">
-                <i class="fas fa-plus-circle"></i> Tambah Produk
+                <i class="fas fa-plus-circle"></i> Tambah
             </a>
             <div class="card mb-4">
                 <div class="card-header bg-primary">

@@ -180,6 +180,7 @@ Route::get('/ulasans/{id}', [FronandController::class, 'show'])->name('ulasans.s
 Route::get('/keranjang', [KeranjangController::class, 'keranjang']);
 Route::post('/keranjang/tambah/{id}', [KeranjangController::class, 'tambahKeKeranjang'])->name('keranjang.tambah');
 Route::post('/keranjang/hapus/{id}', [KeranjangController::class, 'hapus'])->name('keranjang.hapus');
+Route::post('/keranjang/update', [App\Http\Controllers\KeranjangController::class, 'update'])->name('keranjang.update');
 
 //Route::post('/bayar-langsung', [PaymentController::class, 'directBuy'])->name('payment.directBuy');
 Route::post('/bayar-langsung', [PaymentController::class, 'directBuy'])->name('bayar-langsung');
@@ -208,3 +209,4 @@ Route::get('/pesanan-saya', [RiwayatPemesananController::class, 'index'])->name(
 Route::get('/pesanan-saya/{id}', [RiwayatPemesananController::class, 'show'])->name('detailpesanan');
 
 Route::get('pembayaran/export', [PembayaranController::class, 'export'])->name('pembayaran.export');
+Route::get('pemesanan/export', [PemesananController::class, 'export'])->name('pemesanan.export');

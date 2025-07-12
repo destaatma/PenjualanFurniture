@@ -10,9 +10,9 @@
                 <li class="breadcrumb-item active">Pembayaran</li>
             </ol>
 
-            <a href="{{ route('admin.transaksi.pembayaran.create') }}" class="btn btn-warning mb-3 col-mb-3">
+            {{-- <a href="{{ route('admin.transaksi.pembayaran.create') }}" class="btn btn-warning mb-3 col-mb-3">
                 <i class="fas fa-plus-circle"></i> Tambah
-            </a>
+            </a> --}}
             <a href="{{ route('pembayaran.export') }}" class="btn btn-success mb-3 col-mb-3">
                 <i class="fas fa-file-excel"></i> Export excel
             </a>

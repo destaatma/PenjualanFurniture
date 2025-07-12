@@ -104,7 +104,7 @@
         <!-- Footer -->
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            <span>RUMAH Mebel</span>
+            <span>Omah Mebel</span>
         </div>
     </nav>
 </div>

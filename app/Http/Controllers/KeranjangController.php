@@ -64,4 +64,36 @@ class KeranjangController extends Controller
         }
         return redirect('/keranjang')->with('error', 'Produk tidak ditemukan di keranjang.');
     }
+
+    public function update(Request $request)
+    {
+        // Validasi input dari request
+        $request->validate([
+            'id' => 'required',
+            'jumlah' => 'required|numeric|min:1',
+        ]);
+
+        $keranjang = session()->get('keranjang', []);
+        $id = $request->id;
+        $jumlah = $request->jumlah;
+
+        // Cek apakah produk ada di keranjang
+        if (isset($keranjang[$id])) {
+            // Update jumlahnya
+            $keranjang[$id]['jumlah'] = $jumlah;
+
+            // Simpan kembali ke session
+            session()->put('keranjang', $keranjang);
+
+            // Hitung total item untuk update badge
+            $totalItems = count(session('keranjang'));
+
+            return response()->json([
+                'success' => true,
+                'totalItems' => $totalItems
+            ]);
+        }
+
+        return response()->json(['success' => false], 404);
+    }
 }
