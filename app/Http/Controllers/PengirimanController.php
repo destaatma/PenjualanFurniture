@@ -63,6 +63,7 @@ class PengirimanController extends Controller
             'tanggal_pengiriman' => 'required|date_format:Y-m-d\TH:i',
             'status_pengiriman' => 'required|string',
         ]);
+        $pengiriman->update($request->all());
 
         return redirect()->route('admin.transaksi.pengiriman.index')
             ->with('success', 'Pengiriman berhasil diperbarui.');

@@ -31,4 +31,8 @@ class Produk extends Model
     {
         return $this->hasMany(DetailPemesanan::class);
     }
+    public function ulasanSudahDibuatOleh(int $userId): bool
+    {
+        return $this->ulasans()->where('user_id', $userId)->exists();
+    }
 }

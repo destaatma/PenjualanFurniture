@@ -185,12 +185,11 @@
 
 
     {{-- FORM ULASAN PRODUK --}}
-    <div>
+    {{-- <div>
         <div class="col-12 col-lg-6 mt-5 mt-lg-0">
             <div class="border rounded-3 p-4">
                 <h3 class="fw-bold mb-4">Tulis Ulasan Anda</h3>
 
-                {{-- Tampilkan notifikasi berhasil atau error --}}
                 @if(session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
@@ -208,7 +207,7 @@
                 @auth
                     <form action="{{ route('ulasans.store') }}" method="POST" class="mb-4 border border-1 rounded-3 p-4">
                         @csrf {{-- CSRF token is here --}}
-                        <input type="hidden" name="produk_id" value="{{ $produk->id }}">
+                        {{-- <input type="hidden" name="produk_id" value="{{ $produk->id }}">
 
                         <div class="mb-3">
                             <label class="form-label d-block fw-bold">Beri Rating</label>
@@ -239,7 +238,7 @@
                 @endauth
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 
 {{-- Script untuk menampilkan/menyembunyikan ulasan --}}

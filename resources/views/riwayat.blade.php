@@ -9,6 +9,20 @@
                     <p class="text-muted">Lacak semua transaksi dan status pesanan Anda di sini.</p>
                 </div>
 
+                @if (session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="card border-0 shadow-sm">
                     <div class="card-body p-0">
                         <div class="table-responsive">
@@ -25,63 +39,97 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- PERBAIKAN: Mengganti @forelse dengan @if/@foreach agar lebih mudah di-parsing
-                                    formatter --}}
-                                    @if ($pesanans->isNotEmpty())
-                                        @foreach ($pesanans as $pesanan)
-                                            <tr>
-                                                <td><strong>#{{ $pesanan->id }}</strong></td>
-                                                <td>{{ $pesanan->created_at->format('d M Y') }}</td>
-                                                <td>
-                                                    @foreach ($pesanan->detailPemesanan as $detail)
-                                                        <div>• {{ $detail->produk->nama }} <span
-                                                                class="text-muted small">({{ $detail->jumlah_produk }}x)</span></div>
-                                                    @endforeach
-                                                </td>
-                                                <td class="text-end">Rp {{ number_format($pesanan->total_harga, 0, ',', '.') }}</td>
-                                                <td class="text-center">
-                                                    @php
-                                                        $status = optional($pesanan->pembayaran->first())->status_pembayaran;
-                                                    @endphp
-                                                    @if ($status === 'Selesai')
-                                                        <span class="badge bg-success">Dibayar</span>
-                                                    @elseif ($status === 'Menunggu')
-                                                        <span class="badge bg-warning text-dark">Menunggu Pembayaran</span>
-                                                    @elseif ($status === 'Dikonfirmasi')
-                                                        <span class="badge bg-primary text-white">Dikonfirmasi</span>
-                                                    @else
-                                                        <span class="badge bg-secondary">Belum Ada Pembayaran</span>
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">
-                                                    @php
-                                                        // PERBAIKAN: Menggunakan ->first() karena relasi 'pengiriman' mengembalikan collection.
-                                                        // Ini akan mengambil status dari data pengiriman pertama yang terkait.
-                                                        $status_kirim = optional($pesanan->pengiriman->first())->status_pengiriman;
-                                                    @endphp
-                                                    @if ($status_kirim == 'Diproses')
-                                                        <span class="badge bg-info text-dark">Diproses</span>
-                                                    @elseif ($status_kirim == 'Dikirim')
-                                                        <span class="badge bg-success">Dikirim</span>
-                                                    @elseif ($status_kirim == 'Selesai')
-                                                        <span class="badge bg-success">Selesai</span>
-                                                    @else
-                                                        <span class="badge bg-secondary">Belum Diproses</span>
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">
+                                    @forelse ($pesanans as $pesanan)
+                                        <tr>
+                                            <td><strong>#{{ $pesanan->id }}</strong></td>
+                                            <td>{{ $pesanan->created_at->format('d M Y') }}</td>
+                                            <td>
+                                                {{-- Sekarang hanya menampilkan daftar produk --}}
+                                                @foreach ($pesanan->detailPemesanan as $detail)
+                                                    <div>• {{ $detail->produk->nama }} <span
+                                                            class="text-muted small">({{ $detail->jumlah_produk }}x)</span></div>
+                                                @endforeach
+                                            </td>
+                                            <td class="text-end">Rp {{ number_format($pesanan->total_harga, 0, ',', '.') }}</td>
+                                            <td class="text-center">
+                                                @php
+                                                    $status_bayar = optional($pesanan->pembayaran->first())->status_pembayaran;
+                                                @endphp
+                                                @if ($status_bayar === 'Selesai')
+                                                    <span class="badge bg-success">Dibayar</span>
+                                                @elseif ($status_bayar === 'Menunggu')
+                                                    <span class="badge bg-warning text-dark">Menunggu</span>
+                                                @elseif ($status_bayar === 'Dikonfirmasi')
+                                                    <span class="badge bg-primary text-white">Dikonfirmasi</span>
+                                                @else
+                                                    <span class="badge bg-secondary">Belum Bayar</span>
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                @php
+                                                    // Variabel ini dibutuhkan juga di kolom Aksi, jadi tetap di sini
+                                                    $status_kirim = optional($pesanan->pengiriman->first())->status_pengiriman;
+                                                @endphp
+                                                @if ($status_kirim == 'Diproses')
+                                                    <span class="badge bg-info text-dark">Diproses</span>
+                                                @elseif ($status_kirim == 'Dikirim')
+                                                    <span class="badge bg-primary">Dikirim</span>
+                                                @elseif ($status_kirim == 'Selesai')
+                                                    <span class="badge bg-success">Selesai</span>
+                                                @else
+                                                    <span class="badge bg-secondary">Belum Diproses</span>
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                {{-- MODIFIKASI: Bungkus tombol dengan div flexbox --}}
+                                                <div class="d-flex justify-content-center align-items-center gap-1">
+
+                                                    {{-- Tombol Lihat Detail --}}
                                                     <a href="{{ route('detailpesanan', $pesanan->id) }}"
                                                         class="btn btn-sm btn-primary">Lihat Detail</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @else
+
+                                                    {{-- Tombol Tulis Ulasan --}}
+                                                    @if ($status_kirim == 'Selesai')
+                                                        {{-- Cek apakah ada produk yang belum diulas --}}
+                                                        @php
+                                                            $belumDiulas = $pesanan->detailPemesanan->some(function ($detail) {
+                                                                return !$detail->produk->ulasanSudahDibuatOleh(auth()->id());
+                                                            });
+                                                        @endphp
+
+                                                        @if ($belumDiulas)
+                                                            <div class="dropdown">
+                                                                <button class="btn btn-sm btn-outline-success dropdown-toggle"
+                                                                    type="button" id="dropdownUlasan-{{ $pesanan->id }}"
+                                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    Tulis Ulasan
+                                                                </button>
+                                                                <ul class="dropdown-menu"
+                                                                    aria-labelledby="dropdownUlasan-{{ $pesanan->id }}">
+                                                                    @foreach ($pesanan->detailPemesanan as $detail)
+                                                                        @if (!$detail->produk->ulasanSudahDibuatOleh(auth()->id()))
+                                                                            <li>
+                                                                                <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                                                    data-bs-target="#modalUlasan-{{ $detail->produk->id }}">
+                                                                                    {{ Str::limit($detail->produk->nama, 20) }}
+                                                                                </a>
+                                                                            </li>
+                                                                        @endif
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @empty
                                         <tr>
                                             <td colspan="7" class="text-center py-4">
                                                 <p class="mb-0">Anda belum memiliki riwayat pesanan.</p>
                                             </td>
                                         </tr>
-                                    @endif
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -90,49 +138,97 @@
 
                 {{-- Pagination Links --}}
                 <div class="mt-4 d-flex justify-content-center">
-                    {{-- Wrapper untuk styling pagination --}}
-                    <nav class="pagination-sm-custom">
-                        {{ $pesanans->onEachSide(1)->links() }}
-                    </nav>
+                    {{ $pesanans->onEachSide(1)->links() }}
                 </div>
             </div>
         </div>
     </div>
+
+
+    {{-- Definisi Modal untuk Form Ulasan --}}
+    @foreach ($pesanans as $pesanan)
+        @foreach ($pesanan->detailPemesanan as $detail)
+            @php
+                $status_kirim_modal = optional($pesanan->pengiriman->first())->status_pengiriman;
+            @endphp
+            @if ($status_kirim_modal == 'Selesai' && !$detail->produk->ulasanSudahDibuatOleh(auth()->id()))
+                <div class="modal fade" id="modalUlasan-{{ $detail->produk->id }}" tabindex="-1"
+                    aria-labelledby="modalUlasanLabel-{{ $detail->produk->id }}" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title fw-bold" id="modalUlasanLabel-{{ $detail->produk->id }}">Ulasan untuk:
+                                    {{ $detail->produk->nama }}
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('ulasans.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="produk_id" value="{{ $detail->produk->id }}">
+                                    <div class="mb-3">
+                                        <label class="form-label d-block fw-bold">Beri Rating</label>
+                                        <div class="star-rating">
+                                            @for ($i = 5; $i >= 1; $i--)
+                                                <input type="radio" id="star-{{ $i }}-{{ $detail->produk->id }}" name="rating"
+                                                    value="{{ $i }}" required>
+                                                <label for="star-{{ $i }}-{{ $detail->produk->id }}" class="star">&#9733;</label>
+                                            @endfor
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="ulasan-{{ $detail->produk->id }}" class="form-label fw-bold">Ulasan Anda</label>
+                                        <textarea name="ulasan" id="ulasan-{{ $detail->produk->id }}" class="form-control" rows="4"
+                                            placeholder="Bagaimana pendapat Anda tentang produk ini?" required></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                        <button type="submit" class="btn btn-primary">Kirim Ulasan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endforeach
+    @endforeach
+
 @endsection
 
-{{-- Merapikan style untuk pagination --}}
 @push('styles')
     <style>
-        .pagination-sm-custom .pagination {
+        /* CSS untuk Bintang Rating */
+        .star-rating {
             display: flex;
-            /* Membuat item pagination berjajar horizontal */
-            flex-wrap: wrap;
-            /* Memastikan bisa turun baris jika tidak muat */
-            justify-content: center;
-            /* Memusatkan pagination */
-            margin-bottom: 0;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
         }
 
-        .pagination-sm-custom .page-item .page-link {
-            padding: 0.25rem 0.6rem;
-            /* Membuat tombol lebih kecil */
-            font-size: 0.875rem;
-            /* Membuat tulisan lebih kecil */
-            line-height: 1.5;
-
-            /* PERUBAHAN: Menambahkan properti ini untuk merapikan konten di dalam tombol */
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            /* Memberi sedikit jarak antara ikon dan teks */
+        .star-rating input[type="radio"] {
+            display: none;
         }
 
-        .pagination-sm-custom .page-item.active .page-link {
-            z-index: 3;
-            color: #fff;
-            background-color: #0d6efd;
-            /* Warna primary Bootstrap */
-            border-color: #0d6efd;
+        .star-rating .star {
+            font-size: 2rem;
+            color: lightgray;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .star-rating input[type="radio"]:hover~.star,
+        .star-rating input[type="radio"]:checked~.star {
+            color: orange;
+        }
+
+        /* CSS FINAL UNTUK PAGINATION - MENGHILANGKAN PANAH PAGINATION */
+        a[rel="next"] svg,
+        a[rel="prev"] svg {
+            display: none !important;
+        }
+
+        ul.pagination .page-link span[aria-hidden="true"] {
+            display: none !important;
         }
     </style>
 @endpush
