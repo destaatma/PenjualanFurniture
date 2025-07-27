@@ -52,7 +52,7 @@
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-book-open" style="color: #17a2b8;"></i>
                     </div>
-                    Transaksi
+                    Manajemen Transaksi
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse {{ request()->is('admin/pemesanan*') || request()->is('admin/pembayaran*') || request()->is('admin/pengiriman*') ? 'show' : '' }}"

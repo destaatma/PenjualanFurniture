@@ -10,12 +10,12 @@
                 <li class="breadcrumb-item active">Pembayaran</li>
             </ol>
 
-            {{-- <a href="{{ route('admin.transaksi.pembayaran.create') }}" class="btn btn-warning mb-3 col-mb-3">
+            <a href="{{ route('admin.transaksi.pembayaran.create') }}" class="btn btn-warning mb-3 col-mb-3">
                 <i class="fas fa-plus-circle"></i> Tambah
-            </a> --}}
-            <a href="{{ route('pembayaran.export') }}" class="btn btn-success mb-3 col-mb-3">
-                <i class="fas fa-file-excel"></i> Export excel
             </a>
+            {{-- <a href="{{ route('pembayaran.export') }}" class="btn btn-success mb-3 col-mb-3">
+                <i class="fas fa-file-excel"></i> Export excel
+            </a> --}}
 
             <div class="card mb-4">
                 <div class="card-header bg-primary text-white">
@@ -60,7 +60,7 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"
                                                         onclick="return confirm('Apakah Anda yakin ingin menghapus pembayaran ini?')">
-                                                        <i class="fas fa-trash"></i>
+                                                        <i class="fas fa-trash-alt"></i>
                                                     </button>
                                                 </form>
                                             </div>

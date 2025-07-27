@@ -63,7 +63,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-warning">
-                            <i class="fas fa-save"></i> Perbarui
+                            <i class="fas fa-save"></i> Simpan
                         </button>
                         <a href="{{ route('admin.transaksi.pembayaran.index') }}" class="btn btn-secondary">
                             <i class="fas fa-arrow-left"></i> Kembali

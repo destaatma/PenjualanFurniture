@@ -77,8 +77,9 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Update Ulasan</button>
-                        <a href="{{ route('admin.ulasan.index') }}" class="btn btn-secondary">Batal</a>
+                        <button type="submit" class="btn btn-warning"><i class="fas fa-save"></i> Simpan</button>
+                        <a href="{{ route('admin.ulasan.index') }}" class="btn btn-secondary"><i
+                                class="fas fa-arrow-left"></i> Kembali </a>
                     </form>
                 </div>
             </div>
