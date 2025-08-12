@@ -19,7 +19,7 @@
             <div class="d-flex justify-content-between align-items-center mb-3 d-md-none">
                 <button class="btn btn-success w-100" type="button" data-bs-toggle="collapse"
                     data-bs-target="#kategoriCollapse" aria-expanded="false" aria-controls="kategoriCollapse">
-                    CATEGORIES <i class="bi bi-chevron-down ms-1"></i>
+                    KATEGORI <i class="bi bi-chevron-down ms-1"></i>
                 </button>
             </div>
 

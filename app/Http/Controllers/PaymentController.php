@@ -322,15 +322,13 @@ class PaymentController extends Controller
                     'message' => $messageForAdmin,
                 ]);
 
-
                 // --- Notifikasi Konfirmasi untuk Customer (Nomor Dinamis) ---
 
-                // PERUBAHAN DI SINI: Memeriksa kolom 'telpon' langsung pada objek customer
+                // Memeriksa apakah customer memiliki nomor telepon
                 if ($customer->telpon) {
 
-                    // Mengambil nomor telepon langsung dari customer, bukan dari profile
+                    // 1. Membersihkan dan memformat nomor telepon
                     $originalUserNumber = $customer->telpon;
-
                     $cleanedUserNumber = preg_replace('/[^0-9]/', '', $originalUserNumber);
                     $userNumberFormatted = null;
 
@@ -340,16 +338,22 @@ class PaymentController extends Controller
                         $userNumberFormatted = '62' . substr($cleanedUserNumber, 1);
                     }
 
+                    // Hanya lanjut jika format nomor telepon valid
                     if ($userNumberFormatted) {
-                        $messageForUser = "✅ *Pemesanan Dikonfirmasi*\n\n";
-                        $messageForUser .= "Halo *{$customer->nama}*,\n\n";
-                        $messageForUser .= "Terima kasih telah melakukan pemesanan. Pesanan dan Pembayaran Anda telah kami terima dan akan segera kami proses. Berikut detailnya:\n\n";
-                        $messageForUser .= "📅 *Tanggal Pesan:* " . Carbon::parse($pemesanan->tanggal_pemesanan)->locale('id')->isoFormat('dddd, D MMMM YYYY HH:mm') . "\n";
-                        $messageForUser .= "💰 *Total Dibayar:* Rp " . number_format($pemesanan->total_harga, 0, ',', '.') . "\n";
-                        $messageForUser .= "🚦 *Status Saat Ini:* {$pemesanan->status_pemesanan}\n\n";
-                        $messageForUser .= "Terima kasih telah berbelanja di OMAH Mebel!";
-                        $messageForUser .= "Kami akan segera memberikan update selanjutnya. Mohon simpan pesan ini sebagai bukti pemesanan Anda.";
 
+                        // --- Pesan Notifikasi Tunggal: Menunggu Pembayaran ---
+                        // Logika if/else dihapus, sekarang hanya ada satu jenis pesan yang dikirim.
+                        $messageForUser  = "� *Pesanan Diterima - Menunggu Pembayaran*\n\n";
+                        $messageForUser .= "Halo *{$customer->nama}*,\n\n";
+                        $messageForUser .= "Terima kasih, pemesanan yang Anda lakukan telah kami terima. Mohon segera selesaikan pembayaran agar pesanan dapat segera kami proses.\n\n";
+                        $messageForUser .= "*DETAIL PESANAN:*\n";
+                        $messageForUser .= "🏷️ *ID Pesanan:* #{$pemesanan->id}\n";
+                        $messageForUser .= "📅 *Tanggal Pesan:* " . Carbon::parse($pemesanan->tanggal_pemesanan)->locale('id')->isoFormat('dddd, D MMMM YYYY') . "\n";
+                        $messageForUser .= "💰 *Total Tagihan:* Rp " . number_format($pemesanan->total_harga, 0, ',', '.') . "\n\n";
+                        $messageForUser .= "Kami akan segera memberikan update selanjutnya setelah pembayaran Anda kami konfirmasi/terima dan setelah melakukan pembayaran konfirmasi dengan balas pesan ini.";
+                        $messageForUser .= "Terima kasih!";
+
+                        // Mengirim pesan yang sudah disiapkan
                         $this->fonnte->sendAdvancedMessage([
                             'target' => $userNumberFormatted,
                             'message' => $messageForUser,
